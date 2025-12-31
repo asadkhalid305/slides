@@ -353,52 +353,6 @@ Our job as **Context Engineers** is to be the Operating System, loading the righ
 
 ---
 
-# 🎯 Making It Work in Practice
-
---
-
-## It's Not Just What, But How
-
-Context isn't just dumping data into the prompt. It's architecture.
-
-<!-- .element: class="fragment" -->
-
-- **Select**: Only load what's relevant _right now_
-<!-- .element: class="fragment" -->
-
-- **Structure**: Format data (JSON, markdown) so the model can parse it efficiently
-<!-- .element: class="fragment" -->
-
-- **Compress**: Summarize long histories, keep context window clean
-<!-- .element: class="fragment" -->
-
-Think of it like RAM management for your AI.
-
-<!-- .element: class="fragment" -->
-
---
-
-## RAG: The Reality Check
-
-**Retrieval-Augmented Generation** = Your AI's fact-checker
-
-<!-- .element: class="fragment" -->
-
-- Searches _your_ knowledge base before answering
-<!-- .element: class="fragment" -->
-
-- Reduces hallucinations dramatically (up to **67%** with advanced RAG)
-<!-- .element: class="fragment" -->
-
-- For our dashboard: Could fetch "Files currently imported in production"
-<!-- .element: class="fragment" -->
-
-**The difference**: AI cites sources instead of making things up
-
-<!-- .element: class="fragment" -->
-
----
-
 # ⚠️ The Hidden Enemy: Context Rot
 
 --
@@ -625,23 +579,13 @@ Let's fix what went wrong with our dashboard and build it properly.
 
 ```python
 def get_product_info(product_id: str) -> dict:
-    """
-    Searches the company product database to get details like name,
-    description, price, and features for a given product ID.
-
-    Args:
-        product_id: The unique identifier (e.g., "SP3000")
-
-    Returns:
-        Dictionary containing product details
-    """
+    # Searches product database for details
     try:
-        response = httpx.get(f"{REMOTE_URL}/products/{product_id}", timeout=10.0)
+        response = httpx.get(f"{REMOTE_URL}/products/{product_id}")
         response.raise_for_status()
         return response.json()
     except httpx.HTTPStatusError as e:
-        return {"error": f"HTTP error: {e.response.status_code}",
-                "message": "Product not found or API error"}
+        return {"error": str(e)}
 ```
 
 Now the agent has access to _your_ product catalog, not hallucinated data.
@@ -654,22 +598,12 @@ Now the agent has access to _your_ product catalog, not hallucinated data.
 
 ```python
 def get_inventory_status(product_id: str) -> dict:
-    """
-    Checks the real-time stock level for a given product ID.
-
-    Args:
-        product_id: The unique identifier (e.g., "SP3000")
-
-    Returns:
-        Dictionary with stock level and availability
-    """
+    # Checks real-time stock level
     try:
-        response = httpx.get(f"{REMOTE_URL}/inventory/{product_id}", timeout=10.0)
-        response.raise_for_status()
+        response = httpx.get(f"{REMOTE_URL}/inventory/{product_id}")
         return response.json()
     except httpx.HTTPStatusError as e:
-        return {"error": f"HTTP error: {e.response.status_code}",
-                "message": "Inventory data not found or API error"}
+        return {"error": str(e)}
 ```
 
 The agent can now interact with live systems.
@@ -685,20 +619,12 @@ from google.adk.agents import Agent
 
 sales_assistant = Agent(
     name="sales_assistant_agent",
-    description="Expert sales assistant with product knowledge",
-    tools=[
-        get_product_info,
-        get_inventory_status,
-        list_all_products,
-        search_products_by_name,
-        add_new_product,
-    ],
+    tools=[get_product_info, get_inventory_status], # + others
     model="gemini-2.5-flash",
     instruction="""
-    You are a helpful sales assistant. When customers ask about products:
-    - Use get_product_info to retrieve product details
-    - Use get_inventory_status to check stock availability
-    - Provide clear, friendly, professional responses
+    You are a helpful sales assistant.
+    Use tools to retrieve product details and check stock.
+    Provide clear, friendly responses.
     """
 )
 ```
@@ -858,19 +784,15 @@ All the expertise a sales assistant should have!
 ```python
 from vertexai import rag
 
-# Configure embedding model
-embedding_model_config = rag.RagEmbeddingModelConfig(
-    vertex_prediction_endpoint=rag.VertexPredictionEndpoint(
-        publisher_model="publishers/google/models/text-embedding-005"
-    )
-)
-
-# Create RAG corpus
+# Create RAG corpus with embedding model
 corpus = rag.create_corpus(
     display_name="product_knowledge_base",
-    description="Sales assistant knowledge base with product guides",
     backend_config=rag.RagVectorDbConfig(
-        rag_embedding_model_config=embedding_model_config
+        rag_embedding_model_config=rag.RagEmbeddingModelConfig(
+            vertex_prediction_endpoint=rag.VertexPredictionEndpoint(
+                publisher_model="publishers/google/models/text-embedding-005"
+            )
+        )
     )
 )
 ```
@@ -884,23 +806,18 @@ This creates our knowledge repository.
 ## Import Knowledge Documents
 
 ```python
-# Import product knowledge from markdown files
-response = rag.import_files(
+# Import product knowledge
+rag.import_files(
     corpus.name,
     [
         "gs://sales-docs/outdoor-entertainment-guide.md",
         "gs://sales-docs/product-comparison-guide.md",
         "gs://sales-docs/bluetooth-troubleshooting.md",
         "gs://sales-docs/customer-reviews-compilation.md",
-        "gs://sales-docs/warranty-and-policies.md"
     ],
     transformation_config=rag.TransformationConfig(
-        chunking_config=rag.ChunkingConfig(
-            chunk_size=512,      # Optimal for Q&A
-            chunk_overlap=100    # Maintains context
-        )
-    ),
-    max_embedding_requests_per_min=1000
+        chunking_config=rag.ChunkingConfig(chunk_size=512, chunk_overlap=100)
+    )
 )
 ```
 
@@ -949,20 +866,13 @@ Plus reviews, warranties, and policies!
 
 ```python
 def create_rag_tool(rag_corpus_name: str):
-    """Create a callable RAG retrieval tool from the corpus."""
     def query_knowledge_base(query: str) -> dict:
-        """
-        Searches the product knowledge base for information.
-        Use this tool to answer questions about product features,
-        comparisons, troubleshooting, and customer reviews.
-        """
+        """Searches the product knowledge base for information."""
         response = rag.retrieval_query(
             rag_resources=[rag.RagResource(rag_corpus=rag_corpus_name)],
             text=query,
         )
-        contexts = [f"Source: {c.source}\nText: {c.text}"
-                    for c in response.retrieved_contexts]
-        return {"retrieved_information": "\n\n".join(contexts)}
+        return {"retrieved_information": response.retrieved_contexts}
 
     return query_knowledge_base
 
@@ -1079,21 +989,6 @@ We have **114 units** in stock. Would you like to add one to your cart?"
 
 --
 
-## Division of Labor: Tools vs RAG
-
-| Question Type                               | Who Answers  | Why                               |
-| ------------------------------------------- | ------------ | --------------------------------- |
-| "What's the current price?"                 | **Tools** 🛠️ | Real-time data changes frequently |
-| "Is it in stock right now?"                 | **Tools** 🛠️ | Inventory updates constantly      |
-| "How do I fix Bluetooth issues?"            | **RAG** 📚   | Static knowledge, doesn't change  |
-| "Which is better for outdoors?"             | **RAG** 📚   | Domain expertise & use cases      |
-| "What do customers say?"                    | **RAG** 📚   | Reviews & testimonials            |
-| "Is SP3000 in stock AND good for outdoors?" | **Both** ✨  | Real-time + Knowledge             |
-
-<!-- .element: class="fragment" -->
-
---
-
 ## Tools vs RAG vs Tools+RAG
 
 | Capability                 | Tools Only | RAG Only | Tools + RAG |
@@ -1151,23 +1046,13 @@ You might think: "Only one RAG corpus? That's limiting!"
 ## Deploy to Vertex AI 🚀
 
 ```python
-from vertexai import agent_engines
-from vertexai.preview import reasoning_engines
-
-# Package and deploy the complete agent (Tools + RAG)
-app = reasoning_engines.AdkApp(
-    agent=root_agent,  # Already includes tools AND rag_tool
-    enable_tracing=True
-)
+# Package and deploy the complete agent
+app = reasoning_engines.AdkApp(agent=root_agent)
 
 remote_app = agent_engines.create(
     agent_engine=app,
-    requirements=[
-        "google-cloud-aiplatform[adk,agent_engines]",
-        "httpx",
-        "python-dotenv",
-    ],
-    extra_packages=["./"]  # Packages the agent code
+    requirements=["google-cloud-aiplatform", "httpx"],
+    extra_packages=["./"]
 )
 
 print(f"Remote app created: {remote_app.resource_name}")
