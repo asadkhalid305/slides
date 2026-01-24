@@ -1,8 +1,5 @@
 const main = async () => {
-  const responses = await Promise.all([
-    fetch('data/slides.json'),
-    fetch('data/externalSlides.json'),
-  ]);
+  const responses = await Promise.all([fetch('data/slides.json')]);
 
   let slides = await Promise.all(responses.map((resp) => resp.json()));
   slides = slides.flat();

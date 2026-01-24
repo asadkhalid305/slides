@@ -1,92 +1,63 @@
-<p align="center">
-  <a href="https://revealjs.com">
-  <img src="https://hakim-static.s3.amazonaws.com/reveal-js/logo/v1/reveal-black-text-sticker.png" alt="reveal.js" width="500">
-  </a>
-  <br><br>
-  <a href="https://github.com/hakimel/reveal.js/actions"><img src="https://github.com/hakimel/reveal.js/workflows/tests/badge.svg"></a>
-  <a href="https://slides.com/"><img src="https://s3.amazonaws.com/static.slid.es/images/slides-github-banner-320x40.png?1" alt="Slides" width="160" height="20"></a>
-</p>
+# Slides by Asad Ullah Khalid
 
-reveal.js is an open source HTML presentation framework. It enables anyone with a web browser to create beautiful presentations for free. Check out the live demo at [revealjs.com](https://revealjs.com/).
+This repository contains presentation slides for talks given by Asad Ullah Khalid, built using [reveal.js](https://revealjs.com/) - an open source HTML presentation framework.
 
-The framework comes with a powerful feature set including [nested slides](https://revealjs.com/vertical-slides/), [Markdown support](https://revealjs.com/markdown/), [Auto-Animate](https://revealjs.com/auto-animate/), [PDF export](https://revealjs.com/pdf-export/), [speaker notes](https://revealjs.com/speaker-view/), [LaTeX typesetting](https://revealjs.com/math/), [syntax highlighted code](https://revealjs.com/code/) and an [extensive API](https://revealjs.com/api/).
+## About
 
----
+Senior Frontend Developer at Mercedes-Benz.io, Berlin, Germany with 7+ years of experience. Frontend focused with fullstack JS/TS expertise.
 
-Want to create reveal.js presentation in a graphical editor? Try <https://slides.com>. It's made by the same people behind reveal.js.
+Connect with me:
 
----
-
-### Sponsors
-
-Hakim's open source work is supported by <a href="https://github.com/sponsors/hakimel">GitHub sponsors</a>. Special thanks to:
-
-<div align="center">
-  <table>
-    <td align="center">
-      <a href="https://workos.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=revealjs&utm_source=github">
-        <div>
-          <img src="https://user-images.githubusercontent.com/629429/151508669-efb4c3b3-8fe3-45eb-8e47-e9510b5f0af1.svg" width="290" alt="WorkOS">
-        </div>
-        <b>Your app, enterprise-ready.</b>
-        <div>
-          <sub>Start selling to enterprise customers with just a few lines of code. Add Single Sign-On (and more) in minutes instead of months.</sup>
-        </div>
-      </a>
-    </td>
-  </table>
-</div>
-
----
-
-### Getting started
-
-- 🚀 [Install reveal.js](https://revealjs.com/installation)
-- 👀 [View the demo presentation](https://revealjs.com/demo)
-- 📖 [Read the documentation](https://revealjs.com/markup/)
-- 🖌 [Try the visual editor for reveal.js at Slides.com](https://slides.com/)
-- 🎬 [Watch the reveal.js video course (paid)](https://revealjs.com/course)
+- 🌐 Website: [asadullahkhalid.com](https://asadullahkhalid.com)
+- 💼 LinkedIn: [asadkhalid305](https://linkedin.com/in/asadkhalid305)
+- 💻 GitHub: [asadullah305](https://github.com/asadullah305)
+- 📅 Book a session: [Topmate](https://topmate.io/asadullahkhalid)
 
 ## Getting Started
 
-**Install Dependencies:**
+### Install Dependencies
 
-### Install the project's dependencies using npm:
-
+```bash
 npm install
-
-## Usage
+```
 
 ### Serve the Project
-
-To serve the project locally for development, use the following command:
 
 ```bash
 npm run dev
 ```
 
-This command will start a development server, allowing you to access the project in a web browser at `http://localhost:3000` or a different port if specified in your project configuration.
+This will start a development server at `http://localhost:3000` (or different port if specified).
 
 ### Build the Project
-
-To build the project for production deployment, run:
 
 ```bash
 npm run build
 ```
 
-This command will generate optimised production-ready assets and place them in the `dist` directory.
+This generates optimised production-ready assets in the `dist` directory.
 
 ### Deploy the Project
-
-To deploy the project, you can use the following command:
 
 ```bash
 npm run deploy
 ```
 
-## The deployment process may vary depending on your specific hosting environment. Be sure to configure your deployment settings as needed, and consult your hosting provider's documentation for detailed instructions.
+Note: Configure your deployment settings as needed based on your hosting provider.
+
+## Creating New Talks
+
+1. Create a new HTML file in the `talks/` directory (use `talks/the-prompt-is-dead-long-live-the-context.html` as reference)
+2. Create corresponding markdown content in `talks/slides-markdown/`
+3. Add entry to `data/slides.json` with title and filename
+4. Update profile section in `talks/profiles/asad.md` if needed
+
+## About reveal.js
+
+reveal.js is an open source HTML presentation framework. For more information, visit [revealjs.com](https://revealjs.com/).
+
+---
 
 <div align="center">
-  MIT licensed | Copyright © 2011-2022 Hakim El Hattab, https://hakim.se
+  reveal.js is MIT licensed | Copyright © 2011-2022 Hakim El Hattab
 </div>

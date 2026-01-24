@@ -1,7 +1,7 @@
 {
   "name": "cwa-slides",
   "version": "4.4.0",
-  "description": "Slides of the talks given by Muhammad Ahsan Ayaz",
+  "description": "Slides of the talks given by Asad Ullah Khalid",
   "homepage": "https://revealjs.com",
   "subdomain": "revealjs",
   "main": "dist/reveal.js",
@@ -18,13 +18,13 @@
     "extract": "node scripts/extractSlideData.js"
   },
   "author": {
-    "name": "Muhammad Ahsan Ayaz",
-    "email": "ahsan.ubitian@gmail.com",
-    "web": "https://codewithahsan.dev"
+    "name": "Asad Ullah Khalid",
+    "email": "asadkhalid305@gmail.com",
+    "web": "https://asadullahkhalid.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ahsanayaz/slides.git"
+    "url": "git://github.com/asadullah305/slides.git"
   },
   "engines": {
     "node": ">=10.0.0"
