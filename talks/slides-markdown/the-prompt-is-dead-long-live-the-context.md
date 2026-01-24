@@ -2,11 +2,11 @@
 
 # Long Live the Context! 👑
 
-**Muhammad Ahsan Ayaz**
+**Asad Ullah Khalid**
 
 <!-- .element: class="fragment" -->
 
-_Google Developer Expert (GDE) in AI & Angular_
+_Senior Frontend Developer at Mercedes-Benz.io_
 
 <!-- .element: class="fragment" -->
 
@@ -54,7 +54,7 @@ Use myself as the programmer in the image.
 
 #### +
 
-## ![Ahsan PFP](assets/images/nano-banana/ahsan-pfp.jpeg) <!-- .element: style="width: 30%;" -->
+<!-- Profile image placeholder - replace with your own if needed -->
 
 --
 
@@ -1074,15 +1074,13 @@ Production-ready with monitoring, versioning, and enterprise security.
 
 _Ready to build the future of AI?_
 
-**Muhammad Ahsan Ayaz**
+**Asad Ullah Khalid**
 
 <!-- .element: class="fragment" -->
 
-Google Developer Expert
+<a href="https://asadullahkhalid.com">asadullahkhalid.com</a>
 
 <!-- .element: class="fragment" -->
-
-### Connect: @codewith_ahsan
 
 ---
 
