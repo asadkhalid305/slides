@@ -3,7 +3,7 @@
 <div class="introduction">
   <div class="introduction__left">
     <img class="introduction__left__avatar" src="https://github.com/asadkhalid305.png?size=420"/>
-    <div class="introduction__left__info">
+    <div class="introduction__left__info fragment">
       <p>
         🚗 Senior Frontend Developer<br/>
         🏢 Mercedes-Benz.io<br/>
@@ -13,7 +13,7 @@
       </p>
     </div>
   </div>
-  <div class="introduction__right">
+  <div class="introduction__right fragment">
     <p>🎤 <strong>8+</strong> Public Talks & Workshops</p>
     <p>✍️ <strong>4+</strong> Blogs</p>
     <p>📚 <strong>2+</strong> Book Reviews</p>
@@ -22,15 +22,13 @@
   </div>
 </div>
 
-<div class="footer">
+<div class="footer fragment">
   <div class="footer__site">
     <a href="https://asadullahkhalid.com">🌐 asadullahkhalid.com</a>
   </div>
-  <div class="footer__links">
+  <div class="footer__links gap-6">
     <a href="https://linkedin.com/in/asadkhalid305" target="_blank">💼 LinkedIn</a>
-    <span>•</span>
     <a href="https://github.com/asadullah305" target="_blank">💻 GitHub</a>
-    <span>•</span>
     <a href="https://topmate.io/asadullahkhalid" target="_blank">📅 Book a Session</a>
   </div>
 </div>
@@ -40,7 +38,7 @@
 ### 🚀 What I'm Doing
 
 <div class="introduction">
-  <div class="introduction__left">
+  <div class="introduction__left fragment">
     <div class="introduction__left__info">
       <p style="color: #6366f1; font-weight: bolder; font-size: 24px; margin-bottom: 10px; text-align:center;">Building SaaS "KeyFinz"</p>
       <p>
@@ -51,7 +49,7 @@
       </p>
     </div>
   </div>
-  <div class="introduction__right">
+  <div class="introduction__right fragment">
     <p style="color: #6366f1; font-weight: bolder; font-size: 24px; margin-bottom: 10px; text-align: center;">Recent Work</p>
     <p>🛠️ <strong>Workshop:</strong> Building with OpenAI Agents SDK<br/>
     <span style="font-size: 18px; opacity: 0.7;">Technical workshop on building multi-agent system</span></p>
@@ -68,15 +66,15 @@
 
 <div class="journey-container">
   <div class="journey-content">
-    <p>
+    <p class="fragment">
       💻 <strong>Web development since 2016</strong><br/>
       <span class="sub-detail">→ started with HTML & CSS as a student</span>
     </p>
-    <p>
+    <p class="fragment">
       💻 <strong>Led IEEE Univeristy Branch organization from 2016 - 2019 </strong><br/>
       <span class="sub-detail">→ From Volunteer to Vice Chairman to President</span>
     </p>
-    <p>
+    <p class="fragment">
       🌍 <strong>Pakistan → Germany</strong><br/>
       <span class="sub-detail">→ From Securiti to Labforward to Mercedes-Benz.io</span>
     </p>
@@ -91,9 +89,9 @@
 ### 🎯 Expertise & Focus
 
 <div class="introduction" style="justify-content: center; gap: 100px;">
-  <div class="introduction__left">
+  <div class="introduction__left fragment">
     <div class="introduction__left__info">
-      <p style="color: #6366f1; font-weight: bolder; margin-bottom: font-size: 24px; 10px; text-align: center;">Technical Skills</p>
+      <p style="color: #6366f1; font-weight: bolder; margin-bottom: 10px; font-size: 24px; 10px; text-align: center;">Technical Skills</p>
       <p>
         ⚡ Frontend Architecture<br/>
         🔷 TypeScript & JavaScript<br/>
@@ -103,7 +101,7 @@
       </p>
     </div>
   </div>
-  <div class="introduction__right">
+  <div class="introduction__right fragment">
     <p style="color: #6366f1; font-weight: bolder; margin-bottom: 10px; font-size: 24px; text-align: center;">Community Impact</p>
     <p>
       🎤 Public Speaking<br/>

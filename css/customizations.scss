@@ -165,3 +165,57 @@ img.meme {
 .reveal .slides {
   font-size: 32px;
 }
+
+// Vertical centering for slides
+.reveal .slides section.center-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100% !important;
+  text-align: center !important;
+}
+
+// Title slide styles
+.title-slide {
+  text-align: center;
+
+  &__main {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  &__highlight {
+    font-size: 2.5em;
+    text-decoration: underline;
+    text-decoration-color: #6366f1;
+    text-underline-offset: 8px;
+    color: #6366f1;
+  }
+}
+
+// Agenda styles
+.agenda {
+  margin-top: 60px;
+  text-align: center;
+
+  &__title {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: #fff;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
+    line-height: 2.5;
+  }
+
+  &__item {
+    padding: 12px 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
