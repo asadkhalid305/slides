@@ -1920,18 +1920,10 @@ $notesWidthPercent: 25%;
 @import 'print/pdf.scss';
 @import 'print/paper.scss';
 
-
 /*********************************************
- * Custom Styles added by Ahsan
+ * Custom Styles
  *********************************************/
 
-
 @import './customizations.scss';
-
-
-/*********************************************
- * Custom Styles added by Ahsan
- *********************************************/
-
-
-@import './customizations.scss';
+@import './talks/profile.scss';
+@import './talks/multi-agent-systems.scss';
