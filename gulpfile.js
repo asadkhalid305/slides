@@ -201,12 +201,14 @@ function compileSass() {
     );
   });
 }
-gulp.task('css-tailwind', () => {
-  return gulp
-    .src('./css/index.css') // Entry file for Tailwind processing
-    .pipe(postcss([tailwindcss]))
-    .pipe(gulp.dest('./dist')); // Destination directory
-});
+gulp.task('css-landing', () =>
+  gulp
+    .src(['css/landing.scss'])
+    .pipe(compileSass())
+    .pipe(autoprefixer())
+    .pipe(minify({ compatibility: 'ie9' }))
+    .pipe(gulp.dest('./dist'))
+);
 
 gulp.task('css-themes', () =>
   gulp
@@ -225,8 +227,8 @@ gulp.task('css-core', () =>
     .pipe(gulp.dest('./dist'))
 );
 
-// Modified CSS task to include Tailwind
-gulp.task('css', gulp.parallel('css-themes', 'css-core', 'css-tailwind'));
+// Main CSS build task
+gulp.task('css', gulp.parallel('css-themes', 'css-core', 'css-landing'));
 
 // Modified watch task to include Tailwind CSS files
 gulp.task('serve', () => {
@@ -252,14 +254,7 @@ gulp.task('serve', () => {
   );
 
   gulp.watch(
-    [
-      'css/*.scss',
-      'css/print/*.{sass,scss,css}',
-      'css/tailwind.css',
-      './tailwind.config.js',
-      'css/index.css',
-      'index.html',
-    ],
+    ['css/*.scss', 'css/_*.scss', 'css/print/*.{sass,scss,css}', 'index.html'],
     gulp.series('css', 'reload')
   );
 
