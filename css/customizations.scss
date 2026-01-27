@@ -1,8 +1,7 @@
 // ===========================================
 // CUSTOMIZATIONS - MAIN ENTRY POINT
 // ===========================================
-// All custom styles are organized into modular files
-// Edit the individual files to make changes
+// All custom styles organized in modular files
 
 // Variables (colors, glow settings, etc.)
 @import 'variables';
@@ -10,11 +9,5 @@
 // Animation keyframes
 @import 'animations';
 
-// Corner glow background effect
-@import 'corner-glow';
-
-// General utility classes
-@import 'utilities';
-
-// Color and highlighting utilities
-@import 'highlights';
+// All reveal.js customizations (corner glows, utilities, highlights)
+@import 'reveal-customizations';
