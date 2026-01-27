@@ -47,7 +47,7 @@ Note: Configure your deployment settings as needed based on your hosting provide
 
 ## Creating New Talks
 
-1. Create a new HTML file in the `talks/` directory (use `talks/the-prompt-is-dead-long-live-the-context.html` as reference)
+1. Create a new HTML file in the `talks/` directory (use `talks/designing-multi-agent-ai-systems.html` as reference)
 2. Create corresponding markdown content in `talks/slides-markdown/`
 3. Add entry to `data/slides.json` with title and filename
 4. Update profile section in `talks/profiles/myself.md` if needed
