@@ -1,0 +1,76 @@
+// ===========================================
+// CORNER GLOW EFFECT
+// ===========================================
+// Animated background glows in all four corners
+
+.reveal .slides {
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    width: var(--glow-size);
+    height: var(--glow-size);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(var(--glow-blur));
+    background: radial-gradient(
+      circle at center,
+      rgba(79, 12, 173, 0.4) 0%,
+      rgba(79, 12, 173, 0.2) 30%,
+      transparent 60%
+    );
+  }
+
+  // Top-left corner glow
+  &::before {
+    top: -10%;
+    left: -10%;
+    animation: cornerGlowTL var(--glow-speed) ease-in-out infinite;
+  }
+
+  // Top-right corner glow
+  &::after {
+    top: -10%;
+    right: -10%;
+    animation: cornerGlowTR calc(var(--glow-speed) * 1.2) ease-in-out infinite;
+    animation-delay: calc(var(--glow-speed) * -0.3);
+  }
+}
+
+// Additional corner glows from bottom corners
+.reveal .slides section {
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    width: var(--glow-size);
+    height: var(--glow-size);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(var(--glow-blur));
+    background: radial-gradient(
+      circle at center,
+      rgba(79, 12, 173, 0.4) 0%,
+      rgba(79, 12, 173, 0.2) 30%,
+      transparent 60%
+    );
+  }
+
+  // Bottom-left corner glow
+  &::before {
+    bottom: -10%;
+    left: -10%;
+    animation: cornerGlowBL calc(var(--glow-speed) * 1.1) ease-in-out infinite;
+    animation-delay: calc(var(--glow-speed) * -0.5);
+  }
+
+  // Bottom-right corner glow
+  &::after {
+    bottom: -10%;
+    right: -10%;
+    animation: cornerGlowBR calc(var(--glow-speed) * 1.3) ease-in-out infinite;
+    animation-delay: calc(var(--glow-speed) * -0.7);
+  }
+}

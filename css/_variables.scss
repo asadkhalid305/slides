@@ -1,0 +1,53 @@
+// ===========================================
+// CSS VARIABLES
+// ===========================================
+// All customizable variables in one place
+
+:root {
+  // ===========================================
+  // THEME COLORS
+  // ===========================================
+
+  // Base theme colors
+  --color-primary: #4f0cad; // Deep purple
+  --color-primary-light: #6b21a8; // Lighter purple
+  --color-primary-dark: #3b0a82; // Darker purple
+
+  // Semantic colors for highlighting
+  --color-success: #10b981; // Green - positive, success, "correct"
+  --color-warning: #f59e0b; // Amber/Yellow - attention, caution
+  --color-danger: #ef4444; // Red - error, deprecated, wrong
+  --color-info: #3b82f6; // Blue - information, technical terms
+  --color-accent: #8b5cf6; // Purple accent - key concepts
+
+  // Background highlights (semi-transparent versions)
+  --bg-success: rgba(16, 185, 129, 0.15);
+  --bg-warning: rgba(245, 158, 11, 0.15);
+  --bg-danger: rgba(239, 68, 68, 0.15);
+  --bg-info: rgba(59, 130, 246, 0.15);
+  --bg-accent: rgba(139, 92, 246, 0.15);
+
+  // ===========================================
+  // CORNER GLOW EFFECT - CONTROL PANEL
+  // ===========================================
+  // Adjust these 3 main values to control the background glow effect
+
+  // MAIN CONTROLS (adjust these first)
+  // ----------------------------------
+  // Overall visibility - how bright the glows appear
+  // Range: 0.1 to 0.4 | Start here to adjust visibility
+  --glow-intensity: 0.25;
+
+  // Size of corner glows
+  // Range: 30vw to 60vw | Larger = More coverage
+  --glow-size: 45vw;
+
+  // Animation speed - how fast they pulse
+  // Range: 8s to 25s | Higher = Slower/calmer | Lower = Faster
+  --glow-speed: 10s;
+
+  // FINE-TUNING (optional, advanced)
+  // ---------------------------------
+  --glow-blur: 120px; // Softness: 80px-150px
+  --glow-min-opacity: 0.08; // Minimum brightness when pulsing
+}

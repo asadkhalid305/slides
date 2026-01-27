@@ -1,0 +1,84 @@
+// ===========================================
+// REUSABLE UTILITY CLASSES
+// ===========================================
+// Generic utilities that can be used across all talks and pages
+
+// Meme images
+img.meme {
+  max-height: 600px !important;
+}
+
+// Code highlighting
+.reveal code:not(.hljs) {
+  color: yellow;
+}
+
+// Global slide font size
+.reveal .slides {
+  font-size: 32px;
+  line-height: 1.6;
+}
+
+// Vertical centering utility for slides
+// Usage: <!-- .slide: class="center-slide" -->
+.reveal .slides section.center-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100% !important;
+  text-align: center !important;
+
+  // Improve readability in center slides
+  > div,
+  > p {
+    max-width: 90%;
+  }
+}
+
+// Text alignment utilities
+.reveal .text-start {
+  text-align: left !important;
+}
+
+.reveal .text-center {
+  text-align: center !important;
+}
+
+// Consistent spacing utilities
+.reveal .pt-6 {
+  padding-top: 1.5rem !important;
+}
+
+.reveal .pt-8 {
+  padding-top: 2rem !important;
+}
+
+.reveal .pt-12 {
+  padding-top: 3rem !important;
+}
+
+// Typography utilities
+.reveal .leading-relaxed {
+  line-height: 1.8 !important;
+}
+
+.reveal .italic {
+  font-style: italic !important;
+}
+
+// List styling improvements
+.reveal ul,
+.reveal ol {
+  margin: 0;
+  padding-left: 1.5em;
+
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+
+// Fragment styling
+.reveal .fragment {
+  transition: all 0.3s ease;
+}

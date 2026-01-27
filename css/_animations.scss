@@ -1,0 +1,58 @@
+// ===========================================
+// KEYFRAME ANIMATIONS
+// ===========================================
+// Reusable animation definitions
+
+// Corner glow animations - each corner pulses and breathes in place
+
+// Top-left corner
+@keyframes cornerGlowTL {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: var(--glow-min-opacity);
+  }
+  50% {
+    transform: translate(10%, 10%) scale(1.1);
+    opacity: var(--glow-intensity);
+  }
+}
+
+// Top-right corner
+@keyframes cornerGlowTR {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: var(--glow-min-opacity);
+  }
+  50% {
+    transform: translate(-10%, 10%) scale(1.05);
+    opacity: var(--glow-intensity);
+  }
+}
+
+// Bottom-left corner
+@keyframes cornerGlowBL {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: var(--glow-min-opacity);
+  }
+  50% {
+    transform: translate(10%, -10%) scale(1.08);
+    opacity: var(--glow-intensity);
+  }
+}
+
+// Bottom-right corner
+@keyframes cornerGlowBR {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: var(--glow-min-opacity);
+  }
+  50% {
+    transform: translate(-10%, -10%) scale(1.06);
+    opacity: var(--glow-intensity);
+  }
+}
