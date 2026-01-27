@@ -10,46 +10,78 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="dist/index.css" />
-    <link href="css/index.css" rel="stylesheet" />
+    <link href="dist/landing.css" rel="stylesheet" />
   </head>
-  <body class="flex flex-col">
-    <div class="navbar bg-base-100">
-      <button class="btn btn-ghost text-xl flex gap-4 items-center">
-        Slides by Asad Ullah Khalid
-      </button>
-      <div class="flex-1"></div>
-      <button class="btn">
-        <!-- Placeholder for logo/branding image -->
+  <body>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="hero">
+        <h1 class="hero-title">Talks & Presentations</h1>
+        <p class="hero-subtitle">by Asad Ullah Khalid</p>
+      </div>
+
+      <div class="talks-container">
+        <div id="talksGrid" class="talks-grid"></div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p class="footer-text">More about me</p>
         <a
           href="https://asadullahkhalid.com"
-          class="text-blue-500 text-lg hover:text-blue-300"
-          >asadullahkhalid.com</a
+          class="footer-link"
+          target="_blank"
+          rel="noopener"
         >
-      </button>
-    </div>
-    <div class="reveal mx-auto my-32">
-      <div
-        id="talksGrid"
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center"
-        style="padding-inline: 40px"
-      ></div>
-    </div>
+          <span>asadullahkhalid.com</span>
+          <svg
+            class="footer-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            ></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </footer>
+    </main>
+
+    <!-- Card Template -->
     <template id="cardTemplate">
-      <div class="card bg-neutral text-neutral-content">
-        <div class="card-body items-center text-center">
-          <h2 class="card-title">Cookies!</h2>
-          <p class="flex-1"></p>
-          <div class="card-actions justify-end">
-            <a href="#" target="_blank" class="btn btn-primary">View</a>
-          </div>
+      <article class="talk-card">
+        <div class="card-content">
+          <h2 class="card-title"></h2>
+          <a href="#" target="_blank" class="card-link">
+            <span>View Slides</span>
+            <svg
+              class="arrow-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
-      </div>
+      </article>
     </template>
+
     <script src="main.js"></script>
   </body>
 </html>
