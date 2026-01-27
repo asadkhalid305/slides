@@ -1,0 +1,325 @@
+// ===========================================
+// REVEAL.JS CUSTOMIZATIONS
+// ===========================================
+// All custom utilities and styles for reveal.js presentations
+// Merged from: _utilities.scss, _highlights.scss, _corner-glow.scss
+
+// ===========================================
+// CORNER GLOW EFFECT
+// ===========================================
+.reveal .slides {
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    width: var(--glow-size);
+    height: var(--glow-size);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(var(--glow-blur));
+    background: radial-gradient(
+      circle at center,
+      rgba(79, 12, 173, 0.4) 0%,
+      rgba(79, 12, 173, 0.2) 30%,
+      transparent 60%
+    );
+  }
+
+  // Top-left corner glow
+  &::before {
+    top: -10%;
+    left: -10%;
+    animation: cornerGlowTL var(--glow-speed) ease-in-out infinite;
+  }
+
+  // Top-right corner glow
+  &::after {
+    top: -10%;
+    right: -10%;
+    animation: cornerGlowTR calc(var(--glow-speed) * 1.2) ease-in-out infinite;
+    animation-delay: calc(var(--glow-speed) * -0.3);
+  }
+}
+
+// Additional corner glows from bottom corners
+.reveal .slides section {
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    width: var(--glow-size);
+    height: var(--glow-size);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(var(--glow-blur));
+    background: radial-gradient(
+      circle at center,
+      rgba(79, 12, 173, 0.4) 0%,
+      rgba(79, 12, 173, 0.2) 30%,
+      transparent 60%
+    );
+  }
+
+  // Bottom-left corner glow
+  &::before {
+    bottom: -10%;
+    left: -10%;
+    animation: cornerGlowBL calc(var(--glow-speed) * 1.1) ease-in-out infinite;
+    animation-delay: calc(var(--glow-speed) * -0.5);
+  }
+
+  // Bottom-right corner glow
+  &::after {
+    bottom: -10%;
+    right: -10%;
+    animation: cornerGlowBR calc(var(--glow-speed) * 1.3) ease-in-out infinite;
+    animation-delay: calc(var(--glow-speed) * -0.7);
+  }
+}
+
+// ===========================================
+// UTILITIES
+// ===========================================
+
+// Meme images
+img.meme {
+  max-height: 600px !important;
+}
+
+// Code highlighting
+.reveal code:not(.hljs) {
+  color: yellow;
+}
+
+// Global slide font size
+.reveal .slides {
+  font-size: 32px;
+  line-height: 1.6;
+}
+
+// Vertical centering utility for slides
+.reveal .slides section.center-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100% !important;
+  text-align: center !important;
+
+  > div,
+  > p {
+    max-width: 90%;
+  }
+}
+
+// Text alignment utilities
+.reveal .text-start {
+  text-align: left !important;
+}
+
+.reveal .text-center {
+  text-align: center !important;
+}
+
+// Spacing utilities
+.reveal .pt-6 {
+  padding-top: 1.5rem !important;
+}
+
+.reveal .pt-8 {
+  padding-top: 2rem !important;
+}
+
+.reveal .pt-12 {
+  padding-top: 3rem !important;
+}
+
+.reveal .leading-relaxed {
+  line-height: 1.8 !important;
+}
+
+.reveal .italic {
+  font-style: italic !important;
+}
+
+// List styles
+.reveal ol,
+.reveal ul {
+  margin: 0;
+  padding-left: 1.5em;
+
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+
+// Fragment transitions
+.reveal .fragment {
+  transition: all 0.3s ease;
+}
+
+// ===========================================
+// COLOR & HIGHLIGHTING
+// ===========================================
+
+// Text color utilities
+.reveal .text-primary {
+  color: var(--color-primary) !important;
+}
+
+.reveal .text-success {
+  color: var(--color-success) !important;
+}
+
+.reveal .text-warning {
+  color: var(--color-warning) !important;
+}
+
+.reveal .text-danger {
+  color: var(--color-danger) !important;
+}
+
+.reveal .text-info {
+  color: var(--color-info) !important;
+}
+
+.reveal .text-accent {
+  color: var(--color-accent) !important;
+}
+
+// Background highlight utilities
+.reveal .highlight {
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.reveal .highlight-success {
+  background: var(--bg-success);
+  color: var(--color-success);
+}
+
+.reveal .highlight-warning {
+  background: var(--bg-warning);
+  color: var(--color-warning);
+}
+
+.reveal .highlight-danger {
+  background: var(--bg-danger);
+  color: var(--color-danger);
+}
+
+.reveal .highlight-info {
+  background: var(--bg-info);
+  color: var(--color-info);
+}
+
+.reveal .highlight-accent {
+  background: var(--bg-accent);
+  color: var(--color-accent);
+}
+
+// Underline utilities
+.reveal .underline-primary {
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.reveal .underline-accent {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.reveal .underline-success {
+  text-decoration: underline;
+  text-decoration-color: var(--color-success);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.reveal .line-through-danger {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-danger);
+  text-decoration-thickness: 3px;
+}
+
+// Emphasis utilities
+.reveal .emphasis-primary {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.reveal .emphasis-success {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.reveal .emphasis-warning {
+  color: var(--color-warning);
+  font-weight: 600;
+}
+
+.reveal .emphasis-danger {
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+.reveal .emphasis-info {
+  color: var(--color-info);
+  font-weight: 600;
+}
+
+// Brush highlight effect
+.reveal .brush-highlight {
+  position: relative;
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  color: #fff;
+  z-index: 1;
+  font-weight: 600;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -0.3em;
+    right: -0.3em;
+    top: -0.1em;
+    bottom: -0.1em;
+    background: linear-gradient(
+      95deg,
+      var(--color-primary-dark) 0%,
+      var(--color-primary) 20%,
+      var(--color-primary-light) 60%,
+      var(--color-primary-dark) 100%
+    );
+    z-index: -1;
+    transform: rotate(-1deg);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    opacity: 0.5;
+  }
+}
+
+// ===========================================
+// IMAGE ZOOM ON CLICK (Alt+Click)
+// ===========================================
+
+// Make images clickable with visual feedback
+.reveal img {
+  cursor: zoom-in;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+}
+
+// When zoomed state (applied by zoom plugin)
+.zoomed .reveal img {
+  cursor: zoom-out;
+}
