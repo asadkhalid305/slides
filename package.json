@@ -68,7 +68,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.39.2",
     "tailwindcss": "^3.4.14",
-    "yargs": "^15.1.0"
+    "yargs": "^15.1.0",
+    "carbon-now-cli": "^2.1.0"
   },
   "browserslist": "> 2%, not dead",
   "eslintConfig": {
@@ -110,7 +111,6 @@
     }
   },
   "dependencies": {
-    "carbon-now-cli": "^2.1.0",
     "uuid": "^9.0.1"
   }
 }
