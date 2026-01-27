@@ -325,9 +325,9 @@ The <span class="emphasis-success">base design remains the same</span>. The majo
 
 ## How It Works
 
-<div class="max-w-[1100px]">
+<div class="pt-6">
 
-![Multi-Agent System Architecture](assets/ai-agents/multi-agent-architecture.png)
+<img src="assets/ai-agents/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: 80vh; width: auto;" />
 
 </div>
 
@@ -439,7 +439,13 @@ A finance tracking application where you can record personal finances and intera
 
 <!-- .slide: class="center-slide" -->
 
-![KeyFinz AI Assistant Demo](assets/ai-agents/keyfinz.gif)
+## Demo
+
+<div class="pt-6">
+
+<img src="assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: 80vh; width: auto;" />
+
+</div>
 
 --
 
