@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div class="footer fragment">
+<!-- <div class="footer fragment">
   <div class="footer__site">
     <a href="https://asadullahkhalid.com">🌐 asadullahkhalid.com</a>
   </div>
@@ -33,7 +33,7 @@
     <a href="https://github.com/asadullah305" target="_blank">💻 GitHub</a>
     <a href="https://topmate.io/asadullahkhalid" target="_blank">📅 Book a Session</a>
   </div>
-</div>
+</div> -->
 
 --
 
