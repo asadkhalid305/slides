@@ -18,6 +18,11 @@
   </head>
 
   <body>
+    <!-- Lightbox overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+      <img id="lightbox-content" alt="Preview" />
+    </div>
+
     <div class="reveal">
       <div class="slides">
         <section
@@ -58,6 +63,9 @@
         history: true,
         center: true,
 
+        // Enable image preview
+        imagePreview: true,
+
         plugins: [
           RevealMarkdown,
           RevealHighlight,
@@ -66,6 +74,45 @@
           RevealZoom,
           RevealSearch,
         ],
+      });
+
+      /* Custom Lightbox Implementation for reveal.js 4.x
+       *
+       * The native lightbox feature was introduced in reveal.js 5.2.0, but this project
+       * is using reveal.js 4.4.0. This custom implementation provides similar functionality
+       * by listening for clicks on elements with data-preview-image attributes and displaying
+       * the images in a full-screen overlay.
+       *
+       * To use the native lightbox, upgrade to reveal.js 5.2.0 or higher and remove this code.
+       */
+      document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightbox-content');
+
+        // Handle clicks on elements with data-preview-image
+        document.addEventListener('click', function (e) {
+          const target = e.target.closest('[data-preview-image]');
+          if (target) {
+            e.preventDefault();
+            const imageSrc = target.getAttribute('data-preview-image');
+            if (imageSrc) {
+              lightboxContent.src = imageSrc;
+              lightbox.classList.add('active');
+            }
+          }
+        });
+
+        // Close lightbox on click
+        lightbox.addEventListener('click', function () {
+          lightbox.classList.remove('active');
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+          }
+        });
       });
     </script>
   </body>
