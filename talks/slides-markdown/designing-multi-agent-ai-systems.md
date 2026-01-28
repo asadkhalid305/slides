@@ -3,19 +3,25 @@
 
 <!-- .slide: class="center-slide" -->
 
-## Designing a Real-World Multi-Agent AI System
+## Designing a Real-World
+
+## <span class="highlight-accent">Multi-Agent Agentic System</span>
 
 --
 
 <!-- .slide: class="center-slide" -->
 
-## Agenda
+## <span class="underline-accent">Agenda</span>
 
 - What is an AI Agent?
+
 - What are different types of an Agentic Systems?
+
 - What are building blocks of a Multi-Agent System?
+
 - How to ensure if a Multi-Agent System is safe and reliable?
-- Case Study: KeyFinz AI Assistant
+
+- Case Study: KeyFinz AI Assistant (Optional)
 
 ---
 
@@ -23,13 +29,13 @@
 
 ## <span class="line-through-danger">What is an Agent?</span>
 
-## What is a LLM?
+## <span class="underline-accent">What is a LLM?</span>
 
 A language model trained on large amounts of data that works as a static workflow.
 
 <div class="pt-8">
 
-![LLM Flow](assets/ai-agents/llm.png)
+<img src="assets/ai-agents/llm.png" alt="LLM Flow" style="max-height: 80vh; width: auto;" />
 
 </div>
 
@@ -37,11 +43,11 @@ A language model trained on large amounts of data that works as a static workflo
 
 <!-- .slide: class="center-slide" -->
 
-## What is an Agent?
+## <span class="underline-accent">What is an Agent?</span>
 
 An agent is not just a static workflow.
 
-<div class="fragment pt-8">
+<div class="pt-8">
 
 It uses a <span class="emphasis-success">LLM</span> to reason and <span class="emphasis-info">tools</span> to coordinate with the external environment, all processed by an <span class="emphasis-warning">orchestration layer</span>.
 
@@ -62,19 +68,19 @@ Google calls these components as:
 
 <!-- .slide: class="center-slide" -->
 
-### Example
+### <span class="underline-accent">Example</span>
 
-![Agent Flow](assets/ai-agents/ai-agent.png)
+<img src="assets/ai-agents/ai-agent.png" alt="Agent Flow" style="max-height: 80vh; width: auto;" />
 
 ---
 
 <!-- .slide: class="center-slide" -->
 
-## What is an Agentic System?
+## <span class="underline-accent">What is an Agentic System?</span>
 
 <div class="pt-6">
 
-A software system that uses one or more AI agents to perform tasks <span class="highlight-accent">autonomously</span>.
+A software system that uses one or more AI agents to perform tasks <span class="emphasis-accent">autonomously</span>.
 
 </div>
 
@@ -82,15 +88,15 @@ A software system that uses one or more AI agents to perform tasks <span class="
 
 <!-- .slide: class="center-slide" -->
 
-## Levels of Agentic Systems
+## <span class="underline-accent">Levels of Agentic Systems</span>
 
-![Agentic System Pyramid](assets/ai-agents/agentic-system.png)
+<img src="assets/ai-agents/agentic-system.png" alt="Agentic System Pyramid" style="max-height: 80vh; width: auto;" />
 
 --
 
 <!-- .slide: class="center-slide" -->
 
-## Level 0: AI Agent with <span class="highlight-accent">LLM</span>
+## <span class="underline-accent">Level 0</span>: AI Agent with <span class="highlight-accent">LLM</span>
 
 The most basic form of an agentic system.
 
@@ -114,7 +120,7 @@ Prompt: "What is the process for applying for parental leave?"
 
 <!-- .slide: class="center-slide" -->
 
-## Level 1: AI Agent with <span class="highlight-accent">LLM + Tools</span>
+## <span class="underline-accent">Level 1</span>: AI Agent with <span class="highlight-accent">LLM + Tools</span>
 
 Connects limited or outdated LLMs to real-world data and systems via tools.
 
@@ -138,7 +144,7 @@ Prompt: "Fetch the order status for order #12345 from the Orders API and summari
 
 <!-- .slide: class="center-slide" -->
 
-## Level 2: AI Agent with
+## <span class="underline-accent">Level 2</span>: AI Agent with
 
 ## <span class="highlight-accent line-break">LLM + Tools + Memory & Context</span>
 
@@ -154,9 +160,9 @@ We move from executing simple tasks to strategically planning complex, <span cla
 
 <!-- .slide: class="center-slide" -->
 
-## Level 2 Example
+## <span class="underline-accent">Level 2 Example</span>
 
-<div class="fragment pt-6">
+<div class="pt-6">
 
 <span class="emphasis-info">**Scenario:** A travel assistant finds a good coffee shop between two office locations that matches user preferences.
 </span>
@@ -173,19 +179,36 @@ Prompt: "Find a good coffee shop halfway between my office and my client's offic
 
 <!-- .slide: class="center-slide" -->
 
-## Level 2 Example: Thinking Process
+## <span class="underline-accent">Level 2 Example: Thinking Process</span>
 
-<div class="pt-6 text-start leading-relaxed">
+<div class="pt-6 text-start">
 
-1. <span class="emphasis-success">Think: "I must first find the halfway point between the two offices."</span>
-   - <span class="emphasis-info">Act: Call Maps tool with both office addresses.</span>
-   - <span class="emphasis-warning">Observe: "The halfway point is location X."</span>
-2. <span class="emphasis-info">Think: "Now find highly-rated coffee shops near location X that serve quality espresso."</span>
-   - <span class="emphasis-success">Act: Search coffee shops near location X with min_rating=4.0 and specialty=espresso.</span>
-   - <span class="emphasis-warning">Observe: "Found 'The Daily Brew' and 'Espresso House'."</span>
-3. <span class="emphasis-info">Think: "Synthesize the results for the user."</span>
-   - <span class="emphasis-success">Act: Compile with hours, ratings, and directions.</span>
-   - <span class="emphasis-warning">Observe: "Both open at 7 AM, 4.5+ stars, 10 mins away."</span>
+Uses <span class="emphasis-accent">memory</span> to read addresses for both offices.
+
+- Iteration 1:
+  - <span class="emphasis-success">Think: "I must first find the halfway point between the two offices."</span>
+  - <span class="emphasis-info">Act: Call Maps tool with both office addresses.</span>
+  - <span class="emphasis-warning">Observe: "The halfway point is location X."</span>
+  - <span class="emphasis-accent">Adds to context.</span>
+
+<div class="fragment">
+
+- Iteration 2:
+  - <span class="emphasis-info">Think: "Now find highly-rated coffee shops near location X that serve quality espresso."</span>
+  - <span class="emphasis-success">Act: Search coffee shops near location X with min_rating=4.0 and specialty=espresso.</span>
+  - <span class="emphasis-warning">Observe: "Found 'The Daily Brew' and 'Espresso House'."</span>
+  - <span class="emphasis-accent">Adds to context.</span>
+
+</div>
+
+<div class="fragment">
+
+- Iteration 3:
+  - <span class="emphasis-info">Think: "Synthesize the results for the user."</span>
+  - <span class="emphasis-success">Act: Compile with hours, ratings, and directions.</span>
+  - <span class="emphasis-warning">Observe: "Both open at 7 AM, 4.5+ stars, 10 mins away."</span>
+
+</div>
 
 </div>
 
@@ -195,15 +218,15 @@ Prompt: "Find a good coffee shop halfway between my office and my client's offic
 
 <!-- .slide: class="center-slide" -->
 
-## Level 3: AI Agent with
+## <span class="underline-accent">Level 3</span>: AI Agent with
 
 ## <span class="highlight-accent">LLM + Tools + Memory & Context + Orchestration Layer</span>
 
-<div class="fragment pt-8">
+<div class="pt-8">
 
 Now you have everything you already had but with <span class="emphasis-success">multiple agents</span> working together, coordinated by an <span class="emphasis-info">orchestration layer</span>.
 
-We call this level <span class="emphasis-warning">Multi-Agent System</span>.
+We call this level <span class="emphasis-accent">Multi-Agent System</span>.
 
 </div>
 
@@ -211,7 +234,31 @@ We call this level <span class="emphasis-warning">Multi-Agent System</span>.
 
 <!-- .slide: class="center-slide" -->
 
-### Why Multiple Agents?
+## <span class="underline-accent">Level 4</span>: Self-Evolving Agents
+
+<div class=" pt-6">
+
+Here agents can <span class="emphasis-success">self-evolve</span> without <span class="emphasis-danger">human intervention</span> at the <span class="emphasis-info">architecture level</span>.
+
+</div>
+
+---
+
+<!-- .slide: class="center-slide" -->
+
+## <span class="underline-accent">Deep Dive Multi-Agent System</span>
+
+<div class="pt-6">
+
+Recap: In level 3, multiple agents works together, coordinated by an <span class="emphasis-accent">orchestration layer</span>.
+
+</div>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## <span class="underline-accent">Why Multiple Agents?</span>
 
 <div class="pt-6">
 
@@ -221,7 +268,7 @@ When requirements grow for a single agent system, it starts <span class="emphasi
 
 <div class="fragment pt-8">
 
-We follow what we have done in the history of Software Engineering: break programs into <span class="emphasis-success">single responsibility modules</span>. The same applies to AI Agents.
+With multiple agents, each agent can focus on a specific sub-task within a larger workflow, improving <span class="emphasis-success">cost, accuracy, reliability, and maintainability</span>.
 
 </div>
 
@@ -229,93 +276,11 @@ We follow what we have done in the history of Software Engineering: break progra
 
 <!-- .slide: class="center-slide" -->
 
-## Level 4: Self-Evolving Agents
+## <span class="underline-accent">What is an Orchestration Layer?</span>
 
 <div class="pt-6">
 
-Agents monitor their own performance and adapt over time. They identify areas for improvement, learn from past interactions, and update their strategies accordingly.
-
-</div>
-
-<div class="fragment pt-8">
-
-The difference: In Level 4, agents can <span class="emphasis-success">self-evolve</span> without human intervention at the <span class="emphasis-info">architecture level</span>.
-
-Such a system is <span class="emphasis-warning">extremely challenging</span>.
-
-</div>
-
----
-
-<!-- .slide: class="center-slide" -->
-
-## Deep Dive: Level 3 Multi-Agent System
-
-<div class="pt-6">
-
-Multiple agents working together, coordinated by an <span class="emphasis-primary">orchestration layer</span>.
-
-</div>
-
-<!-- <div class="fragment">
-
-Following things are involved here:
-
-- Agents
-  - LLM
-  - Tools
-  - Orchestration Layer
-- Context & Memory
-- Orchestration Layer (a concept)
-</div> -->
-
-<!-- -- -->
-
-<!-- .slide: class="center-slide" -->
-
-<!-- ### Orchestration Layer, A Concept?
-
-You might have noticed I added "a concept" next to system level Orchestration Layer.
-
-Why?
-
-Because this is a design pattern. -->
-
-<!-- .element: class="fragment" -->
-
-<!-- <div class="fragment italic">
-
-Mind that we have orchestration layer inside an Agent which is responsible for
-
-coordinating memory, tools and LLM calls. That is integral component of an agent.
-
-</div> -->
-
---
-
-<!-- .slide: class="center-slide" -->
-
-## What is an Orchestration Layer?
-
-<div class="pt-6">
-
-A design pattern for creating a central point where an <span class="emphasis-success">orchestrator agent</span> (parent) decides how to call <span class="emphasis-info">sub-agents</span> (children), manages memory & context, and ensures system safety.
-
-</div>
-
-<div class="fragment pt-8 text-start">
-
-Common design patterns:
-
-- Sequential
-- Parallel
-- Handoff/Coordinator
-
-</div>
-
-<div class="fragment pt-8">
-
-The <span class="emphasis-success">base design remains the same</span>. The major difference is <span class="emphasis-info">how sub-agents are called by the orchestrator</span>.
+A <span class="emphasis-accent">design pattern</span> for creating a central point where an <span class="emphasis-success">orchestrator agent (parent) decides</span> <span class="emphasis-info">how to call sub-agents (children)</span> <span class="emphasis-warning">while manages memory & context, and ensures system safety.</span>
 
 </div>
 
@@ -323,7 +288,7 @@ The <span class="emphasis-success">base design remains the same</span>. The majo
 
 <!-- .slide: class="center-slide" -->
 
-## How It Works
+## <span class="underline-accent">How It Works</span>
 
 <div class="pt-6">
 
@@ -335,17 +300,21 @@ The <span class="emphasis-success">base design remains the same</span>. The majo
 
 <!-- .slide: class="center-slide" -->
 
-## How to Ensure Safety?
+## <span class="underline-accent">Common design patterns:</span>
 
-<div class="pt-6">
+<div class="pt-6 text-start">
 
-We introduce <span class="emphasis-success">guardrails</span>.
+- Sequential
+
+- Parallel
+
+- Handoff/Coordinator
 
 </div>
 
-<div class="fragment pt-8">
+<div class="pt-6">
 
-Guardrails work as an <span class="emphasis-info">API gateway</span> for the agentic system.
+The <span class="emphasis-success">base design remains the same</span>. The major difference is <span class="emphasis-info">how sub-agents are called by the orchestrator agent</span>.
 
 </div>
 
@@ -353,11 +322,29 @@ Guardrails work as an <span class="emphasis-info">API gateway</span> for the age
 
 <!-- .slide: class="center-slide" -->
 
-## Multi-Agent System with Guardrails
+## <span class="underline-accent">How to Ensure Safety?</span>
+
+<div class="pt-6">
+
+We introduce <span class="emphasis-accent">guardrails</span>.
+
+</div>
+
+<div class="pt-8">
+
+Guardrails work as a <span class="emphasis-success">validation rules</span> for the agentic system.
+
+</div>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## <span class="underline-accent">Multi-Agent System with Guardrails</span>
 
 <div class="max-w-[1500px]">
 
-![Multi-Agent System with Guardrails](assets/ai-agents/multi-agent-architecture-guardrails.png)
+<img src="assets/ai-agents/multi-agent-architecture-guardrails.png" alt="Multi-Agent System with Guardrails" style="max-height: 80vh; width: auto;" />
 
 </div>
 
@@ -365,9 +352,9 @@ Guardrails work as an <span class="emphasis-info">API gateway</span> for the age
 
 <!-- .slide: class="center-slide" -->
 
-## How Do We Test The System?
+## <span class="underline-accent">How Do We Test The System?</span>
 
-<div class="fragment pt-6">
+<div class="pt-6">
 
 <span class="emphasis-danger">Agents won't always return the same response for a same given input.</span>
 
@@ -377,15 +364,11 @@ Guardrails work as an <span class="emphasis-info">API gateway</span> for the age
 
 <div class="fragment pt-8">
 
-Instead of testing exact outputs, we test <span class="highlight-accent">quality and acceptability</span>.
+Instead of testing exact outputs, we test <span class="emphasis-accent">quality and acceptability</span>.
 
 </div>
 
---
-
-<!-- .slide: class="center-slide" -->
-
-## Acceptance Criteria Examples
+<!-- ## <spanAcceptance Criteria Examples
 
 <div class="fragment pt-6 text-start">
 
@@ -393,17 +376,19 @@ Instead of testing exact outputs, we test <span class="highlight-accent">quality
 - Does it answer in the right direction?
 - Does it avoid internal details?
 
-</div>
+</div> -->
 
 --
 
 <!-- .slide: class="center-slide" -->
 
-## Using Agents to Evaluate Agents
+<!-- ## <span class="underline-accent">Using Agents to Evaluate Agents</span> -->
+
+## <a class="underline-accent" data-preview-image="assets/memes/spider-man-pointing-agents.gif">Using Agents to Evaluate Agents</a>
 
 <div class="pt-6">
 
-One helpful pattern: <span class="highlight-accent">evaluator or critic agents</span>.
+One helpful pattern: <span class="emphasis-accent">evaluator or critic agents</span>.
 
 </div>
 
@@ -411,8 +396,8 @@ One helpful pattern: <span class="highlight-accent">evaluator or critic agents</
 
 These agents:
 
-- Respond only to outputs from other agents
-- Review outputs
+- Review outputs from other agents
+
 - Flag low-quality or undesired responses
 
 </div>
@@ -427,7 +412,7 @@ Note: Such agents test <span class="highlight-success">quality and acceptability
 
 <!-- .slide: class="center-slide" -->
 
-## Case Study: <span class="highlight-accent">KeyFinz AI Assistant</span>
+## <span class="underline-accent">Case Study: KeyFinz AI Assistant</span>
 
 <div class="pt-6">
 
@@ -439,7 +424,7 @@ A finance tracking application where you can record personal finances and intera
 
 <!-- .slide: class="center-slide" -->
 
-## Demo
+## <span class="underline-accent">Demo</span>
 
 <div class="pt-6">
 
@@ -451,15 +436,15 @@ A finance tracking application where you can record personal finances and intera
 
 <!-- .slide: class="center-slide" -->
 
-## System Design
+## <span class="underline-accent">System Design</span>
 
-![KeyFinz AI Assistant Architecture](assets/ai-agents/keyfinz.png)
+<img src="assets/ai-agents/keyfinz.png" alt="KeyFinz AI Assistant Architecture" style="max-height: 80vh; width: auto;" />
 
 ---
 
 <!-- .slide: class="center-slide" -->
 
-## Summary
+## <span class="underline-accent">Summary</span>
 
 <div class="pt-6 text-start">
 
@@ -479,21 +464,30 @@ A finance tracking application where you can record personal finances and intera
 
 <!-- .slide: class="center-slide" -->
 
-## Thanks 🙏
+<img src="assets/memes/thankyou.gif" alt="Thankyou" style="max-height: 80vh; width: auto;" />
 
 ---
 
 <!-- .slide: class="center-slide" -->
 
-## Citations & Resources
+## <span class="underline-accent">Citations & Resources</span>
 
-<div class="pt-6 text-start">
+<div class="pt-6 text-white">
+
+<style>
+.text-white a { color: white !important; }
+</style>
 
 - https://www.kaggle.com/whitepaper-introduction-to-agents
+
 - https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns
+
 - https://google.github.io/adk-docs/agents/multi-agents/
+
 - https://openai.github.io/openai-agents-js/guides/multi-agent/
+
 - https://openai.github.io/openai-agents-js/guides/context/
+
 - https://openai.github.io/openai-agents-js/guides/guardrails/
 
 </div>
