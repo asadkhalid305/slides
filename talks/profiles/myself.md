@@ -1,4 +1,6 @@
-### Who Am I?
+## <span class="underline-accent">Who Am I?</span>
+
+### <span class="highlight-accent">Asad Ullah Khalid</span>
 
 <div class="introduction">
   <div class="introduction__left">
@@ -15,10 +17,10 @@
   </div>
   <div class="introduction__right fragment">
     <p>🎤 <strong>8+</strong> Public Talks & Workshops</p>
-    <p>✍️ <strong>4+</strong> Blogs</p>
-    <p>📚 <strong>2+</strong> Book Reviews</p>
+    <p>✍️ <strong>6+</strong> Blogs & Book Reviews</p>
     <p>🔧 <strong>Many</strong> Open Source Projects</p>
-    <p>🚀 <strong>1</strong> SaaS Product (KeyFinz)</p>
+    <p>🚀 SaaS Product (KeyFinz)</p>
+    <p>📚 Mentorship</p>
   </div>
 </div>
 
@@ -35,7 +37,7 @@
 
 --
 
-### 🚀 What I'm Doing
+## <span class="underline-accent">What I'm Doing?</span>
 
 <div class="introduction">
   <div class="introduction__left fragment">
@@ -62,7 +64,7 @@
 
 --
 
-### 💡 My Journey
+## <span class="underline-accent">My Journey</span>
 
 <div class="journey-container">
   <div class="journey-content">
@@ -71,7 +73,7 @@
       <span class="sub-detail">→ started with HTML & CSS as a student</span>
     </p>
     <p class="fragment">
-      💻 <strong>Led IEEE Univeristy Branch organization from 2016 - 2019 </strong><br/>
+      🏛️ <strong>Led IEEE University Branch organization from 2016 - 2019 </strong><br/>
       <span class="sub-detail">→ From Volunteer to Vice Chairman to President</span>
     </p>
     <p class="fragment">
@@ -86,7 +88,7 @@
 
 --
 
-### 🎯 Expertise & Focus
+## <span class="underline-accent">Expertise & Focus</span>
 
 <div class="introduction" style="justify-content: center; gap: 100px;">
   <div class="introduction__left fragment">
