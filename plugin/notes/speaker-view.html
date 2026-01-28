@@ -8,32 +8,49 @@
     <title>reveal.js - Speaker View</title>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: Helvetica;
-        font-size: 18px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        background: #1a1a1a;
+        color: #e0e0e0;
       }
 
       #current-slide,
       #upcoming-slide,
       #speaker-controls {
-        padding: 6px;
+        padding: 8px;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
+        overflow: hidden;
       }
 
       #current-slide iframe,
       #upcoming-slide iframe {
         width: 100%;
         height: 100%;
-        border: 1px solid #ddd;
+        border: 2px solid #3a3a3a;
+        border-radius: 8px;
+        background: #000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        transform-origin: 0 0;
       }
 
       #current-slide .label,
       #upcoming-slide .label {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 16px;
+        left: 16px;
         z-index: 2;
+        font-weight: 600;
+        font-size: 8px;
+        letter-spacing: 0.5px;
       }
 
       #connection-status {
@@ -53,22 +70,29 @@
       }
 
       .overlay-element {
-        height: 34px;
-        line-height: 34px;
-        padding: 0 10px;
+        height: 22px;
+        line-height: 22px;
+        padding: 0 8px;
         text-shadow: none;
-        background: rgba(220, 220, 220, 0.8);
-        color: #222;
-        font-size: 14px;
+        background: rgba(80, 80, 200, 0.85);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 600;
+        border-radius: 3px;
+        backdrop-filter: blur(10px);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
       .overlay-element.interactive:hover {
-        background: rgba(220, 220, 220, 1);
+        background: rgba(90, 90, 220, 1);
+        cursor: pointer;
       }
 
+      /* Default layout */
       #current-slide {
         position: absolute;
-        width: 60%;
+        width: 58%;
         height: 100%;
         top: 0;
         left: 0;
@@ -77,8 +101,8 @@
 
       #upcoming-slide {
         position: absolute;
-        width: 40%;
-        height: 40%;
+        width: 42%;
+        height: 30%;
         right: 0;
         top: 0;
       }
@@ -86,12 +110,70 @@
       /* Speaker controls */
       #speaker-controls {
         position: absolute;
-        top: 40%;
+        top: 30%;
         right: 0;
-        width: 40%;
-        height: 60%;
-        overflow: auto;
-        font-size: 18px;
+        width: 42%;
+        height: 70%;
+        overflow: hidden;
+        font-size: 15px;
+        background: #252525;
+        border-left: 2px solid #3a3a3a;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .speaker-controls-settings {
+        background: #2a2a2a;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        flex-shrink: 0;
+      }
+
+      .speaker-controls-settings .section-title {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 11px;
+        color: #888;
+        margin: 0 0 12px 0;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(80, 80, 80, 0.5);
+      }
+
+      .speaker-controls-settings .subsection {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(60, 60, 60, 0.3);
+      }
+
+      .speaker-controls-settings .subsection:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .speaker-controls-settings .subsection-label {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 10px;
+        color: #999;
+        margin: 0 0 8px 0;
+        letter-spacing: 0.5px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .speaker-controls-settings .subsection-label .reset-button {
+        cursor: pointer;
+        color: #4a9eff;
+        transition: color 0.2s;
+      }
+
+      .speaker-controls-settings .subsection-label .reset-button:hover {
+        color: #6bb3ff;
+        /* text-decoration: underline; */
       }
 
       .speaker-controls-time.hidden,
@@ -103,34 +185,67 @@
       .speaker-controls-pace .label,
       .speaker-controls-notes .label {
         text-transform: uppercase;
-        font-weight: normal;
-        font-size: 0.66em;
-        color: #666;
-        margin: 0;
+        font-weight: 700;
+        font-size: 11px;
+        color: #888;
+        margin: 0 0 8px 0;
+        letter-spacing: 1px;
       }
 
-      .speaker-controls-time,
-      .speaker-controls-pace {
-        border-bottom: 1px solid rgba(200, 200, 200, 0.5);
-        margin-bottom: 10px;
-        padding: 10px 16px;
-        padding-bottom: 20px;
-        cursor: pointer;
-      }
-
-      .speaker-controls-time .reset-button {
-        opacity: 0;
-        float: right;
-        color: #666;
+      .speaker-controls-settings .subsection-label .start-stop-button,
+      .speaker-controls-settings .subsection-label .reset-button {
+        color: #fff;
         text-decoration: none;
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        transition: all 0.2s;
+        cursor: pointer;
+        margin-left: 8px;
+        display: inline-block;
       }
-      .speaker-controls-time:hover .reset-button {
-        opacity: 1;
+
+      .speaker-controls-settings .subsection-label .start-stop-button {
+        background: #4a9eff;
+      }
+
+      .speaker-controls-settings .subsection-label .start-stop-button:hover {
+        background: #6bb3ff;
+      }
+
+      .speaker-controls-settings .subsection-label .start-stop-button.running {
+        background: #8b5cf6;
+      }
+
+      .speaker-controls-settings
+        .subsection-label
+        .start-stop-button.running:hover {
+        background: #7c3aed;
+      }
+
+      .speaker-controls-settings .subsection-label .start-stop-button.stopped {
+        background: #10b981;
+      }
+
+      .speaker-controls-settings
+        .subsection-label
+        .start-stop-button.stopped:hover {
+        background: #059669;
+      }
+
+      .speaker-controls-settings .subsection-label .reset-button {
+        background: #ef4444;
+      }
+
+      .speaker-controls-settings .subsection-label .reset-button:hover {
+        background: #dc2626;
       }
 
       .speaker-controls-time .timer,
       .speaker-controls-time .clock {
         width: 50%;
+        display: inline-block;
+        vertical-align: top;
       }
 
       .speaker-controls-time .timer,
@@ -138,54 +253,100 @@
       .speaker-controls-time .pacing .hours-value,
       .speaker-controls-time .pacing .minutes-value,
       .speaker-controls-time .pacing .seconds-value {
-        font-size: 1.9em;
+        font-size: 2em;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
       }
 
       .speaker-controls-time .timer {
-        float: left;
+        color: #ef4444;
       }
 
       .speaker-controls-time .clock {
-        float: right;
-        text-align: right;
+        color: #3b82f6;
       }
 
       .speaker-controls-time span.mute {
         opacity: 0.3;
       }
 
+      .speaker-controls-settings .layout-selector {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .speaker-controls-settings .layout-selector select {
+        flex: 1;
+        background: #3a3a3a;
+        color: #e0e0e0;
+        border: 1px solid #4a4a4a;
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .speaker-controls-settings .layout-selector select:hover {
+        background: #4a4a4a;
+        border-color: #5a5a5a;
+      }
+
       .speaker-controls-time .pacing-title {
-        margin-top: 5px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: #888;
       }
 
       .speaker-controls-time .pacing.ahead {
-        color: blue;
+        color: #60a5fa;
       }
 
       .speaker-controls-time .pacing.on-track {
-        color: green;
+        color: #4ade80;
       }
 
       .speaker-controls-time .pacing.behind {
-        color: red;
+        color: #f87171;
       }
 
       .speaker-controls-notes {
-        padding: 10px 16px;
+        padding: 16px;
+        background: #2a2a2a;
+        border-radius: 8px;
+        margin-top: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        flex: 1;
+        min-height: 0;
       }
 
       .speaker-controls-notes .value {
-        margin-top: 5px;
-        line-height: 1.4;
-        font-size: 1.2em;
+        margin-top: 8px;
+        line-height: 1.6;
+        font-size: 14px;
+        color: #e0e0e0;
+      }
+
+      .speaker-controls-notes .value ul {
+        margin: 8px 0;
+        padding-left: 20px;
+      }
+
+      .speaker-controls-notes .value li {
+        margin: 6px 0;
+        line-height: 1.5;
       }
 
       /* Layout selector */
       #speaker-layout {
+        display: none;
         position: absolute;
-        top: 10px;
-        right: 10px;
-        color: #222;
+        top: 12px;
+        right: 12px;
+        color: #fff;
         z-index: 10;
       }
       #speaker-layout select {
@@ -216,12 +377,35 @@
         clear: both;
       }
 
-      /* Speaker layout: Wide */
+      /* Scrollbar styling */
+      #speaker-controls::-webkit-scrollbar,
+      .speaker-controls-notes::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      #speaker-controls::-webkit-scrollbar-track,
+      .speaker-controls-notes::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        border-radius: 4px;
+      }
+
+      #speaker-controls::-webkit-scrollbar-thumb,
+      .speaker-controls-notes::-webkit-scrollbar-thumb {
+        background: #4a4a4a;
+        border-radius: 4px;
+      }
+
+      #speaker-controls::-webkit-scrollbar-thumb:hover,
+      .speaker-controls-notes::-webkit-scrollbar-thumb:hover {
+        background: #5a5a5a;
+      }
+
+      /* Speaker layout: Wide - Optimized for content-heavy slides */
       body[data-speaker-layout='wide'] #current-slide,
       body[data-speaker-layout='wide'] #upcoming-slide {
         width: 50%;
-        height: 45%;
-        padding: 6px;
+        height: 50%;
+        padding: 8px;
       }
 
       body[data-speaker-layout='wide'] #current-slide {
@@ -235,19 +419,50 @@
       }
 
       body[data-speaker-layout='wide'] #speaker-controls {
-        top: 45%;
+        top: 50%;
         left: 0;
         width: 100%;
         height: 50%;
-        font-size: 1.25em;
+        font-size: 14px;
+        border-left: none;
+        border-top: 2px solid #3a3a3a;
+        padding: 16px;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: stretch;
+        overflow: hidden;
       }
 
-      /* Speaker layout: Tall */
+      body[data-speaker-layout='wide'] .speaker-controls-settings {
+        margin-bottom: 0;
+        flex: 0 0 320px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: visible;
+      }
+
+      body[data-speaker-layout='wide'] .speaker-controls-time .timer,
+      body[data-speaker-layout='wide'] .speaker-controls-time .clock {
+        width: 50%;
+        display: inline-block;
+        margin-bottom: 0;
+      }
+
+      body[data-speaker-layout='wide'] .speaker-controls-notes {
+        margin-top: 0;
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      /* Speaker layout: Tall - Focus on notes */
       body[data-speaker-layout='tall'] #current-slide,
       body[data-speaker-layout='tall'] #upcoming-slide {
-        width: 45%;
-        height: 50%;
-        padding: 6px;
+        width: 40%;
+        height: 48%;
+        padding: 8px;
       }
 
       body[data-speaker-layout='tall'] #current-slide {
@@ -256,17 +471,21 @@
       }
 
       body[data-speaker-layout='tall'] #upcoming-slide {
-        top: 50%;
+        top: 52%;
         left: 0;
       }
 
       body[data-speaker-layout='tall'] #speaker-controls {
-        padding-top: 40px;
+        padding-top: 20px;
         top: 0;
-        left: 45%;
-        width: 55%;
+        left: 40%;
+        width: 60%;
         height: 100%;
-        font-size: 1.25em;
+        font-size: 15px;
+      }
+
+      body[data-speaker-layout='tall'] .speaker-controls-notes {
+        max-height: calc(100% - 220px);
       }
 
       /* Speaker layout: Notes only */
@@ -281,24 +500,42 @@
         left: 0;
         width: 100%;
         height: 100%;
-        font-size: 1.25em;
+        font-size: 18px;
+        border-left: none;
+      }
+
+      body[data-speaker-layout='notes-only'] .speaker-controls-notes {
+        max-height: calc(100% - 220px);
+        font-size: 16px;
       }
 
       @media screen and (max-width: 1080px) {
         body[data-speaker-layout='default'] #speaker-controls {
-          font-size: 16px;
+          font-size: 14px;
+        }
+        .speaker-controls-time .timer,
+        .speaker-controls-time .clock {
+          font-size: 1.8em;
         }
       }
 
       @media screen and (max-width: 900px) {
         body[data-speaker-layout='default'] #speaker-controls {
-          font-size: 14px;
+          font-size: 13px;
+        }
+        .speaker-controls-time .timer,
+        .speaker-controls-time .clock {
+          font-size: 1.6em;
         }
       }
 
       @media screen and (max-width: 800px) {
         body[data-speaker-layout='default'] #speaker-controls {
           font-size: 12px;
+        }
+        .speaker-controls-time .timer,
+        .speaker-controls-time .clock {
+          font-size: 1.4em;
         }
       }
     </style>
@@ -307,32 +544,51 @@
   <body>
     <div id="connection-status">Loading speaker view...</div>
 
-    <div id="current-slide"></div>
+    <div id="current-slide">
+      <span class="overlay-element label">Current</span>
+    </div>
     <div id="upcoming-slide">
       <span class="overlay-element label">Upcoming</span>
     </div>
     <div id="speaker-controls">
-      <div class="speaker-controls-time">
-        <h4 class="label">
-          Time <span class="reset-button">Click to Reset</span>
-        </h4>
-        <div class="clock">
-          <span class="clock-value">0:00 AM</span>
-        </div>
-        <div class="timer">
-          <span class="hours-value">00</span
-          ><span class="minutes-value">:00</span
-          ><span class="seconds-value">:00</span>
-        </div>
-        <div class="clear"></div>
+      <div class="speaker-controls-settings">
+        <h4 class="section-title">Settings</h4>
 
-        <h4 class="label pacing-title" style="display: none">
-          Pacing – Time to finish current slide
-        </h4>
-        <div class="pacing" style="display: none">
-          <span class="hours-value">00</span
-          ><span class="minutes-value">:00</span
-          ><span class="seconds-value">:00</span>
+        <div class="subsection">
+          <h5 class="subsection-label">
+            Time
+            <span>
+              <span class="start-stop-button">Start</span>
+              <span class="reset-button">Reset</span>
+            </span>
+          </h5>
+          <div class="speaker-controls-time">
+            <div class="clock">
+              <span class="clock-value">0:00 AM</span>
+            </div>
+            <div class="timer">
+              <span class="hours-value">00</span
+              ><span class="minutes-value">:00</span
+              ><span class="seconds-value">:00</span>
+            </div>
+            <div class="clear"></div>
+
+            <h4 class="label pacing-title" style="display: none">
+              Pacing – Time to finish current slide
+            </h4>
+            <div class="pacing" style="display: none">
+              <span class="hours-value">00</span
+              ><span class="minutes-value">:00</span
+              ><span class="seconds-value">:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <h5 class="subsection-label">Layout</h5>
+          <div class="layout-selector">
+            <select class="speaker-layout-dropdown"></select>
+          </div>
         </div>
       </div>
 
@@ -699,7 +955,12 @@
             pacingEl = timeEl.querySelector('.pacing'),
             pacingHoursEl = pacingEl.querySelector('.hours-value'),
             pacingMinutesEl = pacingEl.querySelector('.minutes-value'),
-            pacingSecondsEl = pacingEl.querySelector('.seconds-value');
+            pacingSecondsEl = pacingEl.querySelector('.seconds-value'),
+            startStopButton = document.querySelector('.start-stop-button');
+
+          var timerState = 'not-started'; // 'not-started', 'running', 'stopped'
+          var elapsedTime = 0; // milliseconds elapsed when stopped
+          var timerInterval = null;
 
           var timings = null;
           getTimings(function (_timings) {
@@ -709,37 +970,84 @@
               pacingEl.style.removeProperty('display');
             }
 
-            // Update once directly
+            // Update once to show initial state
             _updateTimer();
-
-            // Then update every second
-            setInterval(_updateTimer, 1000);
           });
 
-          function _resetTimer() {
-            if (timings == null) {
+          function _startTimer() {
+            if (timerState === 'not-started') {
               start = new Date();
-              _updateTimer();
-            } else {
-              // Reset timer to beginning of current slide
-              getTimeAllocated(timings, function (slideEndTimingSeconds) {
-                var slideEndTiming = slideEndTimingSeconds * 1000;
-                callRevealApi('getSlidePastCount', [], function (currentSlide) {
-                  var currentSlideTiming = timings[currentSlide] * 1000;
-                  var previousSlidesTiming =
-                    slideEndTiming - currentSlideTiming;
-                  var now = new Date();
-                  start = new Date(now.getTime() - previousSlidesTiming);
-                  _updateTimer();
-                });
-              });
+              elapsedTime = 0;
+            } else if (timerState === 'stopped') {
+              // Resume from where we stopped
+              start = new Date(new Date().getTime() - elapsedTime);
+            }
+
+            timerState = 'running';
+            startStopButton.textContent = 'Stop';
+            startStopButton.className = 'start-stop-button running';
+
+            if (!timerInterval) {
+              timerInterval = setInterval(_updateTimer, 1000);
+            }
+            _updateTimer();
+          }
+
+          function _stopTimer() {
+            timerState = 'stopped';
+            startStopButton.textContent = 'Resume';
+            startStopButton.className = 'start-stop-button stopped';
+
+            // Calculate elapsed time
+            var now = new Date();
+            elapsedTime = now.getTime() - start.getTime();
+
+            if (timerInterval) {
+              clearInterval(timerInterval);
+              timerInterval = null;
             }
           }
 
-          timeEl.addEventListener('click', function () {
-            _resetTimer();
-            return false;
-          });
+          function _resetTimer() {
+            // Stop the timer
+            if (timerInterval) {
+              clearInterval(timerInterval);
+              timerInterval = null;
+            }
+
+            timerState = 'not-started';
+            elapsedTime = 0;
+            start = new Date();
+            startStopButton.textContent = 'Start';
+            startStopButton.className = 'start-stop-button';
+
+            _updateTimer();
+          }
+
+          // Start/Stop button handler
+          if (startStopButton) {
+            startStopButton.addEventListener('click', function (e) {
+              e.stopPropagation();
+              if (timerState === 'running') {
+                _stopTimer();
+              } else {
+                _startTimer();
+              }
+              return false;
+            });
+          }
+
+          // Reset timer when clicking the reset button
+          var resetButton = document.querySelector(
+            '.subsection-label .reset-button'
+          );
+          if (resetButton) {
+            resetButton.addEventListener('click', function (e) {
+              e.stopPropagation();
+              _resetTimer();
+              return false;
+            });
+          }
 
           function _displayTime(hrEl, minEl, secEl, time) {
             var sign = Math.sign(time) == -1 ? '-' : '';
@@ -769,7 +1077,14 @@
               seconds,
               now = new Date();
 
-            diff = now.getTime() - start.getTime();
+            // Calculate elapsed time based on state
+            if (timerState === 'not-started') {
+              diff = 0;
+            } else if (timerState === 'running') {
+              diff = now.getTime() - start.getTime();
+            } else if (timerState === 'stopped') {
+              diff = elapsedTime;
+            }
 
             clockEl.innerHTML = now.toLocaleTimeString('en-US', {
               hour12: true,
@@ -777,7 +1092,7 @@
               minute: '2-digit',
             });
             _displayTime(hoursEl, minutesEl, secondsEl, diff);
-            if (timings !== null) {
+            if (timings !== null && timerState === 'running') {
               _updatePacing(diff);
             }
           }
@@ -865,10 +1180,8 @@
             }
           }
 
-          // Default to the first record in the layouts hash
-          for (var id in SPEAKER_LAYOUTS) {
-            return id;
-          }
+          // Default to wide layout
+          return 'wide';
         }
 
         function supportsLocalStorage() {
