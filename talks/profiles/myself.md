@@ -5,7 +5,7 @@
 <div class="introduction">
   <div class="introduction__left">
     <img class="introduction__left__avatar" src="https://github.com/asadkhalid305.png?size=420"/>
-    <div class="introduction__left__info fragment">
+    <div class="introduction__left__info">
       <p>
         🚗 Senior Frontend Developer<br/>
         🏢 Mercedes-Benz.io<br/>
@@ -15,7 +15,7 @@
       </p>
     </div>
   </div>
-  <div class="introduction__right fragment">
+  <div class="introduction__right">
     <p>🎤 <strong>8+</strong> Public Talks & Workshops</p>
     <p>✍️ <strong>6+</strong> Blogs & Book Reviews</p>
     <p>🔧 <strong>Many</strong> Open Source Projects</p>
@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<!-- <div class="footer fragment">
+<div class="footer fragment hidden">
   <div class="footer__site">
     <a href="https://asadullahkhalid.com">🌐 asadullahkhalid.com</a>
   </div>
@@ -33,9 +33,11 @@
     <a href="https://github.com/asadullah305" target="_blank">💻 GitHub</a>
     <a href="https://topmate.io/asadullahkhalid" target="_blank">📅 Book a Session</a>
   </div>
-</div> -->
+</div>
 
 --
+
+<!-- .slide: data-visibility="hidden" -->
 
 ## <span class="underline-accent">What I'm Doing?</span>
 
@@ -64,6 +66,8 @@
 
 --
 
+<!-- .slide: data-visibility="hidden" -->
+
 ## <span class="underline-accent">My Journey</span>
 
 <div class="journey-container">
@@ -87,6 +91,8 @@
 </div>
 
 --
+
+<!-- .slide: data-visibility="hidden" -->
 
 ## <span class="underline-accent">Expertise & Focus</span>
 
@@ -115,8 +121,8 @@
   </div>
 </div>
 
-<!-- <div class="expertise-footer">
+<div class="expertise-footer hidden">
   <p>
     📝 Latest Blog: <a href="https://asadullahkhalid.com/contribution/blogs/soft-skills-in-tech" target="_blank">"Soft Skills in Tech: The Real Career Multiplier"</a>
   </p>
-</div> -->
+</div>

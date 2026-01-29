@@ -1,23 +1,12 @@
-<!-- <div class="fragment">
-</div> -->
-
-<!-- .slide: class="center-slide" -->
-
-## Designing a Real-World
-
-## <span class="highlight-accent">Multi-Agent Agentic System</span>
-
---
-
-<!-- .slide: class="center-slide" -->
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
 
 ## <span class="underline-accent">Agenda</span>
 
 - What is an AI Agent?
 
-- What are different types of an Agentic Systems?
+- What are the different types of Agentic Systems?
 
-- What are building blocks of a Multi-Agent System?
+- What are the building blocks of a Multi-Agent System?
 
 - How to ensure if a Multi-Agent System is safe and reliable?
 
@@ -27,7 +16,9 @@
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="line-through-danger">What is an Agent?</span>
+## <span class="fragment strike">What is an Agent?</span>
+
+<div class="fragment">
 
 ## <span class="underline-accent">What is a LLM?</span>
 
@@ -36,6 +27,8 @@ A language model trained on large amounts of data that works as a static workflo
 <div class="pt-8">
 
 <img src="assets/ai-agents/llm.png" alt="LLM Flow" style="max-height: 80vh; width: auto;" />
+
+</div>
 
 </div>
 
@@ -98,13 +91,13 @@ A software system that uses one or more AI agents to perform tasks <span class="
 
 ## <span class="underline-accent">Level 0</span>: AI Agent with <span class="highlight-accent">LLM</span>
 
-The most basic form of an agentic system.
+The most <span class="emphasis-accent">basic form</span> of an agentic system.
 
 <div class="fragment pt-8">
 
 <span class="emphasis-info">
 
-**Example:** A corporate HR AI Assistant trained on company policies, benefits, and procedures that answers employee questions without accessing any live systems or databases.
+**Scenario:** A corporate HR AI Assistant trained on company policies, benefits, and procedures that answers employee questions without accessing any live systems or databases.
 
 </span>
 
@@ -122,13 +115,13 @@ Prompt: "What is the process for applying for parental leave?"
 
 ## <span class="underline-accent">Level 1</span>: AI Agent with <span class="highlight-accent">LLM + Tools</span>
 
-Connects limited or outdated LLMs to real-world data and systems via tools.
+Connects LLMs to <span class="emphasis-accent">external environment</span> via tools.
 
 <div class="fragment pt-8">
 
 <span class="emphasis-info">
 
-**Example:** A customer support AI Assistant that understands user queries and calls external APIs to fetch order status, process returns, and provide personalized recommendations.
+**Scenario:** A customer support AI Assistant that understands user queries and calls external APIs to fetch order status, process returns, and provide personalized recommendations.
 
 </span>
 
@@ -150,9 +143,7 @@ Prompt: "Fetch the order status for order #12345 from the Orders API and summari
 
 <div class="pt-6">
 
-Here's where the complexity begins.
-
-We move from executing simple tasks to strategically planning complex, <span class="emphasis-success">multi-part goals</span> with the help of <span class="emphasis-info">memory and context</span>.
+We move from executing simple tasks to strategically planning complex, <span class="emphasis-accent">multi-part goals</span> with the help of <span class="emphasis-accent">memory and context</span>.
 
 </div>
 
@@ -179,36 +170,103 @@ Prompt: "Find a good coffee shop halfway between my office and my client's offic
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="underline-accent">Level 2 Example: Thinking Process</span>
+## <span class="underline-accent">Level 2 Example: Execution</span>
 
-<div class="pt-6 text-start">
+<div class="pt-8">
 
-Uses <span class="emphasis-accent">memory</span> to read addresses for both offices.
-
-- Iteration 1:
-  - <span class="emphasis-success">Think: "I must first find the halfway point between the two offices."</span>
-  - <span class="emphasis-info">Act: Call Maps tool with both office addresses.</span>
-  - <span class="emphasis-warning">Observe: "The halfway point is location X."</span>
-  - <span class="emphasis-accent">Adds to context.</span>
-
-<div class="fragment">
-
-- Iteration 2:
-  - <span class="emphasis-info">Think: "Now find highly-rated coffee shops near location X that serve quality espresso."</span>
-  - <span class="emphasis-success">Act: Search coffee shops near location X with min_rating=4.0 and specialty=espresso.</span>
-  - <span class="emphasis-warning">Observe: "Found 'The Daily Brew' and 'Espresso House'."</span>
-  - <span class="emphasis-accent">Adds to context.</span>
+Uses <span class="emphasis-accent">memory</span> to read addresses for both offices and update <span class="emphasis-accent">context</span> after each iteration.
 
 </div>
 
-<div class="fragment">
+<div class="pt-8 text-start" style="font-size: 28px;">
 
-- Iteration 3:
-  - <span class="emphasis-info">Think: "Synthesize the results for the user."</span>
-  - <span class="emphasis-success">Act: Compile with hours, ratings, and directions.</span>
-  - <span class="emphasis-warning">Observe: "Both open at 7 AM, 4.5+ stars, 10 mins away."</span>
+<span class="emphasis-success">Iteration 1:</span> Find halfway point.
+
+<span class="emphasis-info">Iteration 2:</span> Search for coffee shops.
+
+<span class="emphasis-warning">Iteration 3:</span> Synthesize the results.
 
 </div>
+
+--
+
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
+
+## <span class="underline-accent">Iteration 1</span>
+
+<div class="pt-8 text-start" style="font-size: 32px;">
+
+- <span class="emphasis-success">Think: "I must first find the halfway point between the two offices."</span>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-info">Act: Call Maps tool with both office addresses.</span>
+
+</div>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-warning">Observe: "The halfway point is location X."</span>
+
+</div>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-accent">Adds to context.</span>
+
+</div>
+
+</div>
+
+--
+
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
+
+## <span class="underline-accent">Iteration 2</span>
+
+<div class="pt-8 text-start" style="font-size: 32px;">
+
+- <span class="emphasis-info">Think: "Now find highly-rated coffee shops near location X that serve quality espresso."</span>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-success">Act: Search coffee shops near location X with min_rating=4.0 and specialty=espresso.</span>
+
+</div>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-warning">Observe: "Found 'The Daily Brew' and 'Espresso House'."</span>
+
+</div>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-accent">Adds to context.</span>
+
+</div>
+
+</div>
+
+--
+
+<!-- .slide: class="center-slide" data-visibility="hidden" -->-->
+
+## <span class="underline-accent">Iteration 3</span>
+
+<div class="pt-8 text-start" style="font-size: 32px;">
+
+- <span class="emphasis-info">Think: "Synthesize the results for the user."</span>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-success">Act: Compile with hours, ratings, and directions.</span>
+
+</div>
+
+<div class="fragment pt-6">
+
+- <span class="emphasis-warning">Observe: "Both open at 7 AM, 4.5+ stars, 10 mins away."</span>
 
 </div>
 
@@ -250,7 +308,7 @@ Here agents can <span class="emphasis-success">self-evolve</span> without <span 
 
 <div class="pt-6">
 
-Recap: In level 3, multiple agents works together, coordinated by an <span class="emphasis-accent">orchestration layer</span>.
+Recap: In level 3, multiple agents work together, coordinated by an <span class="emphasis-accent">orchestration layer</span>.
 
 </div>
 
@@ -292,7 +350,7 @@ A <span class="emphasis-accent">design pattern</span> for creating a central poi
 
 <div class="pt-6">
 
-<img src="assets/ai-agents/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: 50vh; width: auto;" />
 
 </div>
 
@@ -300,7 +358,7 @@ A <span class="emphasis-accent">design pattern</span> for creating a central poi
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="underline-accent">Common design patterns:</span>
+## <span class="underline-accent">Common Design Patterns:</span>
 
 <div class="pt-6 text-start">
 
@@ -332,7 +390,7 @@ We introduce <span class="emphasis-accent">guardrails</span>.
 
 <div class="pt-8">
 
-Guardrails work as a <span class="emphasis-success">validation rules</span> for the agentic system.
+Guardrails work as <span class="emphasis-success">validation rules</span> for the agentic system.
 
 </div>
 
@@ -356,7 +414,7 @@ Guardrails work as a <span class="emphasis-success">validation rules</span> for 
 
 <div class="pt-6">
 
-<span class="emphasis-danger">Agents won't always return the same response for a same given input.</span>
+<span class="emphasis-danger">Agents won't always return the same response for the same given input.</span>
 
 <span class="emphasis-success">That's expected</span>.
 
@@ -428,7 +486,7 @@ A finance tracking application where you can record personal finances and intera
 
 <div class="pt-6">
 
-<img src="assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: 50vh; width: auto;" />
 
 </div>
 
@@ -472,7 +530,7 @@ A finance tracking application where you can record personal finances and intera
 
 ## <span class="underline-accent">Citations & Resources</span>
 
-<div class="pt-6 text-white">
+<div class="pt-6 text-white text-3xl">
 
 <style>
 .text-white a { color: white !important; }

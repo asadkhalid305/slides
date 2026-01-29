@@ -249,6 +249,11 @@ img.meme {
   text-decoration-thickness: 3px;
 }
 
+.reveal .fragment.strike.visible {
+  text-decoration-color: var(--color-danger) !important;
+  text-decoration-thickness: 3px !important;
+}
+
 // Emphasis utilities
 
 .reveal .emphasis-success {

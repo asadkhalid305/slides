@@ -3,14 +3,13 @@
 .introduction {
   display: flex;
   margin-top: 60px;
-  justify-content: space-between;
-  gap: 30px;
+  justify-content: center;
+  gap: 60px;
 
   &__left {
     display: flex;
     gap: 30px;
     font-size: 20px;
-    flex: 1;
 
     &__avatar {
       border-radius: 50%;
@@ -29,7 +28,6 @@
     display: flex;
     flex-direction: column;
     font-size: 20px;
-    flex: 1;
 
     p {
       line-height: 2 !important;
