@@ -97,13 +97,13 @@ The most <span class="emphasis-accent">basic form</span> of an agentic system.
 
 <span class="emphasis-info">
 
-**Scenario:** A corporate HR AI Assistant trained on company policies, benefits, and procedures that answers employee questions without accessing any live systems or databases.
+**Scenario:** An AI chat assistant that tells jokes.
 
 </span>
 
 <div class="pt-6 italic emphasis-success">
 
-Prompt: "What is the process for applying for parental leave?"
+Prompt: "Tell me a joke about AI."
 
 </div>
 
@@ -121,13 +121,13 @@ Connects LLMs to <span class="emphasis-accent">external environment</span> via t
 
 <span class="emphasis-info">
 
-**Scenario:** A customer support AI Assistant that understands user queries and calls external APIs to fetch order status, process returns, and provide personalized recommendations.
+**Scenario:** A customer support AI Assistant that understands user queries and calls external APIs to fetch order information.
 
 </span>
 
 <div class="pt-6 italic emphasis-success">
 
-Prompt: "Fetch the order status for order #12345 from the Orders API and summarize the delivery timeline."
+Prompt: "Fetch the order status for order #12345."
 
 </div>
 
@@ -155,7 +155,7 @@ We move from executing simple tasks to strategically planning complex, <span cla
 
 <div class="pt-6">
 
-<span class="emphasis-info">**Scenario:** A travel assistant finds a good coffee shop between two office locations that matches user preferences.
+<span class="emphasis-info">**Scenario:** A travel AI assistant finds a shop between two locations that matches user preferences.
 </span>
 
 <div class="pt-6 italic emphasis-success">
@@ -174,7 +174,7 @@ Prompt: "Find a good coffee shop halfway between my office and my client's offic
 
 <div class="pt-8">
 
-Uses <span class="emphasis-accent">memory</span> to read addresses for both offices and update <span class="emphasis-accent">context</span> after each iteration.
+Fetches addresses from <span class="emphasis-accent">past conversation</span> for both offices and update <span class="emphasis-accent">context</span> after each iteration.
 
 </div>
 
@@ -298,6 +298,8 @@ We call this level <span class="emphasis-accent">Multi-Agent System</span>.
 
 Here agents can <span class="emphasis-success">self-evolve</span> without <span class="emphasis-danger">human intervention</span> at the <span class="emphasis-info">architecture level</span>.
 
+<span class="emphasis-warning">**Example:** Google Co-Scientist.
+
 </div>
 
 ---
@@ -308,7 +310,7 @@ Here agents can <span class="emphasis-success">self-evolve</span> without <span 
 
 <div class="pt-6">
 
-Recap: In level 3, multiple agents work together, coordinated by an <span class="emphasis-accent">orchestration layer</span>.
+In level 3, multiple agents work together, coordinated by an <span class="emphasis-accent">orchestration layer</span>.
 
 </div>
 
@@ -496,15 +498,15 @@ A finance tracking application where you can record personal finances and intera
 
 ## <span class="underline-accent">Interaction Flow</span>
 
-<div class="pt-6" style="font-size: 24px;">
+<div class="pt-6" style="font-size: 22px;">
 
-| <span class="emphasis-info">**User Prompt**</span>                                               | <span class="emphasis-success">**Assistant Response**</span>                                                          | <span class="emphasis-warning">**What Happened**</span>                                                                                                                                                                                                   |
-| :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span class="fragment" data-fragment-index="1">Hey!</span>                                       | <span class="fragment" data-fragment-index="1">Returns greetings</span>                                               | <span class="fragment" data-fragment-index="1">Used <span class="emphasis-accent">greeting agent</span> with basic LLM capabilities</span>                                                                                                                |
-| <span class="fragment" data-fragment-index="2">How is the weather today?</span>                  | <span class="fragment" data-fragment-index="2">Out of Scope query, reroute to ask questions regarding finances</span> | <span class="fragment" data-fragment-index="2">Used <span class="emphasis-accent">out of scope agent</span> with basic LLM capabilities</span>                                                                                                            |
-| <span class="fragment" data-fragment-index="3">How much I spent on food this year?</span>        | <span class="fragment" data-fragment-index="3">Returns aggregated number from DB for 2026</span>                      | <span class="fragment" data-fragment-index="3">Used <span class="emphasis-accent">LLM to convert query to SQL</span>, then <span class="emphasis-info">tool to fetch data</span>, then <span class="emphasis-success">LLM to process result</span></span> |
-| <span class="fragment" data-fragment-index="4">And last year?</span>                             | <span class="fragment" data-fragment-index="4">Could not find any expense for food category in 2025</span>            | <span class="fragment" data-fragment-index="4">Used <span class="emphasis-accent">memory</span> to recall previous year</span>                                                                                                                            |
-| <span class="fragment" data-fragment-index="5">ok now give me best advice on saving money</span> | <span class="fragment" data-fragment-index="5">Gave generic advice on saving money</span>                             | <span class="fragment" data-fragment-index="5">Used <span class="emphasis-accent">finance advice agent</span> with basic LLM capabilities</span>                                                                                                          |
+| <span class="emphasis-info">**User Prompt**</span>                                               | <span class="emphasis-success">**Assistant Response**</span>                                                          | <span class="emphasis-accent">**Agent Used**</span>                        | <span class="emphasis-warning">**What Happened**</span>                                                                                                                                                              |
+| :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class="fragment" data-fragment-index="1">Hey!</span>                                       | <span class="fragment" data-fragment-index="1">Returns greetings</span>                                               | <span class="fragment" data-fragment-index="1">Greeting Agent</span>       | <span class="fragment" data-fragment-index="1">Basic LLM capabilities</span>                                                                                                                                         |
+| <span class="fragment" data-fragment-index="2">How is the weather today?</span>                  | <span class="fragment" data-fragment-index="2">Out of Scope query, reroute to ask questions regarding finances</span> | <span class="fragment" data-fragment-index="2">Out of Scope Agent</span>   | <span class="fragment" data-fragment-index="2">Basic LLM capabilities</span>                                                                                                                                         |
+| <span class="fragment" data-fragment-index="3">How much I spent on food this year?</span>        | <span class="fragment" data-fragment-index="3">Returns aggregated number from DB for 2026</span>                      | <span class="fragment" data-fragment-index="3">Finance Query Agent</span>  | <span class="fragment" data-fragment-index="3"><span class="emphasis-accent">LLM to SQL</span> → <span class="emphasis-info">Tool to fetch data</span> → <span class="emphasis-success">LLM to process</span></span> |
+| <span class="fragment" data-fragment-index="4">And last year?</span>                             | <span class="fragment" data-fragment-index="4">Could not find any expense for food category in 2025</span>            | <span class="fragment" data-fragment-index="4">Finance Query Agent</span>  | <span class="fragment" data-fragment-index="4">Used <span class="emphasis-accent">memory</span> to recall previous context</span>                                                                                    |
+| <span class="fragment" data-fragment-index="5">ok now give me best advice on saving money</span> | <span class="fragment" data-fragment-index="5">Gave generic advice on saving money</span>                             | <span class="fragment" data-fragment-index="5">Finance Advice Agent</span> | <span class="fragment" data-fragment-index="5">Basic LLM capabilities</span>                                                                                                                                         |
 
 </div>
 
