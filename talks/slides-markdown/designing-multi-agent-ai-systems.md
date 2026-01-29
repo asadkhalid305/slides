@@ -26,7 +26,7 @@ A language model trained on large amounts of data that works as a static workflo
 
 <div class="pt-8">
 
-<img src="assets/ai-agents/llm.png" alt="LLM Flow" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/llm.png" alt="LLM Flow" style="max-height: min(70vh, 900px);" />
 
 </div>
 
@@ -63,7 +63,7 @@ Google calls these components as:
 
 ### <span class="underline-accent">Example</span>
 
-<img src="assets/ai-agents/ai-agent.png" alt="Agent Flow" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/ai-agent.png" alt="Agent Flow" style="max-height: min(70vh, 900px);" />
 
 ---
 
@@ -83,7 +83,7 @@ A software system that uses one or more AI agents to perform tasks <span class="
 
 ## <span class="underline-accent">Levels of Agentic Systems</span>
 
-<img src="assets/ai-agents/agentic-system.png" alt="Agentic System Pyramid" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/agentic-system.png" alt="Agentic System Pyramid" style="max-height: min(70vh, 900px);" />
 
 --
 
@@ -350,7 +350,7 @@ A <span class="emphasis-accent">design pattern</span> for creating a central poi
 
 <div class="pt-6">
 
-<img src="assets/ai-agents/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: 50vh; width: auto;" />
+<img src="assets/ai-agents/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: min(50vh, 550px);" />
 
 </div>
 
@@ -402,7 +402,7 @@ Guardrails work as <span class="emphasis-success">validation rules</span> for th
 
 <div class="max-w-[1500px]">
 
-<img src="assets/ai-agents/multi-agent-architecture-guardrails.png" alt="Multi-Agent System with Guardrails" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/multi-agent-architecture-guardrails.png" alt="Multi-Agent System with Guardrails" style="max-height: min(70vh, 900px);" />
 
 </div>
 
@@ -486,7 +486,25 @@ A finance tracking application where you can record personal finances and intera
 
 <div class="pt-6">
 
-<img src="assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: 50vh; width: auto;" />
+<img src="assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: min(60vh, 550px);" />
+
+</div>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## <span class="underline-accent">Interaction Flow</span>
+
+<div class="pt-6" style="font-size: 24px;">
+
+| <span class="emphasis-info">**User Prompt**</span>                                               | <span class="emphasis-success">**Assistant Response**</span>                                                          | <span class="emphasis-warning">**What Happened**</span>                                                                                                                                                                                                   |
+| :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class="fragment" data-fragment-index="1">Hey!</span>                                       | <span class="fragment" data-fragment-index="1">Returns greetings</span>                                               | <span class="fragment" data-fragment-index="1">Used <span class="emphasis-accent">greeting agent</span> with basic LLM capabilities</span>                                                                                                                |
+| <span class="fragment" data-fragment-index="2">How is the weather today?</span>                  | <span class="fragment" data-fragment-index="2">Out of Scope query, reroute to ask questions regarding finances</span> | <span class="fragment" data-fragment-index="2">Used <span class="emphasis-accent">out of scope agent</span> with basic LLM capabilities</span>                                                                                                            |
+| <span class="fragment" data-fragment-index="3">How much I spent on food this year?</span>        | <span class="fragment" data-fragment-index="3">Returns aggregated number from DB for 2026</span>                      | <span class="fragment" data-fragment-index="3">Used <span class="emphasis-accent">LLM to convert query to SQL</span>, then <span class="emphasis-info">tool to fetch data</span>, then <span class="emphasis-success">LLM to process result</span></span> |
+| <span class="fragment" data-fragment-index="4">And last year?</span>                             | <span class="fragment" data-fragment-index="4">Could not find any expense for food category in 2025</span>            | <span class="fragment" data-fragment-index="4">Used <span class="emphasis-accent">memory</span> to recall previous year</span>                                                                                                                            |
+| <span class="fragment" data-fragment-index="5">ok now give me best advice on saving money</span> | <span class="fragment" data-fragment-index="5">Gave generic advice on saving money</span>                             | <span class="fragment" data-fragment-index="5">Used <span class="emphasis-accent">finance advice agent</span> with basic LLM capabilities</span>                                                                                                          |
 
 </div>
 
@@ -496,7 +514,7 @@ A finance tracking application where you can record personal finances and intera
 
 ## <span class="underline-accent">System Design</span>
 
-<img src="assets/ai-agents/keyfinz.png" alt="KeyFinz AI Assistant Architecture" style="max-height: 80vh; width: auto;" />
+<img src="assets/ai-agents/keyfinz.png" alt="KeyFinz AI Assistant Architecture" style="max-height: min(70vh, 900px);" />
 
 ---
 
@@ -522,7 +540,7 @@ A finance tracking application where you can record personal finances and intera
 
 <!-- .slide: class="center-slide" -->
 
-<img src="assets/memes/thankyou.gif" alt="Thankyou" style="max-height: 80vh; width: auto;" />
+<img src="assets/memes/thankyou.gif" alt="Thankyou" style="max-height: min(70vh, 900px);" />
 
 ---
 
