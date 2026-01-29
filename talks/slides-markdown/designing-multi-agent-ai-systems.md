@@ -174,17 +174,21 @@ Prompt: "Find a good coffee shop halfway between my office and my client's offic
 
 <div class="pt-8">
 
-Fetches addresses from <span class="emphasis-accent">past conversation</span> for both offices and update <span class="emphasis-accent">context</span> after each iteration.
+Retrieves addresses from <span class="emphasis-accent">memory</span> for both offices, reasons through the task, and updates <span class="emphasis-accent">context</span> after each tool call.
 
 </div>
 
 <div class="pt-8 text-start" style="font-size: 28px;">
 
-<span class="emphasis-success">Iteration 1:</span> Find halfway point.
+<span class="emphasis-success">Iteration 1:</span> Calls Maps API with both addresses to calculate halfway point.
 
-<span class="emphasis-info">Iteration 2:</span> Search for coffee shops.
+<span class="text-2xl italic opacity-75">(Stores the midpoint location in context.)</span>
 
-<span class="emphasis-warning">Iteration 3:</span> Synthesize the results.
+<span class="emphasis-info">Iteration 2:</span> Calls search tool to find coffee shops near the midpoint.
+
+<span class="text-2xl italic opacity-75">(Reasons that "good" means rating > 4.0, stores criteria in context.)</span>
+
+<span class="emphasis-warning">Iteration 3:</span> Synthesizes the results and returns response to user.
 
 </div>
 
@@ -567,5 +571,7 @@ A finance tracking application where you can record personal finances and intera
 - https://openai.github.io/openai-agents-js/guides/context/
 
 - https://openai.github.io/openai-agents-js/guides/guardrails/
+
+- https://github.com/asadkhalid305/streamwise-ai/tree/template
 
 </div>
