@@ -22,7 +22,7 @@
 
 ## <span class="underline-accent">What is a LLM?</span>
 
-A language model trained on large amounts of data that works as a static workflow.
+A language model trained on large amounts of data that generates text based on patterns learned during training.
 
 <div class="pt-8">
 
@@ -38,11 +38,9 @@ A language model trained on large amounts of data that works as a static workflo
 
 ## <span class="underline-accent">What is an Agent?</span>
 
-An agent is not just a static workflow.
-
 <div class="pt-8">
 
-It uses a <span class="emphasis-success">LLM</span> to reason and <span class="emphasis-info">tools</span> to coordinate with the external environment, all processed by an <span class="emphasis-warning">orchestration layer</span>.
+An Agent uses a <span class="emphasis-success">LLM</span> to reason and <span class="emphasis-info">tools</span> to interact with the external environment. The <span class="emphasis-warning">orchestration layer</span> decides which tools to use and when.
 
 </div>
 
@@ -326,7 +324,7 @@ In level 3, multiple agents work together, coordinated by an <span class="emphas
 
 <div class="pt-6">
 
-When requirements grow for a single agent system, it starts <span class="emphasis-danger">hallucinating</span>.
+When a single agent handles too many responsibilities, its prompt becomes <span class="emphasis-danger">complex and harder to maintain</span>, leading to decreased accuracy and reliability.
 
 </div>
 
@@ -344,7 +342,7 @@ With multiple agents, each agent can focus on a specific sub-task within a large
 
 <div class="pt-6">
 
-A <span class="emphasis-accent">design pattern</span> for creating a central point where an <span class="emphasis-success">orchestrator agent (parent) decides</span> <span class="emphasis-info">how to call sub-agents (children)</span> <span class="emphasis-warning">while manages memory & context, and ensures system safety.</span>
+A <span class="emphasis-accent">design pattern</span> where a <span class="emphasis-success">coordinator agent (parent agent)</span> routes tasks to <span class="emphasis-info">specialized sub-agents (child agents)</span>, <span class="emphasis-warning">manages the workflow between them, and maintains shared context across the system.</span>
 
 </div>
 
@@ -396,7 +394,7 @@ We introduce <span class="emphasis-accent">guardrails</span>.
 
 <div class="pt-8">
 
-Guardrails work as <span class="emphasis-success">validation rules</span> for the agentic system.
+Guardrails are <span class="emphasis-success">safety mechanisms</span> that validate inputs and outputs, filter harmful content, enforce policies, and prevent unwanted agent behavior.
 
 </div>
 
@@ -468,7 +466,7 @@ These agents:
 
 <div class="fragment pt-8">
 
-Note: Such agents test <span class="highlight-success">quality and acceptability</span>, not safety (that's what <span class="text-success">guardrails</span> are for). There's no solid guideline on where and how to use them—it depends on the use case.
+Note: Such agents evaluate response <span class="highlight-success">quality, relevance, and tone</span>. They complement <span class="text-success">guardrails</span>, which focus on preventing harmful outputs and enforcing hard constraints.
 
 </div>
 
