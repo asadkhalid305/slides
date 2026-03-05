@@ -25,11 +25,18 @@ css/
 - `css-core` - Compiles `reveal.scss` → `dist/reveal.css`
 - `css-landing` - Compiles `landing.scss` → `dist/landing.css`
 - `css-themes` - Compiles theme files → `dist/theme/*.css`
+- `css` - Runs all CSS tasks in parallel (`css-themes`, `css-core`, `css-landing`)
 
 **Module imports:**
 
 - Files prefixed with `_` are Sass partials (not compiled directly)
 - Imported by main files using `@import` or `@use`
+
+**Common commands:**
+
+- `npm run build` - Runs full build (including CSS)
+- `gulp css` - Rebuild CSS only
+- `npm run dev` - Start watch mode + livereload for CSS and talks
 
 ## Making Changes
 
@@ -37,11 +44,3 @@ css/
 **To add utilities:** Edit `_reveal-customizations.scss`  
 **For talk styles:** Create file in `talks/` and import in `reveal.scss`  
 **For landing page:** Edit `landing.scss`
-
-## Consolidated Files
-
-Previously split modules now merged into `_reveal-customizations.scss`:
-
-- ~~`_utilities.scss`~~
-- ~~`_highlights.scss`~~
-- ~~`_corner-glow.scss`~~

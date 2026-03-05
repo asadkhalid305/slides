@@ -27,7 +27,13 @@ npm install
 npm run dev
 ```
 
-This will start a development server at `http://localhost:3000` (or different port if specified).
+This starts a development server at `http://localhost:8000` by default.
+
+You can override host/port with gulp flags:
+
+```bash
+npx gulp serve --host 0.0.0.0 --port 3000
+```
 
 ### Build the Project
 
@@ -35,7 +41,15 @@ This will start a development server at `http://localhost:3000` (or different po
 npm run build
 ```
 
-This generates optimised production-ready assets in the `dist` directory.
+This regenerates `data/slides.json` and builds production assets in `dist/`.
+
+### Build Talks Listing Only
+
+```bash
+npm run build-talks
+```
+
+Use this before deployment to regenerate talk metadata and static output.
 
 ### Deploy the Project
 
@@ -47,25 +61,35 @@ Note: Configure your deployment settings as needed based on your hosting provide
 
 ## Creating New Talks
 
-Each talk lives in its own subfolder under `talks/`:
+Each talk lives in its own subfolder under `talks/`.
+
+Current pattern supports **either local content per talk** or **shared content** (for reuse):
 
 ```
 talks/
   shared/
-    assets/          ← images, memes, etc. reused across talks
-    profiles/        ← speaker profile markdown
+    intro.md         ← reusable intro deck section
+    assets/          ← reusable images/memes/media
   your-talk-name/
-    index.html       ← entry point (copy from an existing talk)
-    hook.md          ← title slide
-    slides.md        ← main slide content
+    index.html       ← required entry point
+    hook.md          ← required title/cover section
+    slides.md        ← required main content
+    intro.md         ← optional local intro (if not using shared)
     assets/          ← talk-specific assets (optional)
 ```
 
 1. Create a new folder `talks/your-talk-name/`
 2. Copy `index.html` from an existing talk and update the `<title>` tag
-3. Add `hook.md` and `slides.md` inside the new folder
-4. Reference shared assets with `../shared/assets/...` in your markdown
-5. Add entry to `data/slides.json`: `{"link": "your-talk-name/index.html", "title": "Your Talk Title"}`
+3. Add `hook.md` and `slides.md`
+4. Choose intro strategy:
+   - Local intro: `data-markdown="intro.md"`
+   - Shared intro: `data-markdown="../shared/intro.md"`
+5. Use assets from either:
+   - Local: `./assets/...`
+   - Shared: `../shared/assets/...`
+6. Run `npm run extract` (or `npm run dev` / `npm run build`) to regenerate `data/slides.json`
+
+`data/slides.json` is generated automatically by `scripts/extractSlideData.js`.
 
 ---
 
@@ -126,7 +150,7 @@ These are speaker notes visible only to the presenter
 **Usage:**
 
 1. Start dev server: `npm run dev`
-2. Open: `http://localhost:8000/talks/your-talk.html`
+2. Open: `http://localhost:8000/talks/your-talk-name/index.html`
 3. Press `S` key to open speaker notes window
 
 **⚠️ Important:** Must access via `http://localhost:8000` (not file://)
