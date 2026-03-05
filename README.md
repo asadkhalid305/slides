@@ -47,10 +47,25 @@ Note: Configure your deployment settings as needed based on your hosting provide
 
 ## Creating New Talks
 
-1. Create a new HTML file in the `talks/` directory (use `talks/designing-multi-agent-ai-systems.html` as reference)
-2. Create corresponding markdown content in `talks/slides-markdown/`
-3. Add entry to `data/slides.json` with title and filename
-4. Update profile section in `talks/profiles/myself.md` if needed
+Each talk lives in its own subfolder under `talks/`:
+
+```
+talks/
+  shared/
+    assets/          ← images, memes, etc. reused across talks
+    profiles/        ← speaker profile markdown
+  your-talk-name/
+    index.html       ← entry point (copy from an existing talk)
+    hook.md          ← title slide
+    slides.md        ← main slide content
+    assets/          ← talk-specific assets (optional)
+```
+
+1. Create a new folder `talks/your-talk-name/`
+2. Copy `index.html` from an existing talk and update the `<title>` tag
+3. Add `hook.md` and `slides.md` inside the new folder
+4. Reference shared assets with `../shared/assets/...` in your markdown
+5. Add entry to `data/slides.json`: `{"link": "your-talk-name/index.html", "title": "Your Talk Title"}`
 
 ---
 
