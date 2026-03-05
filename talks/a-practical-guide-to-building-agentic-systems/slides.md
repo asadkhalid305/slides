@@ -16,6 +16,20 @@
 
 <!-- .slide: class="center-slide" -->
 
+### <span class="underline-accent">Join Live Feedback (Anonymous by Default)</span>
+
+<div class="pt-8">
+
+<img src="assets/images/session-QR-4yaFA.png" alt="QR Code for Live Feedback" style="width: min(320px, 42vw); height: auto;" />
+
+</div>
+
+https://app.audiencemeter.pro/s/4yaFA
+
+---
+
+<!-- .slide: class="center-slide" -->
+
 ## <span class="fragment strike">What is an Agentic AI?</span>
 
 <div class="fragment">
