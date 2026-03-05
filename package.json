@@ -15,7 +15,8 @@
     "build-talks": "npm run extract && gulp build-talks",
     "deploy": "gulp deploy",
     "predeploy": "npm run build-talks",
-    "extract": "node scripts/extractSlideData.js"
+    "extract": "node scripts/extractSlideData.js",
+    "generate:pdf": "node scripts/generateTalkPdf.js"
   },
   "author": {
     "name": "Asad Ullah Khalid",

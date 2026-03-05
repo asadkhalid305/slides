@@ -59,6 +59,89 @@ npm run deploy
 
 Note: Configure your deployment settings as needed based on your hosting provider.
 
+## Generate PDF for Any Talk
+
+PDF export is dynamic and works for any talk folder under `talks/`.
+
+### 1) Install Decktape (Global)
+
+This project uses Decktape for slide-to-PDF export.
+
+```bash
+npm install -g decktape
+```
+
+Verify installation:
+
+```bash
+decktape --version
+```
+
+### 2) Start Local Server
+
+Decktape exports from the local reveal.js URL, so start the server first:
+
+```bash
+npm run dev
+```
+
+Default server URL is `http://localhost:8000`.
+
+### 3) Run Dynamic PDF Command
+
+Pass the talk folder name as the argument:
+
+```bash
+npm run generate:pdf your-talk-folder-name
+```
+
+Example:
+
+```bash
+npm run generate:pdf a-practical-guide-to-building-agentic-systems
+```
+
+You can also use the npm separator form:
+
+```bash
+npm run generate:pdf -- a-practical-guide-to-building-agentic-systems
+```
+
+### Output Location
+
+The PDF is always created inside the same talk folder with this naming pattern:
+
+```text
+talks/<talk-folder-name>/<talk-folder-name>.pdf
+```
+
+Example output:
+
+```text
+talks/a-practical-guide-to-building-agentic-systems/a-practical-guide-to-building-agentic-systems.pdf
+```
+
+### Validation & Error Handling
+
+The script validates all required conditions before export:
+
+- Talk folder exists under `talks/`
+- `talks/<name>/index.html` exists
+- Local server is reachable at `http://localhost:8000`
+- `decktape` is available in PATH
+
+If talk name is invalid, it prints available talk folders.
+
+### Common Issues
+
+- **`decktape is not available in PATH`**
+  - Install globally: `npm install -g decktape`
+  - Open a new terminal after install
+- **`Local server is not reachable at http://localhost:8000`**
+  - Start server with `npm run dev`
+- **Address already in use (`EADDRINUSE`)**
+  - Another server is already running on port 8000; reuse it or stop it and restart
+
 ## Creating New Talks
 
 Each talk lives in its own subfolder under `talks/`.
