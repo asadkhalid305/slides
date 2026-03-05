@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>A Practical Guide to Building Agentic Systems</title>
+
+    <link rel="stylesheet" href="../../dist/reveal.css" />
+    <link rel="stylesheet" href="../../dist/theme/black.css" id="theme" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../plugin/highlight/monokai.css" />
+  </head>
+
+  <body>
+    <!-- Lightbox overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+      <img id="lightbox-content" alt="Preview" />
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="hook.md"
+          data-separator="^\n---\n$"
+          data-separator-vertical="^\n--\n$"
+        ></section>
+        <section
+          data-markdown="intro.md"
+          data-separator="^\n---\n$"
+          data-separator-vertical="^\n--\n$"
+        ></section>
+        <section
+          data-markdown="slides.md"
+          data-separator="^\n---\n$"
+          data-separator-vertical="^\n--\n$"
+        ></section>
+      </div>
+    </div>
+    <!-- Watermark section with social links -->
+    <div
+      class="watermark fixed bottom-6 flex items-center justify-between w-full px-6"
+    >
+      <a
+        href="https://asadullahkhalid.com"
+        target="_blank"
+        class="text-xl font-semibold text-white hover:text-white transition-all duration-300 relative flex items-center gap-2"
+        style="text-shadow: 0 0 10px rgba(79, 12, 173, 0.5)"
+      >
+        <span style="font-size: 1.5rem">🌐</span>
+        <span class="relative z-10">asadullahkhalid.com</span>
+        <span
+          class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#4f0cad] to-[#6b21a8] transform origin-left transition-transform duration-300 hover:scale-x-110"
+          style="bottom: -2px"
+        ></span>
+      </a>
+      <!-- <div class="flex gap-6">
+        <a
+          href="https://www.linkedin.com/in/asadullahkhalid"
+          target="_blank"
+          class="text-xl font-semibold text-white hover:text-white transition-all duration-300 relative flex items-center gap-2"
+          style="text-shadow: 0 0 10px rgba(79, 12, 173, 0.5)"
+        >
+          <span style="font-size: 1.5rem">💼</span>
+          <span class="relative z-10">LinkedIn</span>
+          <span
+            class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#4f0cad] to-[#6b21a8] transform origin-left transition-transform duration-300 hover:scale-x-110"
+            style="bottom: -2px"
+          ></span>
+        </a>
+        <a
+          href="https://github.com/asadullahkhalid"
+          target="_blank"
+          class="text-xl font-semibold text-white hover:text-white transition-all duration-300 relative flex items-center gap-2"
+          style="text-shadow: 0 0 10px rgba(79, 12, 173, 0.5)"
+        >
+          <span style="font-size: 1.5rem">💻</span>
+          <span class="relative z-10">GitHub</span>
+          <span
+            class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#4f0cad] to-[#6b21a8] transform origin-left transition-transform duration-300 hover:scale-x-110"
+            style="bottom: -2px"
+          ></span>
+        </a>
+        <a
+          href="https://asadullahkhalid.com/book"
+          target="_blank"
+          class="text-xl font-semibold text-white hover:text-white transition-all duration-300 relative flex items-center gap-2"
+          style="text-shadow: 0 0 10px rgba(79, 12, 173, 0.5)"
+        >
+          <span style="font-size: 1.5rem">📅</span>
+          <span class="relative z-10">Book a Session</span>
+          <span
+            class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#4f0cad] to-[#6b21a8] transform origin-left transition-transform duration-300 hover:scale-x-110"
+            style="bottom: -2px"
+          ></span>
+        </a>
+      </div> -->
+    </div>
+    <script src="../../dist/reveal.js"></script>
+    <script src="../../plugin/markdown/markdown.js"></script>
+    <script src="../../plugin/highlight/highlight.js"></script>
+    <script src="../../plugin/notes/notes.js"></script>
+    <script src="../../plugin/math/math.js"></script>
+    <script src="../../plugin/zoom/zoom.js"></script>
+    <script src="../../plugin/search/search.js"></script>
+
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealZoom,
+          RevealSearch,
+        ],
+      });
+
+      /* Custom Lightbox Implementation for reveal.js 4.x
+       *
+       * The native lightbox feature was introduced in reveal.js 5.2.0, but this project
+       * is using reveal.js 4.4.0. This custom implementation provides similar functionality
+       * by listening for clicks on elements with data-preview-image attributes and displaying
+       * the images in a full-screen overlay.
+       *
+       * To use the native lightbox, upgrade to reveal.js 5.2.0 or higher and remove this code.
+       */
+      document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightbox-content');
+
+        // Handle clicks on elements with data-preview-image
+        document.addEventListener('click', function (e) {
+          const target = e.target.closest('[data-preview-image]');
+          if (target) {
+            e.preventDefault();
+            const imageSrc = target.getAttribute('data-preview-image');
+            if (imageSrc) {
+              lightboxContent.src = imageSrc;
+              lightbox.classList.add('active');
+            }
+          }
+        });
+
+        // Close lightbox on click
+        lightbox.addEventListener('click', function () {
+          lightbox.classList.remove('active');
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
