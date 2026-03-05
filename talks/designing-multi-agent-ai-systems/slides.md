@@ -26,7 +26,7 @@ A language model trained on large amounts of data that generates text based on p
 
 <div class="pt-8">
 
-<img src="assets/ai-agents/llm.png" alt="LLM Flow" style="max-height: min(70vh, 900px);" />
+<img src="assets/llm.png" alt="LLM Flow" style="max-height: min(70vh, 900px);" />
 
 </div>
 
@@ -61,7 +61,7 @@ Google calls these components as:
 
 ### <span class="underline-accent">Example</span>
 
-<img src="assets/ai-agents/ai-agent.png" alt="Agent Flow" style="max-height: min(70vh, 900px);" />
+<img src="assets/ai-agent.png" alt="Agent Flow" style="max-height: min(70vh, 900px);" />
 
 ---
 
@@ -81,7 +81,7 @@ A software system that uses one or more AI agents to perform tasks <span class="
 
 ## <span class="underline-accent">Levels of Agentic Systems</span>
 
-<img src="assets/ai-agents/agentic-system.png" alt="Agentic System Pyramid" style="max-height: min(70vh, 900px);" />
+<img src="../shared/assets/ai-agents/agentic-system.png" alt="Agentic System Pyramid" style="max-height: min(70vh, 900px);" />
 
 --
 
@@ -354,7 +354,7 @@ A <span class="emphasis-accent">design pattern</span> where a <span class="empha
 
 <div class="pt-6">
 
-<img src="assets/ai-agents/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: min(50vh, 550px);" />
+<img src="assets/multi-agent-architecture.png" alt="Multi-Agent System Architecture" style="max-height: min(50vh, 550px);" />
 
 </div>
 
@@ -406,7 +406,7 @@ Guardrails are <span class="emphasis-success">safety mechanisms</span> that vali
 
 <div class="max-w-[1500px]">
 
-<img src="assets/ai-agents/multi-agent-architecture-guardrails.png" alt="Multi-Agent System with Guardrails" style="max-height: min(70vh, 900px);" />
+<img src="assets/multi-agent-architecture-guardrails.png" alt="Multi-Agent System with Guardrails" style="max-height: min(70vh, 900px);" />
 
 </div>
 
@@ -446,7 +446,7 @@ Instead of testing exact outputs, we test <span class="emphasis-accent">quality 
 
 <!-- ## <span class="underline-accent">Using Agents to Evaluate Agents</span> -->
 
-## <a class="underline-accent" data-preview-image="assets/memes/spider-man-pointing-agents.gif">Using Agents to Evaluate Agents</a>
+## <a class="underline-accent" data-preview-image="../shared/assets/memes/spider-man-pointing-agents.gif">Using Agents to Evaluate Agents</a>
 
 <div class="pt-6">
 
@@ -490,7 +490,7 @@ A finance tracking application where you can record personal finances and intera
 
 <div class="pt-6">
 
-<img src="assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: min(60vh, 550px);" />
+<img src="../shared/assets/ai-agents/keyfinz.gif" alt="KeyFinz AI Assistant Demo" style="max-height: min(60vh, 550px);" />
 
 </div>
 
@@ -518,7 +518,7 @@ A finance tracking application where you can record personal finances and intera
 
 ## <span class="underline-accent">System Design</span>
 
-<img src="assets/ai-agents/keyfinz.png" alt="KeyFinz AI Assistant Architecture" style="max-height: min(70vh, 900px);" />
+<img src="assets/keyfinz.png" alt="KeyFinz AI Assistant Architecture" style="max-height: min(70vh, 900px);" />
 
 ---
 
@@ -544,7 +544,7 @@ A finance tracking application where you can record personal finances and intera
 
 <!-- .slide: class="center-slide" -->
 
-<img src="assets/memes/thankyou.gif" alt="Thankyou" style="max-height: min(70vh, 900px);" />
+<img src="../shared/assets/memes/thankyou.gif" alt="Thankyou" style="max-height: min(70vh, 900px);" />
 
 ---
 
