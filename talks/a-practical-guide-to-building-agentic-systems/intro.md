@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<div class="footer fragment hidden">
+<div class="footer hidden">
   <div class="footer__site">
     <a href="https://asadullahkhalid.com">🌐 asadullahkhalid.com</a>
   </div>
