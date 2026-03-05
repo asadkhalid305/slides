@@ -281,6 +281,11 @@ img.meme {
   font-weight: 600;
 }
 
+.reveal .emphasis-other {
+  color: var(--color-other);
+  font-weight: 600;
+}
+
 // Brush highlight effect
 .reveal .brush-highlight {
   position: relative;
@@ -308,6 +313,71 @@ img.meme {
     transform: rotate(-1deg);
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
     opacity: 0.5;
+  }
+}
+
+// ===========================================
+// PROMPT QUOTE
+// ===========================================
+// Use <blockquote class="callout callout--accent"> (or --success, --warning, --danger, --info)
+// Add <span class="callout__label">LABEL</span> as the first child for an optional eyebrow label.
+
+.reveal blockquote.callout {
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 1.2rem;
+  box-shadow: none;
+  font-style: normal;
+  border-left-width: 3px;
+  border-left-style: solid;
+
+  .callout__label {
+    display: block;
+    margin-bottom: 0.4em;
+    font-size: 0.65em;
+    font-weight: bold;
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  &.callout--accent {
+    border-left-color: var(--color-accent);
+    background: rgba(139, 92, 246, 0.08);
+    .callout__label {
+      color: var(--color-accent);
+    }
+  }
+
+  &.callout--success {
+    border-left-color: var(--color-success);
+    background: rgba(16, 185, 129, 0.08);
+    .callout__label {
+      color: var(--color-success);
+    }
+  }
+
+  &.callout--warning {
+    border-left-color: var(--color-warning);
+    background: rgba(245, 158, 11, 0.08);
+    .callout__label {
+      color: var(--color-warning);
+    }
+  }
+
+  &.callout--danger {
+    border-left-color: var(--color-danger);
+    background: rgba(239, 68, 68, 0.08);
+    .callout__label {
+      color: var(--color-danger);
+    }
+  }
+
+  &.callout--info {
+    border-left-color: var(--color-info);
+    background: rgba(59, 130, 246, 0.08);
+    .callout__label {
+      color: var(--color-info);
+    }
   }
 }
 
