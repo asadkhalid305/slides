@@ -257,25 +257,25 @@ One input. <span class="emphasis-success">No tab-switching.</span>
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; font-size: 0.85em;">
 
-<div class="fragment fade-up" data-fragment-index="1" style="padding: 1.2rem 1rem; border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 10px; background: rgba(139, 92, 246, 0.05);">
+<div class="fragment fade-up glass-card" data-fragment-index="1">
 <div style="font-size: 1.5em; margin-bottom: 0.5rem;">🤖</div>
 <div><span class="emphasis-accent">Agents</span></div>
 <div style="opacity: 0.55; font-size: 0.8em; padding-top: 0.4rem;">who does the work</div>
 </div>
 
-<div class="fragment fade-up" data-fragment-index="2" style="padding: 1.2rem 1rem; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 10px; background: rgba(59, 130, 246, 0.05);">
+<div class="fragment fade-up glass-card" data-fragment-index="2">
 <div style="font-size: 1.5em; margin-bottom: 0.5rem;">⚡</div>
 <div><span class="emphasis-info">Prompts</span></div>
 <div style="opacity: 0.55; font-size: 0.8em; padding-top: 0.4rem;">how you trigger it</div>
 </div>
 
-<div class="fragment fade-up" data-fragment-index="3" style="padding: 1.2rem 1rem; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; background: rgba(16, 185, 129, 0.05);">
+<div class="fragment fade-up glass-card" data-fragment-index="3">
 <div style="font-size: 1.5em; margin-bottom: 0.5rem;">📚</div>
 <div><span class="emphasis-success">Skills</span></div>
 <div style="opacity: 0.55; font-size: 0.8em; padding-top: 0.4rem;">what they know</div>
 </div>
 
-<div class="fragment fade-up" data-fragment-index="4" style="padding: 1.2rem 1rem; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; background: rgba(245, 158, 11, 0.05);">
+<div class="fragment fade-up glass-card" data-fragment-index="4">
 <div style="font-size: 1.5em; margin-bottom: 0.5rem;">🔌</div>
 <div><span class="emphasis-warning">MCPs</span></div>
 <div style="opacity: 0.55; font-size: 0.8em; padding-top: 0.4rem;">where they get data</div>
@@ -477,19 +477,19 @@ The bigger shift is <span class="emphasis-warning">focus</span> — not having t
 
 <div class="pt-10" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; font-size: 0.85em;">
 
-<div class="fragment fade-up" style="padding: 1rem; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; background: rgba(16, 185, 129, 0.05);">
+<div class="fragment fade-up glass-card">
 <div style="font-size: 1.4em; margin-bottom: 0.5rem;">🧪</div>
 <div><span class="emphasis-success">Hate writing tests?</span></div>
 <div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with the test-writer</div>
 </div>
 
-<div class="fragment fade-up" style="padding: 1rem; border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 10px; background: rgba(59, 130, 246, 0.05);">
+<div class="fragment fade-up glass-card">
 <div style="font-size: 1.4em; margin-bottom: 0.5rem;">📝</div>
 <div><span class="emphasis-info">PRs always incomplete?</span></div>
 <div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with the PR creator</div>
 </div>
 
-<div class="fragment fade-up" style="padding: 1rem; border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; background: rgba(245, 158, 11, 0.05);">
+<div class="fragment fade-up glass-card">
 <div style="font-size: 1.4em; margin-bottom: 0.5rem;">🔍</div>
 <div><span class="emphasis-warning">Legacy code a maze?</span></div>
 <div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with codebase explorer</div>
