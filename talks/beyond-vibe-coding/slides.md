@@ -427,7 +427,7 @@ One-time JSON config. Agents connect directly — no copy-pasting from browser t
 
 ---
 
-<!-- .slide: class="center-slide" -->
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
 
 ## <span class="underline-accent">What it saves</span>
 
