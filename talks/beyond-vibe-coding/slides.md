@@ -171,39 +171,7 @@ Pull Request — written, reviewed, tested
 
 <div class="pt-6">
 
-<!-- TODO: Replace with Excalidraw export — orchestrator + specialist agents + checkpoint diagram -->
-<!-- VISUAL PLACEHOLDER: Architecture diagram showing orchestrator → parallel research agents → Checkpoint 1 → parallel implementation agents → PR -->
-
-<pre style="font-size: 0.5em; text-align: left; display: inline-block; background: transparent; box-shadow: none; border: none; color: rgba(255,255,255,0.75);">
-                   ┌────────────────────┐
-                   │  "Work on USGMMV-1234"  │
-                   └──────────┬─────────┘
-                              │
-                   ┌──────────▼─────────┐
-                   │    Orchestrator     │
-                   └──────────┬─────────┘
-                              │
-           ┌──────────────────┼──────────────────┐
-           ▼                  ▼                  ▼
-     ┌───────────┐      ┌───────────┐      ┌───────────┐
-     │   Jira    │      │Confluence │      │ Codebase  │
-     │ Research  │      │ Research  │      │ Explorer  │
-     └─────┬─────┘      └─────┬─────┘      └─────┬─────┘
-           └──────────────────┼──────────────────┘
-                              ▼
-                     🛑  Checkpoint 1
-                              │
-           ┌──────────────────┼──────────────────┐
-           ▼                  ▼                  ▼
-     ┌───────────┐      ┌───────────┐      ┌───────────┐
-     │Implementer│      │   Tests   │      │ Reviewer  │
-     └─────┬─────┘      └─────┬─────┘      └─────┬─────┘
-           └──────────────────┼──────────────────┘
-                              ▼
-                   ┌──────────────────┐
-                   │    PR Created     │
-                   └──────────────────┘
-</pre>
+<img src="./assets/images/workflow.png" alt="Workflow diagram" style="max-height: 480px; width: auto;" />
 
 </div>
 
@@ -285,9 +253,6 @@ One input. <span class="emphasis-success">No tab-switching.</span>
 
 <div class="pt-8 fragment fade-up" data-fragment-index="5">
 
-<!-- SCREENSHOT PLACEHOLDER: VS Code file explorer showing .github/agents/ · .github/prompts/ · .agents/skills/ · .vscode/mcp.json -->
-<div style="opacity: 0.5; font-size: 0.7em; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.5rem 1.5rem; display: inline-block;">📸 screenshot: project folder structure</div>
-
 </div>
 
 <div class="pt-4 fragment fade-up" data-fragment-index="5">
@@ -314,8 +279,7 @@ All of it is <span class="emphasis-accent">markdown files</span> and one JSON co
 
 <div>
 
-<!-- SCREENSHOT PLACEHOLDER: .github/agents/ folder with all 8 agent filenames visible -->
-<div style="opacity: 0.5; font-size: 0.75em; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.5rem 1.2rem; margin-bottom: 1rem;">📸 screenshot: agents folder</div>
+<img src="./assets/images/agents.png" alt="Agents folder" style="max-height: 280px; width: auto; border-radius: 8px;" />
 
 </div>
 
@@ -350,8 +314,7 @@ All of it is <span class="emphasis-accent">markdown files</span> and one JSON co
 
 <div>
 
-<!-- SCREENSHOT PLACEHOLDER: .agents/skills/ folder showing all skill directories -->
-<div style="opacity: 0.5; font-size: 0.75em; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.5rem 1.2rem;">📸 screenshot: skills folder</div>
+<img src="./assets/images/skills.png" alt="Skills folder" style="max-height: 280px; width: auto; border-radius: 8px;" />
 
 </div>
 
@@ -409,10 +372,10 @@ One-time JSON config. Agents connect directly — no copy-pasting from browser t
 
 </div>
 
-<div>
+<div style="display: flex; flex-direction: column; gap: 0.8rem; align-items: center;">
 
-<!-- SCREENSHOT PLACEHOLDER: .vscode/mcp.json with tokens blurred -->
-<div style="opacity: 0.5; font-size: 0.75em; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.5rem 1.2rem;">📸 screenshot: mcp.json (blur tokens)</div>
+<img src="./assets/images/mcp.png" alt="MCP file path" style="max-height: 80px; width: auto; border-radius: 8px;" />
+<img src="./assets/images/mcp-config.png" alt="MCP config" style="max-height: 260px; width: auto; border-radius: 8px;" />
 
 </div>
 
@@ -541,13 +504,6 @@ One agent. One problem. <span class="emphasis-accent">Expand from there.</span>
 
 </div>
 
-<div class="pt-10 fragment fade-up" style="opacity: 0.6; font-size: 0.75em;">
-
-GitHub Copilot in VS Code supports agents, prompts, skills, and MCPs natively — no extensions needed.
-
-<!-- SCREENSHOT PLACEHOLDER: A minimal 8–10 line .agent.md file -->
-<div style="margin-top: 0.5rem; opacity: 0.7; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px; padding: 0.4rem 1.2rem; display: inline-block;">📸 screenshot: minimal agent file</div>
-
 </div>
 
 <aside class="notes">
@@ -596,14 +552,9 @@ GitHub Copilot in VS Code supports agents, prompts, skills, and MCPs natively �
 
 ## <span class="underline-accent">Questions?</span>
 
-<div class="pt-8">
+<div class="pt-10" style="text-align: center;">
 
-<a href="https://asadullahkhalid.com" target="_blank" class="emphasis-accent" style="font-size: 1.1em;">🌐 asadullahkhalid.com</a>
-
-</div>
-
-<div class="pt-6" style="opacity: 0.55; font-size: 0.75em;">
-
-Happy to share the agent files if you want to try it.
+<img src="./assets/images/qr_audiencemeter.png" alt="Feedback QR code" style="width: 200px; height: 200px; border-radius: 12px;" />
+<div style="margin-top: 0.6rem; font-size: 0.7em; opacity: 0.6; letter-spacing: 0.08em;">SCAN FOR FEEDBACK & LINKS</div>
 
 </div>
