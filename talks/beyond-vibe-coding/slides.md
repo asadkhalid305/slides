@@ -67,15 +67,15 @@
 
 <div class="pt-10 fragment fade-up" data-fragment-index="8">
 
-Most of the time isn't <span class="emphasis-danger">coding</span>. It's <span class="emphasis-warning">gathering context</span>.
+Most of the time isn't <span class="emphasis-danger">coding</span>. It's <span class="emphasis-warning">context-engineering</span>.
 
 </div>
 
 <aside class="notes">
 
 - "Raise your hand if this looks familiar."
-- Each step appears one by one — let it build
-- "Most of our time is the stuff around the code, not the code itself."
+- Walk through each step as it appears — keep it conversational
+- Land on the last line and let it sit: "Most of our time is everything around the code, not the code itself."
 
 </aside>
 
@@ -83,7 +83,7 @@ Most of the time isn't <span class="emphasis-danger">coding</span>. It's <span c
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="underline-accent">The real cost isn't time</span>
+## <span class="underline-accent">The overhead no one talks about</span>
 
 <div class="pt-10" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; text-align: center;">
 
@@ -109,14 +109,34 @@ Most of the time isn't <span class="emphasis-danger">coding</span>. It's <span c
 
 <div class="pt-12 fragment fade-up">
 
-What if the context-gathering just <span class="highlight-accent">happened automatically</span>?
+What if the context-engineering just <span class="highlight-accent">happened automatically</span>?
 
 </div>
 
 <aside class="notes">
 
-- Keep this short. One point: the friction isn't one big task, it's 20 small interruptions.
-- The highlighted question is the setup for everything that follows — pause after it
+- "It's not one big task. It's 20 small interruptions before you write a single line."
+- The three cards name what everyone feels but rarely says out loud — let each land
+- Pause on the closing question — it's the setup for everything that follows
+
+</aside>
+
+---
+
+<!-- .slide: class="center-slide" -->
+
+## So I built something
+
+<div class="pt-10 fragment fade-up" style="font-size: 0.9em; opacity: 0.75;">
+
+A workflow that handles the context-engineering part — automatically.
+
+</div>
+
+<aside class="notes">
+
+- Drop the tone here. Plain statement, not a pitch.
+- "I want to show you what that looks like — input first."
 
 </aside>
 
@@ -137,7 +157,8 @@ Work on USGMMV-1234
 
 <aside class="notes">
 
-- Just the input. Let it land for a second before moving to the next slide.
+- Just the ticket number. Let it land.
+- "That's everything I type."
 
 </aside>
 
@@ -151,15 +172,15 @@ Work on USGMMV-1234
 
 <blockquote class="callout callout--success">
 <span class="callout__label">RESULT</span>
-Pull Request — written, reviewed, tested
+Context gathered. Code written. PR created.
 </blockquote>
 
 </div>
 
 <aside class="notes">
 
-- "That's it. That's the talk."
-- Let this breathe before moving on to show HOW
+- "That's the goal. Not magic — just the boring parts handled automatically."
+- "Let me show you how."
 
 </aside>
 
@@ -177,9 +198,12 @@ Pull Request — written, reviewed, tested
 
 <aside class="notes">
 
-- "One orchestrator. Seven specialists. Each does one thing."
-- "The checkpoint matters — the system pauses and I review before any code is written."
-- Don't linger — the video is next
+- Walk through the diagram top to bottom
+- "One orchestrator. It reads the ticket and decides what needs to happen."
+- "Three research agents run in parallel — Jira, Confluence, codebase."
+- "Then it stops. Human in the loop — I review the context summary before any code is written."
+- "Only then do the implementation agents start. And the result is a PR."
+- "It's not autonomous. It's collaborative."
 
 </aside>
 
@@ -187,33 +211,41 @@ Pull Request — written, reviewed, tested
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="underline-accent">See it in action</span>
+## <span class="underline-accent">What it actually looks like</span>
 
-<div class="pt-8">
+<div class="pt-8" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; font-size: 0.85em; text-align: left;">
 
-<!-- VIDEO PLACEHOLDER: 60–90 second screen recording -->
-<!-- Flow: VS Code → select "Work on Ticket" prompt → type USGMMV-XXXX -->
-<!-- → agents orchestrating in parallel → Checkpoint 1 summary → implementation → PR URL in terminal -->
+<div>
+<div style="opacity: 0.5; font-size: 0.75em; letter-spacing: 0.08em; margin-bottom: 0.8rem;">WHAT THE SYSTEM HANDLES</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Fetches the ticket</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Pulls relevant Confluence docs</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Explores the codebase</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Writes and reviews code</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0;">Opens the PR</div>
+</div>
 
-<div style="border: 2px dashed rgba(139, 92, 246, 0.4); border-radius: 12px; padding: 2.5rem 5rem; display: inline-block; background: rgba(139, 92, 246, 0.05);">
-<div style="font-size: 2em; margin-bottom: 0.5rem;">🎬</div>
-<div style="opacity: 0.6; font-size: 0.8em;">VIDEO PLACEHOLDER</div>
-<div style="opacity: 0.4; font-size: 0.65em; padding-top: 0.3rem;">60–90s · ticket ID → agents → PR</div>
+<div>
+<div style="opacity: 0.5; font-size: 0.75em; letter-spacing: 0.08em; margin-bottom: 0.8rem;">WHAT STAYS WITH YOU</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Reviewing the context summary</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Answering edge case questions</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Guiding implementation decisions</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">Approving before merge</div>
+<div class="fragment fade-up" style="padding: 0.5rem 0;"><span class="emphasis-accent">Engineering judgment</span></div>
 </div>
 
 </div>
 
 <div class="pt-8 fragment fade-up">
 
-One input. <span class="emphasis-success">No tab-switching.</span>
+The boring parts are automated. <span class="emphasis-success">The interesting parts stay yours.</span>
 
 </div>
 
 <aside class="notes">
 
-- Let the video run 10–15 seconds silently before narrating
-- "I typed one thing. Everything else was handled."
-- "This isn't a demo build — it's what I use every day."
+- "This isn't magic. It asks questions. You still make decisions."
+- "What's gone is the 45 minutes of opening tabs before you write a line."
+- Build left column first, then right — audience sees the balance before the closing line
 
 </aside>
 
@@ -253,19 +285,15 @@ One input. <span class="emphasis-success">No tab-switching.</span>
 
 <div class="pt-8 fragment fade-up" data-fragment-index="5">
 
-</div>
-
-<div class="pt-4 fragment fade-up" data-fragment-index="5">
-
 All of it is <span class="emphasis-accent">markdown files</span> and one JSON config. Nothing exotic.
 
 </div>
 
 <aside class="notes">
 
-- Cards appear one by one — name each briefly as it appears
-- "Agents are the workers. Prompts are the triggers. Skills are shared knowledge. MCPs connect to the outside world."
-- "All of this lives right in your repo."
+- "So how is this actually built? Four pieces."
+- Name each as it appears: "Agents are the workers. Prompts are how you trigger them. Skills are shared knowledge. MCPs connect to external tools."
+- "All of this lives in your repo. No special tooling."
 
 </aside>
 
@@ -299,8 +327,8 @@ All of it is <span class="emphasis-accent">markdown files</span> and one JSON co
 
 <aside class="notes">
 
-- "Same design principle as clean code: single responsibility."
-- "The test-writer can run on its own — you don't need the full pipeline."
+- "Same principle as clean code: single responsibility."
+- "The test-writer runs on its own — you don't need the full pipeline to use it."
 
 </aside>
 
@@ -341,8 +369,8 @@ Write once. <span class="emphasis-accent">Referenced by any agent that needs it.
 
 <aside class="notes">
 
-- "Instead of copy-pasting your coding standards into every agent file, you define them once as a skill."
-- "It's like your team's coding standards — but machine-readable."
+- "Instead of copy-pasting your coding standards into every agent, you define them once as a skill."
+- "Think of it as your team's coding standards — but machine-readable."
 
 </aside>
 
@@ -383,8 +411,8 @@ One-time JSON config. Agents connect directly — no copy-pasting from browser t
 
 <aside class="notes">
 
-- "This is what makes it actually useful. Without MCPs, AI can't read your tickets or create PRs."
-- "Setup is once. Tokens live in env vars — never in config files."
+- "This is what makes the workflow actually useful. Without MCPs, the agents can't read your tickets or create PRs."
+- "You set this up once. Tokens stay in env vars — never in config files."
 
 </aside>
 
@@ -434,43 +462,41 @@ The bigger shift is <span class="emphasis-warning">focus</span> — not having t
 
 <!-- .slide: class="center-slide" -->
 
-## Your workflow is different
+## <span class="underline-accent">Start with one problem</span>
 
-## <span class="highlight-accent">That's the point</span>
-
-<div class="pt-10" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; font-size: 0.85em;">
+<div class="pt-8" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; font-size: 0.85em;">
 
 <div class="fragment fade-up glass-card">
 <div style="font-size: 1.4em; margin-bottom: 0.5rem;">🧪</div>
 <div><span class="emphasis-success">Hate writing tests?</span></div>
-<div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with the test-writer</div>
+<div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with a test-writer agent</div>
 </div>
 
 <div class="fragment fade-up glass-card">
 <div style="font-size: 1.4em; margin-bottom: 0.5rem;">📝</div>
 <div><span class="emphasis-info">PRs always incomplete?</span></div>
-<div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with the PR creator</div>
+<div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with a PR creator agent</div>
 </div>
 
 <div class="fragment fade-up glass-card">
 <div style="font-size: 1.4em; margin-bottom: 0.5rem;">🔍</div>
 <div><span class="emphasis-warning">Legacy code a maze?</span></div>
-<div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with codebase explorer</div>
+<div style="opacity: 0.6; font-size: 0.8em; padding-top: 0.4rem;">Start with a codebase explorer</div>
 </div>
 
 </div>
 
 <div class="pt-8 fragment fade-up">
 
-One agent. One problem. <span class="emphasis-accent">Expand from there.</span>
+Don't copy my workflow. <span class="emphasis-accent">Solve your own friction.</span>
 
 </div>
 
 <aside class="notes">
 
 - "I'm not saying build what I built."
-- "Look at your own workflow. What's the thing you dread? Start there."
-- This is the core message — don't rush it
+- "Look at your own day. What's the thing you dread or keep putting off? That's your starting point."
+- "One agent. One problem. See if it helps. Then expand."
 
 </aside>
 
@@ -504,12 +530,10 @@ One agent. One problem. <span class="emphasis-accent">Expand from there.</span>
 
 </div>
 
-</div>
-
 <aside class="notes">
 
 - "You can set this up in under an hour."
-- "Don't over-engineer. One file, one job."
+- "Don't over-engineer it. One file, one job."
 
 </aside>
 
