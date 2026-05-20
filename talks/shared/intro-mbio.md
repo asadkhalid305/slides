@@ -9,7 +9,7 @@
       <p>
         🚗 Senior Frontend Developer<br/>
         ⏱️ Joined MB.io in Aug 2023<br/>
-        🔄 ART: Connect (B2B & B2C) -> MyMB<br/>
+        🔄 ART: MyMB (MMV)<br/>
         💻 Fullstack JS/TS<br/>
         📍 Lives in Berlin & From Pakistan
       </p>
