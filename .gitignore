@@ -12,4 +12,5 @@ node_modules/
 build
 dist
 .env
-.vscode/
+.vscode/*
+!.vscode/mcp.json
