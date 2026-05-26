@@ -1,5 +1,18 @@
 <!-- .slide: class="center-slide" -->
 
+## <span class="underline-accent">Live feedback</span>
+
+<div class="pt-10" style="text-align: center;">
+
+<img src="./assets/images/qr_audiencemeter.png" alt="Feedback QR code" style="width: 200px; height: 200px; border-radius: 12px;" />
+<div style="margin-top: 0.6rem; font-size: 0.7em; opacity: 0.6; letter-spacing: 0.08em;">ANONYMOUS</div>
+
+</div>
+
+---
+
+<!-- .slide: class="center-slide" -->
+
 ## <span class="underline-accent">How every task starts</span>
 
 <div class="pt-8" style="font-size: 0.85em; display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; text-align: center;">
@@ -125,7 +138,7 @@ What if the context-engineering just <span class="highlight-accent">happened aut
 
 <!-- .slide: class="center-slide" -->
 
-## So I built something
+## <span class="underline-accent">So I built something</span>
 
 <div class="pt-10 fragment fade-up" style="font-size: 0.9em; opacity: 0.75;">
 
