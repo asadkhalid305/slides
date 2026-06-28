@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Commands
 
@@ -306,5 +306,5 @@ All variables are in `css/_variables.scss`. All utilities are in `css/_reveal-cu
 - Push `main` directly (Vercel auto-deploys, no separate deploy step needed)
 - Never push feature branches to remote — work locally, merge to main
 - After merge, push: `git push origin main`
-- Co-author commits: `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`
+- Co-author commits: `Co-Authored-By: Codex Sonnet 4.6 <noreply@anthropic.com>`
 - **Never commit `data/slides.json`** unless talk titles actually changed (it reorders alphabetically on every extract, creating noise)

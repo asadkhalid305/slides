@@ -14,3 +14,4 @@ dist
 .env
 .vscode/*
 !.vscode/mcp.json
+.claude
