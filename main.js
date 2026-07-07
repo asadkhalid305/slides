@@ -8,11 +8,39 @@ const main = async () => {
   // Get the card template
   const template = document.getElementById('cardTemplate').content;
 
+  const formatDate = (date) =>
+    new Intl.DateTimeFormat('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(new Date(`${date}T00:00:00`));
+
+  slides.sort((firstSlide, secondSlide) => {
+    const firstDate = firstSlide.date ? new Date(firstSlide.date).getTime() : 0;
+    const secondDate = secondSlide.date
+      ? new Date(secondSlide.date).getTime()
+      : 0;
+
+    if (firstDate !== secondDate) {
+      return secondDate - firstDate;
+    }
+
+    return firstSlide.title.localeCompare(secondSlide.title);
+  });
+
   slides.forEach((slide) => {
-    const { link, title } = slide;
+    const { date, link, title } = slide;
 
     // Clone the template
     const cardClone = document.importNode(template, true);
+
+    const dateEl = cardClone.querySelector('.card-date');
+
+    if (date) {
+      dateEl.textContent = formatDate(date);
+    } else {
+      dateEl.remove();
+    }
 
     // Update card title
     cardClone.querySelector('.card-title').textContent = title;

@@ -10,16 +10,16 @@
         🚗 Senior Frontend Developer<br/>
         🏢 Mercedes-Benz.io<br/>
         📍 Berlin, Germany<br/>
-        ⏱️ 7+ years experience<br/>
+        <!-- ⏱️ 7+ years experience<br/> -->
         💻 Fullstack JS/TS
       </p>
     </div>
   </div>
   <div class="introduction__right">
-    <p>🎤 <strong>8+</strong> Public Talks & Workshops</p>
-    <p>✍️ <strong>6+</strong> Blogs & Book Reviews</p>
-    <p>🔧 <strong>Many</strong> Open Source Projects</p>
-    <p>🚀 SaaS Product (KeyFinz)</p>
+    <p>🎤 Public Talks & Workshops</p>
+    <p>✍️ Blogs & Book Reviews</p>
+    <p>🔧 Open Source Projects</p>
+    <!-- <p>🚀 SaaS Product (KeyFinz)</p> -->
     <p>📚 Mentorship</p>
   </div>
 </div>

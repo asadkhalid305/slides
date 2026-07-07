@@ -10,6 +10,7 @@
 // Two anchored glows feel intentional; four feel chaotic.
 // ===========================================
 .reveal .slides {
+
   &::before,
   &::after {
     content: '';
@@ -20,12 +21,10 @@
     pointer-events: none;
     border-radius: 50%;
     filter: blur(var(--glow-blur));
-    background: radial-gradient(
-      circle at center,
-      rgba(79, 12, 173, 0.35) 0%,
-      rgba(79, 12, 173, 0.15) 35%,
-      transparent 65%
-    );
+    background: radial-gradient(circle at center,
+        rgba(79, 12, 173, 0.35) 0%,
+        rgba(79, 12, 173, 0.15) 35%,
+        transparent 65%);
   }
 
   // Top-left
@@ -46,6 +45,7 @@
 
 // Remove per-section glows (were the bottom pair — no longer needed)
 .reveal .slides section {
+
   &::before,
   &::after {
     content: none;
@@ -64,6 +64,64 @@ img.meme {
 // Code highlighting
 .reveal code:not(.hljs) {
   color: var(--color-accent);
+}
+
+// Allow code elements to inherit colors from emphasis, text, or highlight containers
+.reveal {
+
+  .emphasis-success code:not(.hljs),
+  .emphasis-warning code:not(.hljs),
+  .emphasis-danger code:not(.hljs),
+  .emphasis-info code:not(.hljs),
+  .emphasis-accent code:not(.hljs),
+  .emphasis-other code:not(.hljs),
+  .text-success code:not(.hljs),
+  .text-warning code:not(.hljs),
+  .text-danger code:not(.hljs),
+  .text-info code:not(.hljs),
+  .text-accent code:not(.hljs),
+  .text-other code:not(.hljs),
+  .highlight-success code:not(.hljs),
+  .highlight-warning code:not(.hljs),
+  .highlight-danger code:not(.hljs),
+  .highlight-info code:not(.hljs),
+  .highlight-accent code:not(.hljs) {
+    color: inherit;
+  }
+}
+
+// Allow direct emphasis/text classes on code elements to override the default color
+.reveal code:not(.hljs) {
+
+  &.emphasis-success,
+  &.text-success {
+    color: var(--color-success);
+  }
+
+  &.emphasis-warning,
+  &.text-warning {
+    color: var(--color-warning);
+  }
+
+  &.emphasis-danger,
+  &.text-danger {
+    color: var(--color-danger);
+  }
+
+  &.emphasis-info,
+  &.text-info {
+    color: var(--color-info);
+  }
+
+  &.emphasis-accent,
+  &.text-accent {
+    color: var(--color-accent);
+  }
+
+  &.emphasis-other,
+  &.text-other {
+    color: var(--color-other);
+  }
 }
 
 // Global slide font size
@@ -87,8 +145,8 @@ img.meme {
   height: 100% !important;
   text-align: center !important;
 
-  > div,
-  > p {
+  >div,
+  >p {
     max-width: 90%;
   }
 }
@@ -222,6 +280,20 @@ img.meme {
   text-underline-offset: 6px;
 }
 
+.reveal .underline-warning {
+  text-decoration: underline;
+  text-decoration-color: var(--color-warning);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.reveal .underline-danger {
+  text-decoration: underline;
+  text-decoration-color: var(--color-danger);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
 .reveal .line-through-danger {
   text-decoration: line-through;
   text-decoration-color: var(--color-danger);
@@ -281,13 +353,11 @@ img.meme {
     right: -0.3em;
     top: -0.1em;
     bottom: -0.1em;
-    background: linear-gradient(
-      95deg,
-      var(--color-primary-dark) 0%,
-      var(--color-primary) 20%,
-      var(--color-primary-light) 60%,
-      var(--color-primary-dark) 100%
-    );
+    background: linear-gradient(95deg,
+        var(--color-primary-dark) 0%,
+        var(--color-primary) 20%,
+        var(--color-primary-light) 60%,
+        var(--color-primary-dark) 100%);
     z-index: -1;
     transform: rotate(-1deg);
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -323,6 +393,7 @@ img.meme {
   &.callout--accent {
     border-left-color: var(--color-accent);
     background: rgba(139, 92, 246, 0.08);
+
     .callout__label {
       color: var(--color-accent);
     }
@@ -331,6 +402,7 @@ img.meme {
   &.callout--success {
     border-left-color: var(--color-success);
     background: rgba(16, 185, 129, 0.08);
+
     .callout__label {
       color: var(--color-success);
     }
@@ -339,6 +411,7 @@ img.meme {
   &.callout--warning {
     border-left-color: var(--color-warning);
     background: rgba(245, 158, 11, 0.08);
+
     .callout__label {
       color: var(--color-warning);
     }
@@ -347,6 +420,7 @@ img.meme {
   &.callout--danger {
     border-left-color: var(--color-danger);
     background: rgba(239, 68, 68, 0.08);
+
     .callout__label {
       color: var(--color-danger);
     }
@@ -355,6 +429,7 @@ img.meme {
   &.callout--info {
     border-left-color: var(--color-info);
     background: rgba(59, 130, 246, 0.08);
+
     .callout__label {
       color: var(--color-info);
     }
@@ -449,11 +524,14 @@ img.meme {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(139, 92, 246, 0.5),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(139, 92, 246, 0.5),
+        transparent);
+  }
+
+  // Ensure default code text inherits the normal card text color
+  code:not(.hljs) {
+    color: inherit;
   }
 }

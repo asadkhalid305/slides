@@ -32,6 +32,41 @@ const extractTitle = (path) => {
   }
 };
 
+const extractTalkMetadata = (talkDirectory) => {
+  const metadataPath = path.join(talkDirectory, 'slides.md');
+
+  if (!fs.existsSync(metadataPath)) {
+    return {};
+  }
+
+  const data = fs.readFileSync(metadataPath, 'utf8');
+  const metadataMatch = data.match(/^\s*<!--\s*([\s\S]*?)\s*-->/);
+
+  if (!metadataMatch) {
+    return {};
+  }
+
+  return metadataMatch[1].split('\n').reduce((metadata, line) => {
+    const match = line.match(/^\s*([a-zA-Z][\w-]*)\s*:\s*(.*?)\s*$/);
+
+    if (match) {
+      metadata[match[1]] = match[2];
+    }
+
+    return metadata;
+  }, {});
+};
+
+const withOptionalMetadata = (talk, talkDirectory) => {
+  const metadata = extractTalkMetadata(talkDirectory);
+
+  if (metadata.date) {
+    talk.date = metadata.date;
+  }
+
+  return talk;
+};
+
 const extractSlideData = (folderName) => {
   try {
     const talksPath = path.resolve(folderName);
@@ -61,15 +96,16 @@ const extractSlideData = (folderName) => {
 
     talks = talks.map((link) => {
       if (htmlFilter.test(link)) {
-        const title = extractTitle(path.join(talksPath, link));
-        return { link, title };
+        const filePath = path.join(talksPath, link);
+        const title = extractTitle(filePath);
+        return withOptionalMetadata({ link, title }, path.dirname(filePath));
       }
 
       const filePath = path.join(talksPath, link, 'index.html');
 
       if (fs.existsSync(filePath)) {
         const title = extractTitle(filePath);
-        return { link, title };
+        return withOptionalMetadata({ link, title }, path.dirname(filePath));
       }
     });
 
