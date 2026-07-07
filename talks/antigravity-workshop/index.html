@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>A Practical Guide to Unlocking Developer Productivity with Antigravity CLI</title>
+  <title>A Workshop for Unlocking Developer Productivity with Antigravity CLI</title>
 
   <link rel="stylesheet" href="../../dist/reveal.css" />
   <link rel="stylesheet" href="../../dist/theme/black.css" id="theme" />
@@ -13,6 +13,60 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../plugin/highlight/monokai.css" />
+  <style>
+    .antigravity-watermark {
+      left: clamp(0.75rem, 1.875vw, 1.5rem);
+      bottom: clamp(0.75rem, 1.875vw, 1.5rem);
+      gap: clamp(0.45rem, 0.95vw, 0.75rem);
+    }
+
+    .antigravity-watermark__qr {
+      width: clamp(4.25rem, 7.5vw, 6rem) !important;
+      height: clamp(4.25rem, 7.5vw, 6rem) !important;
+    }
+
+    .antigravity-watermark__label {
+      font-size: clamp(0.55rem, 0.95vw, 0.75rem);
+    }
+
+    .antigravity-watermark__link {
+      font-size: clamp(1rem, 1.42vw, 1.125rem) !important;
+      gap: clamp(0.35rem, 0.65vw, 0.5rem);
+    }
+
+    .antigravity-watermark__icon {
+      width: clamp(0.9rem, 1.42vw, 1.125rem);
+      height: clamp(0.9rem, 1.42vw, 1.125rem);
+    }
+
+    @media (max-width: 700px),
+    (max-height: 540px) {
+      .antigravity-watermark {
+        left: 0.55rem;
+        bottom: 0.55rem;
+        gap: 0.42rem;
+      }
+
+      .antigravity-watermark__qr {
+        width: 3.2rem !important;
+        height: 3.2rem !important;
+      }
+
+      .antigravity-watermark__label {
+        font-size: 0.48rem;
+      }
+
+      .antigravity-watermark__link {
+        font-size: 0.82rem !important;
+        gap: 0.28rem;
+      }
+
+      .antigravity-watermark__icon {
+        width: 0.78rem;
+        height: 0.78rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -30,21 +84,22 @@
     </div>
   </div>
   <!-- Watermark section with social links -->
-  <div class="watermark fixed bottom-6 left-6 flex items-end gap-3">
+  <div class="watermark antigravity-watermark fixed flex items-end">
     <div class="flex items-end gap-2">
-      <span class="text-xs text-white/80 tracking-wide [writing-mode:vertical-rl] rotate-180">Scan for feedback</span>
+      <span class="antigravity-watermark__label text-white/80 tracking-wide [writing-mode:vertical-rl] rotate-180">Scan
+        for feedback</span>
       <a href="https://app.audiencemeter.pro/s/4yaFA" target="_blank"
         class="transition-all duration-300 relative flex items-center rounded-md bg-gradient-to-r from-[#4f0cad] to-[#6b21a8] p-[2px]">
         <span class="rounded-[4px] p-1 block">
-          <img src="./assets/images/qr_audiencemeter.png" alt="Session QR code" class="w-24 h-24" />
+          <img src="./assets/images/qr_audiencemeter.png" alt="Session QR code" class="antigravity-watermark__qr" />
         </span>
       </a>
     </div>
     <div class="flex flex-col gap-1">
       <a href="https://asadullahkhalid.com" target="_blank"
-        class="text-lg font-semibold text-white hover:text-white transition-all duration-300 relative flex items-center gap-2"
+        class="antigravity-watermark__link font-semibold text-white hover:text-white transition-all duration-300 relative flex items-center"
         style="text-shadow: 0 0 10px rgba(79, 12, 173, 0.5)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+        <svg class="antigravity-watermark__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           style="opacity:0.7;flex-shrink:0">
           <circle cx="12" cy="12" r="10" />
