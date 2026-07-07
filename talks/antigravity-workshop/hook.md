@@ -1,6 +1,6 @@
 <!-- .slide: class="center-slide" -->
 
-## A Practical Guide to
+## A Workshop for
 
 ## <span class="highlight-accent">Unlocking Developer Productivity with Antigravity CLI</span>
 

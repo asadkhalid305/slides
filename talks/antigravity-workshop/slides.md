@@ -1,8 +1,27 @@
 <!--
-title: Google Antigravity Workshop: From Powerful Agents to Productive Workflows
-description: Audience-facing workshop deck for the Antigravity workshop branch flow using TripLens.
+title: A Workshop for Unlocking Developer Productivity with Antigravity CLI
+description: GDG Berlin × WeAreDevelopers World Congress 2026
 date: 2026-07-08
 -->
+
+<!-- .slide: class="center-slide" -->
+
+### <span class="underline-accent">Join Live Feedback</span>
+
+<div class="pt-8">
+
+<img src="assets/images/qr_audiencemeter.png" alt="QR Code for Live Feedback" style="width: min(320px, 42vw); height: auto;" />
+
+</div>
+
+<aside class="notes">
+
+- Ask people to scan the QR code while they settle in.
+- Mention that feedback and links will be available again at the end.
+
+</aside>
+
+---
 
 <!-- .slide: class="center-slide" -->
 
@@ -19,6 +38,13 @@ Making them less unpredictable, more affordable, and more controllable for maxim
 </blockquote>
 </div>
 
+<aside class="notes">
+
+- Open with the real problem: agents are capable, but capability alone is not productivity.
+- Say the workshop is about making agent work predictable, controllable, and worth the cost.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -33,6 +59,13 @@ Making them less unpredictable, more affordable, and more controllable for maxim
 <div class="glass-card" style="min-height: 5.4rem; display: flex; align-items: center; justify-content: center;"><span class="emphasis-other">Code verification & review</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Name the blockers as practical workshop themes: missing guidance, runaway cost, weak guardrails, and unverified output.
+- Ask for quick nods/examples from the room; keep it short and move on.
+
+</aside>
 
 ---
 
@@ -52,6 +85,13 @@ We will use <span class="emphasis-accent">Google Antigravity</span> to explore h
 <div class="glass-card" style="min-height: 5rem; display: flex; align-items: center; justify-content: center;"><span class="emphasis-accent">Repeatable workflow</span></div>
 
 </div>
+
+<aside class="notes">
+
+- State the workshop goal: learn how to steer agents using context, checks, scope, and repeatable workflow.
+- Emphasize that TripLens is the teaching surface, not the product we are trying to ship today.
+
+</aside>
 
 --
 
@@ -80,6 +120,13 @@ We will mostly use the CLI, and bring other tools in only when they help the exe
 
 </div>
 
+<aside class="notes">
+
+- Position Antigravity as an ecosystem: CLI for today, IDE/2.0/SDK as adjacent surfaces.
+- Say we stay CLI-first unless another surface clearly helps the exercise.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -102,6 +149,14 @@ We will mostly use the CLI, and bring other tools in only when they help the exe
 <div class="pt-8 fragment fade-up" style="font-size: 0.78em;">
 The app is small and simple but the problems are real enough to </br><span class="emphasis-accent">explore Google Antigravity</span>.
 </div>
+
+<aside class="notes">
+
+- Explain the repository/app split: antigravity-workshop is the repo; TripLens is the small post-trip insights app.
+- Tell participants the app is intentionally simple so agent behavior is easier to inspect.
+- Prepare to switch to the repo or browser after this section.
+
+</aside>
 
 --
 
@@ -141,6 +196,13 @@ The app is small and simple but the problems are real enough to </br><span class
 The exercises use this loop to make agent work more predictable, inspectable, and repeatable.
 </div>
 
+<aside class="notes">
+
+- Introduce the loop as the backbone of the workshop: Context, Plan, Execute, Inspect, Verify, Guardrails, Automate, Repeat.
+- Connect each branch to one extra control surface in that loop.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -162,6 +224,14 @@ The workshop guide is the source of truth.
 Let's pause for setup, then continue together.
 </div>
 
+<aside class="notes">
+
+- Have everyone open `docs/workshop/guide.md`.
+- Point them to setup, participation modes, branch map, and recovery commands.
+- Pause here for install/clone/dev-server setup; observers can continue without local setup.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -181,6 +251,14 @@ Let's pause for setup, then continue together.
 For this demo repository, we may use <span class="emphasis-danger">skip permissions</span> to avoid stopping on every tool prompt. In real projects, choose this mode cautiously.
 </div>
 
+<aside class="notes">
+
+- Explain the CLI start options and the tradeoff between convenience and safety.
+- For the workshop, use the mode you prepared for the room.
+- Make clear that dangerous auto-approval is a controlled demo choice, not a default recommendation.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -199,6 +277,14 @@ For this demo repository, we may use <span class="emphasis-danger">skip permissi
 If setup fails, let me know or take help from your peers.
 </div>
 
+<aside class="notes">
+
+- Ask participants to keep the guide open for prompts and recovery.
+- Mention `branch-flow.md` is for checkpoint orientation and `cli-command-showcase.md` is mostly take-home reference.
+- If someone is blocked, move them to observer mode rather than slowing the whole room.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -213,6 +299,14 @@ Before the first exercise, make sure the guide is open and the CLI is ready.
 Now we start with the <span class="emphasis-success">00-unprepared-agent</span> branch: an agent with almost <span class="emphasis-warning">no project context</span>.
 </div>
 
+<aside class="notes">
+
+- Confirm everyone has the guide open and knows whether they are active or observing.
+- Tell drivers to be ready to switch to `00-unprepared-agent`.
+- Set expectation: outputs will differ across groups, and that is part of the lesson.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -226,6 +320,13 @@ The app exists, but the agent does not yet have enough project context.
 </blockquote>
 </div>
 
+<aside class="notes">
+
+- Explain that branch 00 is the baseline: broad task, minimal project-specific AI guidance.
+- Say the goal is not to produce the best feature; it is to see how much the agent guesses.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -234,15 +335,24 @@ The app exists, but the agent does not yet have enough project context.
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 00: Unprepared Agent</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>00-unprepared-agent</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompt</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy the prompt from the guide</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 00: Unprepared Agent</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>00-unprepared-agent</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompt</span><span class="exercise-guide-card__body">Copy the prompt from the guide</span></div>
 
 </div>
 
 <!-- <div class="pt-8 fragment fade-up" style="font-size: 0.78em; max-width: 820px; margin: 0 auto;">
 While it runs, watch changed files, assumptions, and whether the scope spreads.
 </div> -->
+
+<aside class="notes">
+
+- Use guide section `Exercise 00: Unprepared Agent`.
+- Tell participants to switch to `00-unprepared-agent`, glance at the app, then run the guide prompt.
+- While it runs, watch scope, dependencies, changed files, and whether it stays inside the post-trip insight boundary.
+- Debrief by comparing how different group outputs are.
+
+</aside>
 
 
 --
@@ -262,6 +372,14 @@ Without context, the agent has many different possibilities to implement the sam
 </blockquote>
 </div>
 
+<aside class="notes">
+
+- Ask groups what changed: UI, data model, copy, forms, dependencies, or architecture.
+- Highlight that impressive output can still be unaligned output.
+- Transition: next branch shows what shared context changes.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -278,6 +396,13 @@ Give the agent context in different possible ways.
 <div class="pt-10 fragment fade-up" style="font-size: 0.82em;">
 <span class="emphasis-accent">Google Antigravity</span> provides <span class="emphasis-success">various ways</span> to construct the context.
 </div>
+
+<aside class="notes">
+
+- Explain that context is a steering mechanism, not a magic correctness switch.
+- Set up the repo walkthrough of `AGENTS.md` and `.agents`.
+
+</aside>
 
 --
 
@@ -298,6 +423,13 @@ Give the agent context in different possible ways.
 The goal is not always bigger context, it's fewer repeated instructions and assumptions.
 </div>
 
+<aside class="notes">
+
+- Walk through the hierarchy: `AGENTS.md` routes, rules set boundaries, workflows define repeatable steps, skills hold deeper task guidance.
+- Emphasize progressive disclosure: keep the always-on layer small.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -306,15 +438,23 @@ The goal is not always bigger context, it's fewer repeated instructions and assu
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 01: Agent Context</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>01-agent-context</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompts</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy 01A, then 01B</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 01: Agent Context</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>01-agent-context</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompt</span><span class="exercise-guide-card__body">Copy the prompt from the guide</span></div>
 
 </div>
 
 <!-- <div class="pt-8 fragment fade-up" style="font-size: 0.78em; max-width: 820px; margin: 0 auto;">
 Compare the output with the unprepared branch and look for narrower, more convention-aware work.
 </div> -->
+
+<aside class="notes">
+
+- Use guide section `Exercise 01: Agent Context`.
+- Show `AGENTS.md`, `.agents/rules`, `.agents/workflows`, and `.agents/skills` before running the prompt.
+- Have participants compare the result with branch 00: smaller scope, product boundary, UI conventions, and verification behavior.
+
+</aside>
 
 --
 
@@ -337,6 +477,13 @@ Context reduces guessing. It does not make agents fully deterministic.
 Misguided context can also lead to poor quality output.
 </div>
 
+<aside class="notes">
+
+- Stress the balanced lesson: context reduces guessing but costs tokens and can encode bad guidance.
+- Ask which files felt useful and which would be too much in a normal small app.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -349,6 +496,13 @@ Misguided context can also lead to poor quality output.
 Planning catches wrong assumptions before files change.
 </blockquote>
 </div>
+
+<aside class="notes">
+
+- Frame planning as the first strong control surface before edits happen.
+- Tell participants the next branch has a deliberately bounded comparison gap.
+
+</aside>
 
 --
 
@@ -367,6 +521,13 @@ Ask for a small plan first, reduce the scope, then allow implementation.
 </blockquote>
 </div>
 
+<aside class="notes">
+
+- Show the incomplete comparison surface in the app if useful.
+- Tell participants to ask for a plan only first, then make it smaller, then approve implementation.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -375,11 +536,20 @@ Ask for a small plan first, reduce the scope, then allow implementation.
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 02: Plan Before Editing</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>02-plan-before-editing</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompts</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy 02A, 02B, then 02C</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 02: Plan Before Editing</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>02-plan-before-editing</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompts</span><span class="exercise-guide-card__body">Copy 02A, 02B, then 02C</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Use guide section `Exercise 02: Plan Before Editing`.
+- Run 02A as plan-only; do not approve file edits yet.
+- Run 02B to force smaller scope and explicit verification.
+- Only then run 02C if time allows implementation.
+
+</aside>
 
 --
 
@@ -394,6 +564,13 @@ Ask for a small plan first, reduce the scope, then allow implementation.
 
 </div>
 
+<aside class="notes">
+
+- Ask what the plan step prevented: wrong scope, missed helper functions, UI overbuild, weak verification.
+- Reinforce that plans are cheap to correct; diffs are more expensive.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -406,6 +583,13 @@ Ask for a small plan first, reduce the scope, then allow implementation.
 Trust the evidence around the work, not the confidence of the summary.
 </blockquote>
 </div>
+
+<aside class="notes">
+
+- Frame this section around evidence: summaries are not enough.
+- The goal is to inspect agent output with a reusable review workflow and focused verification.
+
+</aside>
 
 --
 
@@ -426,6 +610,14 @@ Review is repeated behavior, so we package it as reusable agent guidance.
 
 </div>
 
+<aside class="notes">
+
+- Explain why review guidance is packaged as a plugin here: repeated behavior should become reusable.
+- Show the plugin folder on branch `03-inspect-and-verify` when moving into the exercise.
+- Mention the approval gate: draft comments first, post only after approval.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -434,11 +626,20 @@ Review is repeated behavior, so we package it as reusable agent guidance.
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 03: Inspect And Verify</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>03-inspect-and-verify</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompt</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy 03A from the guide</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 03: Inspect And Verify</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>03-inspect-and-verify</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompt</span><span class="exercise-guide-card__body">Copy 03A from the guide</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Use guide section `Exercise 03: Inspect And Verify`.
+- Switch to `03-inspect-and-verify`; inspect or validate `.agents/plugins/triplens-pr-review`.
+- Run the PR review prompt against PR #1.
+- Look for the prepared daily-cost regression and whether the agent asks before posting comments.
+
+</aside>
 
 --
 
@@ -462,6 +663,14 @@ Review is repeated behavior, so we package it as reusable agent guidance.
 Trust comes from evidence, not from a confident agent summary.
 </div>
 
+<aside class="notes">
+
+- Debrief the evidence chain: plan, diff, tests, approval.
+- If time allows, run or point to `npm run test` as the focused verification signal.
+- Ask which review criteria should be encoded for their own projects.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -474,6 +683,13 @@ Trust comes from evidence, not from a confident agent summary.
 The repository is not the whole world.
 </blockquote>
 </div>
+
+<aside class="notes">
+
+- Explain that repository files only show intent; runtime evidence shows what actually happened.
+- Introduce MCP as the bridge to browser state and external docs.
+
+</aside>
 
 --
 
@@ -492,6 +708,14 @@ The repository is not the whole world.
 MCP should answer a question the repo cannot answer alone.
 </div>
 
+<aside class="notes">
+
+- Keep the emphasis on Chrome DevTools MCP for this workshop.
+- Mention Context7 as optional/current-docs support, not the main demo.
+- Prepare to inspect the running app, console, and network request.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -500,11 +724,21 @@ MCP should answer a question the repo cannot answer alone.
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 04: External Context And MCP</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>04-external-context-mcp</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompts</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy 04A, then 04B</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 04: External Context And MCP</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>04-external-context-mcp</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompts</span><span class="exercise-guide-card__body">Copy 04A, then 04B</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Use guide section `Exercise 04: External Context And MCP`.
+- Switch to `04-external-context-mcp` and start the app if needed.
+- Run 04A for no-edit browser/runtime inspection.
+- Run 04B and require method, URL, status, payload, response body, console message, and visible UI state.
+- Only discuss the smallest fix after evidence is collected.
+
+</aside>
 
 --
 
@@ -523,6 +757,13 @@ MCP should answer a question the repo cannot answer alone.
 External context is useful when it changes the quality of the decision.
 </div>
 
+<aside class="notes">
+
+- Debrief the mismatch: `POST /api/insights/compare`, 400, payload uses `compareWithTripId`, API expects `compareTripId`.
+- Make the lesson explicit: local code plus runtime evidence beats guessing from files alone.
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -536,6 +777,13 @@ Automate work that is repeated, bounded, boring, and easy to verify.
 </blockquote>
 </div>
 
+<aside class="notes">
+
+- Introduce automation as something that comes after a workflow is stable.
+- Use the guide language: repeated, bounded, boring, and easy to verify.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -546,13 +794,19 @@ Automate work that is repeated, bounded, boring, and easy to verify.
 Before we let work run later, we define what must not happen silently.
 </div>
 
-<div class="pt-8 fragment fade-up" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.72em; text-align: center;">
+<div class="pt-8 fragment fade-up" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.72em; text-align: center;">
 
 <div class="glass-card"><span class="emphasis-danger">hook</span><br/><span style="opacity: 0.68; font-size: 0.84em;">blocks unsafe actions</span></div>
 <div class="glass-card"><span class="emphasis-info">schedule</span><br/><span style="opacity: 0.68; font-size: 0.84em;">runs later</span></div>
-<div class="glass-card"><span class="emphasis-success">read-only brief</span><br/><span style="opacity: 0.68; font-size: 0.84em;">safe automation</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Explain the order: hooks define what must not happen silently before schedules run later.
+- Make this a safety story, not just a convenience story.
+
+</aside>
 
 --
 
@@ -562,11 +816,21 @@ Before we let work run later, we define what must not happen silently.
 
 <div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 05: Automation And Hooks</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>05-automation-and-hooks</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompts</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy 05A, then 05B</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 05: Automation And Hooks</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>05-automation-and-hooks</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompts</span><span class="exercise-guide-card__body">Copy 05A, then 05B</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Use guide section `Exercise 05: Automation And Hooks`.
+- Switch to `05-automation-and-hooks`.
+- Run 05A and observe the hook blocking the mutating GitHub command.
+- Run 05B to schedule a read-only PR brief.
+- If facilitating, create fresh PR activity from a normal terminal with `npm run demo:scheduled-pr`; do not ask the agent to run it.
+
+</aside>
 
 --
 
@@ -583,8 +847,15 @@ Before we let work run later, we define what must not happen silently.
 </div>
 
 <div class="pt-10 fragment fade-up" style="font-size: 0.84em;">
-Do not automate chaos. Stabilize the loop first.
+Do not automate unstable loops. Stabilize them first.
 </div>
+
+<aside class="notes">
+
+- Ask whether the hook blocked the write and whether the scheduled brief stayed read-only.
+- Reinforce: scheduling controls when; hooks control what must not happen; verification controls trust.
+
+</aside>
 
 ---
 
@@ -599,25 +870,18 @@ Commands are shortcuts for moments where you need control, clarity, or recovery.
 </blockquote>
 </div>
 
---
+<aside class="notes">
 
-<!-- .slide: class="center-slide" -->
+- Position commands as control surfaces for longer agentic work.
+- This section is optional if time is tight; prioritize only the highest-value commands.
 
-## <span class="underline-accent">Exercise 06</span>
-
-<div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
-
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-info">Guide section</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Exercise 06: Command Showcase</span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-success">Branch</span><br/><span style="opacity: 0.68; font-size: 0.84em;"><code>06-command-showcase</code></span></div>
-<div class="glass-card" style="min-height: 7rem; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-wrap: anywhere;"><span class="emphasis-accent">Prompts</span><br/><span style="opacity: 0.68; font-size: 0.84em;">Copy prompts from the guide section</span></div>
-
-</div>
+</aside>
 
 --
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="underline-accent">Command Building Blocks</span>
+## <span class="underline-accent">Useful Commands</span>
 
 <div class="pt-8 fragment fade-up" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; font-size: 0.62em; text-align: center;">
 
@@ -632,24 +896,36 @@ Commands are shortcuts for moments where you need control, clarity, or recovery.
 
 </div>
 
+<aside class="notes">
+
+- Prioritize `/grill-me`, `/learn`, `/goal`, `/tasks`, and `/agents`.
+- Mention `/diff`, `/fork`, `/rewind`, `/usage`, `/credits`, settings, permissions, shortcuts, and launch flags as take-home exploration.
+- Remind yourself to confirm exact command names in `/help` because CLI availability can change.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
 
-## <span class="underline-accent">When Commands Help</span>
+## <span class="underline-accent">Exercise 06</span>
 
-<div class="pt-8" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; font-size: 0.68em; text-align: center;">
+<div class="pt-8" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; font-size: 0.68em; text-align: center;">
 
-<div class="glass-card"><span class="emphasis-info">clarify</span><br/><span style="opacity: 0.65; font-size: 0.84em;">when the task is fuzzy</span></div>
-<div class="glass-card"><span class="emphasis-success">bound</span><br/><span style="opacity: 0.65; font-size: 0.84em;">when the work needs a finish line</span></div>
-<div class="glass-card"><span class="emphasis-accent">inspect</span><br/><span style="opacity: 0.65; font-size: 0.84em;">when the output needs evidence</span></div>
-<div class="glass-card"><span class="emphasis-warning">recover</span><br/><span style="opacity: 0.65; font-size: 0.84em;">when the session drifts</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-info">Guide section</span><span class="exercise-guide-card__body">Exercise 06: Command Showcase</span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-success">Branch</span><span class="exercise-guide-card__body"><code>06-command-showcase</code></span></div>
+<div class="glass-card exercise-guide-card"><span class="emphasis-accent">Prompts</span><span class="exercise-guide-card__body">Copy prompts from the guide section</span></div>
 
 </div>
 
-<div class="pt-10 fragment fade-up" style="font-size: 0.78em; max-width: 780px; margin: 0 auto;">
-The useful command is the one that changes the next decision.
-</div>
+<aside class="notes">
+
+- Use guide section `Exercise 06: Command Showcase`.
+- Switch to `06-command-showcase`.
+- Run only the prompts that fit the remaining time: 06A for CLI discovery, 06B for `/grill-me`, 06C for `/learn`, 06D for `/goal`, then inspect `/tasks`.
+- Keep this as command awareness, not another product-building exercise.
+
+</aside>
 
 --
 
@@ -657,16 +933,16 @@ The useful command is the one that changes the next decision.
 
 ## <span class="underline-accent">Debrief 06</span>
 
-<div class="pt-8" style="font-size: 0.9em; max-width: 820px; margin: 0 auto;">
-Agentic development is not just sending prompts.
+<div class="pt-8 emphasis-accent" style="font-size: 0.9em; max-width: 820px; margin: 0 auto;">
+Productivity can highly be increased, if you know how to use your tools.
 </div>
 
-<div class="pt-10 fragment fade-up">
-<blockquote class="callout callout--accent">
-<span class="callout__label">CONTROL SURFACES</span>
-Choose how to start, inspect, continue, branch, recover, and automate work.
-</blockquote>
-</div>
+<aside class="notes">
+
+- Debrief that productivity comes from knowing when to clarify, bound, inspect, recover, and automate.
+- Keep the phrasing practical: commands matter when they change the next decision.
+
+</aside>
 
 ---
 
@@ -677,6 +953,13 @@ Choose how to start, inspect, continue, branch, recover, and automate work.
 <div class="pt-8" style="font-size: 0.88em; max-width: 820px; margin: 0 auto;">
 We used each branch to add one more control surface around the agent.
 </div>
+
+<aside class="notes">
+
+- Start the wrap-up by mapping the branches back to the workshop loop.
+- Keep this quick; the next two recap slides hold the details.
+
+</aside>
 
 --
 
@@ -693,6 +976,15 @@ We used each branch to add one more control surface around the agent.
 
 </div>
 
+<aside class="notes">
+
+- Recap 00: broad task with minimal context.
+- Recap 01: added rules, workflows, and skills.
+- Recap 02: forced plan-first behavior.
+- Recap 03: used plugin, reviewer agent, tests, and approval gate.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
@@ -706,6 +998,14 @@ We used each branch to add one more control surface around the agent.
 <div class="glass-card"><span class="emphasis-accent"><code>06-command-showcase</code></span><br/><span style="opacity: 0.7;">Used commands for clarity, boundaries, inspection, and recovery.</span></div>
 
 </div>
+
+<aside class="notes">
+
+- Recap 04: used runtime and external context through MCP.
+- Recap 05: added hooks and scheduled read-only automation.
+- Recap 06: explored commands for clarity, boundaries, inspection, and recovery.
+
+</aside>
 
 --
 
@@ -745,22 +1045,37 @@ We used each branch to add one more control surface around the agent.
 The same loop becomes easier to trust when the ecosystem around the agent is designed well.
 </div>
 
+<aside class="notes">
+
+- Re-state the loop as the durable model participants should take home.
+- Say the point is not to slow the agent down; it is to create enough structure that fast work is still inspectable.
+
+</aside>
+
 --
 
 <!-- .slide: class="center-slide" -->
 
 ## <span class="underline-accent">Final Message</span>
 
-<div class="pt-8" style="font-size: 0.94em; max-width: 850px; margin: 0 auto;">
-Better agent results rarely come from the model alone.
+<div class="pt-8 emphasis-danger" style="font-size: 0.94em; max-width: 850px; margin: 0 auto;">
+Better results rarely come from the agent and/or model alone.
 </div>
 
 <div class="pt-12 fragment fade-up">
 <blockquote class="callout callout--success">
 <span class="callout__label">THE POINT</span>
-They come from the ecosystem around the agent: context, tools, guardrails, feedback, and verification.
+They come from the ecosystem around the agent: context, planning, guardrails, feedback, and verification.
 </blockquote>
 </div>
+
+<aside class="notes">
+
+- Final message: better results rarely come from model choice alone.
+- Name the surrounding system: context, planning, guardrails, feedback, verification, and automation only after stability.
+- Invite participants to apply one control surface to their current workflow.
+
+</aside>
 
 ---
 
@@ -774,3 +1089,11 @@ They come from the ecosystem around the agent: context, tools, guardrails, feedb
 <div style="margin-top: 0.6rem; font-size: 0.7em; opacity: 0.6; letter-spacing: 0.08em;">SCAN FOR FEEDBACK & LINKS</div>
 
 </div>
+
+<aside class="notes">
+
+- Leave the QR code up.
+- Ask for questions and invite people to use the guide later for self-paced replay.
+- Mention the recovery commands and branch checkpoints if people want to revisit exercises.
+
+</aside>
