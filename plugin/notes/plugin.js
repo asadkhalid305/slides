@@ -1,7 +1,3 @@
-import speakerViewHTML from './speaker-view.html';
-
-import { marked } from 'marked';
-
 /**
  * Handles opening of and synchronization with the reveal.js
  * notes window.
@@ -18,6 +14,18 @@ const Plugin = () => {
   let speakerWindow = null;
   let deck;
 
+  function getSpeakerViewURL() {
+    const notesScript = Array.from(document.scripts).find((script) =>
+      /plugin\/notes\/notes(\.esm)?\.js(?:\?|$)/.test(script.src)
+    );
+
+    if (notesScript) {
+      return new URL('speaker-view.html', notesScript.src).href;
+    }
+
+    return 'plugin/notes/speaker-view.html';
+  }
+
   /**
    * Opens a new speaker view window.
    */
@@ -27,12 +35,10 @@ const Plugin = () => {
       speakerWindow.focus();
     } else {
       speakerWindow = window.open(
-        'about:blank',
+        getSpeakerViewURL(),
         'reveal.js - Notes',
         'width=1100,height=700'
       );
-      speakerWindow.marked = marked;
-      speakerWindow.document.write(speakerViewHTML);
 
       if (!speakerWindow) {
         alert(
@@ -176,11 +182,23 @@ const Plugin = () => {
     }
   }
 
+  function parseMessageData(data) {
+    if (typeof data === 'string') {
+      try {
+        return JSON.parse(data);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    return data && typeof data === 'object' ? data : null;
+  }
+
   function onPostMessage(event) {
     // Only allow same-origin messages
     // (added 12/5/22 as a XSS safeguard)
     if (isSameOriginEvent(event)) {
-      let data = JSON.parse(event.data);
+      let data = parseMessageData(event.data);
       if (
         data &&
         data.namespace === 'reveal-notes' &&
@@ -232,12 +250,8 @@ const Plugin = () => {
           // that we remain connected to the notes even if the presentation
           // is reloaded.
           window.addEventListener('message', (event) => {
-            if (!speakerWindow && typeof event.data === 'string') {
-              let data;
-
-              try {
-                data = JSON.parse(event.data);
-              } catch (error) {}
+            if (!speakerWindow) {
+              let data = parseMessageData(event.data);
 
               if (
                 data &&

@@ -648,10 +648,18 @@
         }, 5000);
 
         window.addEventListener('message', function (event) {
+          if (event.origin !== openerOrigin) {
+            return;
+          }
+
+          var data = parseMessageData(event.data);
+
+          if (!data) {
+            return;
+          }
+
           clearTimeout(connectionTimeout);
           connectionStatus.style.display = 'none';
-
-          var data = JSON.parse(event.data);
 
           // The overview mode is only useful to the reveal.js instance
           // where navigation occurs so we don't sync it
@@ -689,6 +697,18 @@
             }
           }
         });
+
+        function parseMessageData(data) {
+          if (typeof data === 'string') {
+            try {
+              return JSON.parse(data);
+            } catch (error) {
+              return null;
+            }
+          }
+
+          return data && typeof data === 'object' ? data : null;
+        }
 
         /**
          * Updates the presentation in the main window to match the state
@@ -747,7 +767,7 @@
           if (data.notes) {
             notes.classList.remove('hidden');
             notesValue.style.whiteSpace = data.whitespace;
-            if (data.markdown) {
+            if (data.markdown && window.marked) {
               notesValue.innerHTML = marked(data.notes);
             } else {
               notesValue.innerHTML = data.notes;
