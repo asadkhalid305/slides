@@ -6,7 +6,7 @@ date: 2026-07-08
 
 <!-- .slide: class="center-slide" -->
 
-### <span class="underline-accent">Join Live Feedback</span>
+### <span class="underline-accent">Live Feedback & Resources</span>
 
 <div class="pt-8">
 
