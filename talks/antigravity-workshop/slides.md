@@ -64,6 +64,7 @@ Making them less unpredictable, more affordable, and more controllable for maxim
 
 - Name the blockers as practical workshop themes: missing guidance, runaway cost, weak guardrails, and unverified output.
 - Ask for quick nods/examples from the room; keep it short and move on.
+- Time check: should be at 4 minutes by the end of this slide.
 
 </aside>
 
@@ -124,6 +125,7 @@ We will mostly use the CLI, and bring other tools in only when they help the exe
 
 - Position Antigravity as an ecosystem: CLI for today, IDE/2.0/SDK as adjacent surfaces.
 - Say we stay CLI-first unless another surface clearly helps the exercise.
+- Time check: should be at 8 minutes by the end of this slide.
 
 </aside>
 
@@ -282,6 +284,7 @@ If setup fails, let me know or take help from your peers.
 - Ask participants to keep the guide open for prompts and recovery.
 - Mention `branch-flow.md` is for checkpoint orientation and `cli-command-showcase.md` is mostly take-home reference.
 - If someone is blocked, move them to observer mode rather than slowing the whole room.
+- Time check: should be at 14 minutes by the end of this slide.
 
 </aside>
 
@@ -304,6 +307,7 @@ Now we start with the <span class="emphasis-success">00-unprepared-agent</span> 
 - Confirm everyone has the guide open and knows whether they are active or observing.
 - Tell drivers to be ready to switch to `00-unprepared-agent`.
 - Set expectation: outputs will differ across groups, and that is part of the lesson.
+- Time check: should be at 15 minutes by the end of this slide. If later than 18 minutes, make exercise 00 facilitator-led and shorten group comparison.
 
 </aside>
 
@@ -377,6 +381,7 @@ Without context, the agent has many different possibilities to implement the sam
 - Ask groups what changed: UI, data model, copy, forms, dependencies, or architecture.
 - Highlight that impressive output can still be unaligned output.
 - Transition: next branch shows what shared context changes.
+- Time check: should be at 25 minutes by the end of this slide.
 
 </aside>
 
@@ -481,6 +486,7 @@ Misguided context can also lead to poor quality output.
 
 - Stress the balanced lesson: context reduces guessing but costs tokens and can encode bad guidance.
 - Ask which files felt useful and which would be too much in a normal small app.
+- Time check: should be at 38 minutes by the end of this slide. If later than 42 minutes, skip attendee implementation in exercise 02 and use plan-only.
 
 </aside>
 
@@ -568,6 +574,7 @@ Ask for a small plan first, reduce the scope, then allow implementation.
 
 - Ask what the plan step prevented: wrong scope, missed helper functions, UI overbuild, weak verification.
 - Reinforce that plans are cheap to correct; diffs are more expensive.
+- Time check: should be at 52 minutes by the end of this slide.
 
 </aside>
 
@@ -668,6 +675,7 @@ Trust comes from evidence, not from a confident agent summary.
 - Debrief the evidence chain: plan, diff, tests, approval.
 - If time allows, run or point to `npm run test` as the focused verification signal.
 - Ask which review criteria should be encoded for their own projects.
+- Time check: should be at 64 minutes by the end of this slide. If later than 68 minutes, skip hands-on work in exercise 04 and run it as a facilitator demo.
 
 </aside>
 
@@ -761,6 +769,7 @@ External context is useful when it changes the quality of the decision.
 
 - Debrief the mismatch: `POST /api/insights/compare`, 400, payload uses `compareWithTripId`, API expects `compareTripId`.
 - Make the lesson explicit: local code plus runtime evidence beats guessing from files alone.
+- Time check: should be at 78 minutes by the end of this slide.
 
 </aside>
 
@@ -854,6 +863,7 @@ Do not automate unstable loops. Stabilize them first.
 
 - Ask whether the hook blocked the write and whether the scheduled brief stayed read-only.
 - Reinforce: scheduling controls when; hooks control what must not happen; verification controls trust.
+- Time check: should be at 88 minutes by the end of this slide. Stop teaching new core material here and protect Q&A time.
 
 </aside>
 
@@ -941,6 +951,7 @@ Productivity can highly be increased, if you know how to use your tools.
 
 - Debrief that productivity comes from knowing when to clarify, bound, inspect, recover, and automate.
 - Keep the phrasing practical: commands matter when they change the next decision.
+- Time check: optional section. Only be here before 92 minutes; otherwise skip directly to wrap-up and leave this branch as take-home.
 
 </aside>
 
@@ -1074,6 +1085,7 @@ They come from the ecosystem around the agent: context, planning, guardrails, fe
 - Final message: better results rarely come from model choice alone.
 - Name the surrounding system: context, planning, guardrails, feedback, verification, and automation only after stability.
 - Invite participants to apply one control surface to their current workflow.
+- Time check: should be at 96 minutes by the end of this slide.
 
 </aside>
 
@@ -1095,5 +1107,6 @@ They come from the ecosystem around the agent: context, planning, guardrails, fe
 - Leave the QR code up.
 - Ask for questions and invite people to use the guide later for self-paced replay.
 - Mention the recovery commands and branch checkpoints if people want to revisit exercises.
+- Time check: should reach this slide by 100 minutes or earlier.
 
 </aside>
