@@ -27,7 +27,7 @@ date: 2026-07-08
 
 ## <span class="underline-accent">Challenges In Working With AI Agents?</span>
 
-<div class="pt-8" style="font-size: 0.95em;">
+<div class="pt-8 fragment fade-up" style="font-size: 0.95em;">
 Agents are very <span class="emphasis-accent">powerful</span> now.
 </div>
 
@@ -357,7 +357,6 @@ While it runs, watch changed files, assumptions, and whether the scope spreads.
 - Debrief by comparing how different group outputs are.
 
 </aside>
-
 
 --
 
