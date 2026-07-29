@@ -24,7 +24,27 @@
       </div>
 
       <div class="talks-container">
-        <div id="talksGrid" class="talks-grid"></div>
+        <section class="talks-section" aria-labelledby="hosted-talks-title">
+          <div class="section-heading">
+            <h2 id="hosted-talks-title" class="section-title">On this site</h2>
+            <p class="section-description">
+              Reveal.js presentations hosted in this collection.
+            </p>
+          </div>
+          <div id="talksGrid" class="talks-grid"></div>
+        </section>
+
+        <section class="talks-section" aria-labelledby="external-talks-title">
+          <div class="section-heading">
+            <h2 id="external-talks-title" class="section-title">
+              On other platforms
+            </h2>
+            <p class="section-description">
+              Earlier presentations hosted elsewhere on the web.
+            </p>
+          </div>
+          <div id="externalTalksGrid" class="talks-grid"></div>
+        </section>
       </div>
 
       <!-- Footer -->
@@ -79,7 +99,10 @@
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <div class="card-date"></div>
+            <div class="card-meta">
+              <div class="card-platform"></div>
+              <div class="card-date"></div>
+            </div>
           </div>
         </div>
       </article>

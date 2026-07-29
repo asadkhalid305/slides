@@ -157,6 +157,30 @@ main::after {
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
+.talks-section + .talks-section {
+  margin-top: 4rem;
+}
+
+.section-heading {
+  padding: 0 1rem 1rem;
+}
+
+.section-title {
+  color: #fff;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
 .talks-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -227,6 +251,24 @@ main::after {
   padding: 0.35rem 0.7rem;
   font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-platform {
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -351,6 +393,10 @@ main::after {
     margin-bottom: 3rem;
   }
 
+  .talks-section + .talks-section {
+    margin-top: 3rem;
+  }
+
   .talks-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -358,6 +404,15 @@ main::after {
 
   .talk-card {
     padding: 1.5rem;
+  }
+
+  .card-footer {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+
+  .card-meta {
+    justify-content: flex-start;
   }
 
   .footer {

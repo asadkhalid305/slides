@@ -1,3 +1,7 @@
+<!--
+date: 2026-01
+-->
+
 <!-- .slide: class="center-slide" data-visibility="hidden" -->
 
 ## <span class="underline-accent">Agenda</span>

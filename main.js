@@ -1,65 +1,102 @@
 const main = async () => {
-  const responses = await Promise.all([fetch('data/slides.json')]);
+  const externalTalks = [
+    {
+      date: '2024-12',
+      link: 'https://canva.link/ske3nmw3dg0a7v4',
+      platform: 'Canva',
+      title: 'Importance of Soft Skills in the Technical World',
+    },
+    {
+      date: '2024-06',
+      link: 'https://canva.link/4g9pdlw0zvfecay',
+      platform: 'Canva',
+      title: 'Backend for Frontend (BFF)',
+    },
+  ];
 
-  let slides = await Promise.all(responses.map((resp) => resp.json()));
-  slides = slides.flat();
-  const grid = document.getElementById('talksGrid');
+  const response = await fetch('data/slides.json');
+  const slides = await response.json();
 
   // Get the card template
   const template = document.getElementById('cardTemplate').content;
 
   const formatDate = (date) =>
     new Intl.DateTimeFormat('en-GB', {
-      day: 'numeric',
-      month: 'short',
+      month: date.length === 7 ? 'long' : 'short',
       year: 'numeric',
-    }).format(new Date(`${date}T00:00:00`));
+      ...(date.length === 7 ? {} : { day: 'numeric' }),
+    }).format(new Date(`${date}${date.length === 7 ? '-01' : ''}T00:00:00`));
 
-  slides.sort((firstSlide, secondSlide) => {
-    const firstDate = firstSlide.date ? new Date(firstSlide.date).getTime() : 0;
-    const secondDate = secondSlide.date
-      ? new Date(secondSlide.date).getTime()
-      : 0;
+  const sortTalks = (talks) =>
+    talks.sort((firstSlide, secondSlide) => {
+      const firstDate = firstSlide.date
+        ? new Date(firstSlide.date).getTime()
+        : 0;
+      const secondDate = secondSlide.date
+        ? new Date(secondSlide.date).getTime()
+        : 0;
 
-    if (firstDate !== secondDate) {
-      return secondDate - firstDate;
-    }
+      if (firstDate !== secondDate) {
+        return secondDate - firstDate;
+      }
 
-    return firstSlide.title.localeCompare(secondSlide.title);
-  });
+      return firstSlide.title.localeCompare(secondSlide.title);
+    });
 
-  slides.forEach((slide) => {
-    const { date, link, title } = slide;
+  const renderTalks = (talks, gridId) => {
+    const grid = document.getElementById(gridId);
 
-    // Clone the template
-    const cardClone = document.importNode(template, true);
+    sortTalks(talks).forEach((talk) => {
+      const { date, link, platform, title } = talk;
 
-    const dateEl = cardClone.querySelector('.card-date');
+      // Clone the template
+      const cardClone = document.importNode(template, true);
 
-    if (date) {
-      dateEl.textContent = formatDate(date);
-    } else {
-      dateEl.remove();
-    }
+      const dateEl = cardClone.querySelector('.card-date');
+      const platformEl = cardClone.querySelector('.card-platform');
 
-    // Update card title
-    cardClone.querySelector('.card-title').textContent = title;
+      if (date) {
+        dateEl.textContent = formatDate(date);
+      } else {
+        dateEl.remove();
+      }
 
-    // Set up the anchor link
-    const anchorEl = cardClone.querySelector('.card-link');
-    const isExternal = link.includes('http');
-    anchorEl.href = isExternal ? link : `talks/${link}`;
-    anchorEl.target = '_blank';
-    anchorEl.rel = 'noopener';
+      if (platform) {
+        platformEl.textContent = platform;
+      } else {
+        platformEl.remove();
+      }
 
-    // Update link text for external links
-    if (isExternal) {
-      anchorEl.querySelector('span').textContent = 'Open External';
-    }
+      // Update card title
+      cardClone.querySelector('.card-title').textContent = title;
 
-    // Append the cloned card to the grid
-    grid.appendChild(cardClone);
-  });
+      // Set up the anchor link
+      const anchorEl = cardClone.querySelector('.card-link');
+      const isExternal = link.startsWith('http');
+      anchorEl.href = isExternal ? link : `talks/${link}`;
+      anchorEl.target = '_blank';
+      anchorEl.rel = 'noopener';
+
+      if (platform) {
+        anchorEl.querySelector('span').textContent = `View on ${platform}`;
+        anchorEl.setAttribute(
+          'aria-label',
+          `View ${title} on ${platform} (opens in a new tab)`
+        );
+      } else {
+        anchorEl.setAttribute(
+          'aria-label',
+          `View ${title} (opens in a new tab)`
+        );
+      }
+
+      // Append the cloned card to the grid
+      grid.appendChild(cardClone);
+    });
+  };
+
+  renderTalks(slides, 'talksGrid');
+  renderTalks(externalTalks, 'externalTalksGrid');
 };
 
 main();
