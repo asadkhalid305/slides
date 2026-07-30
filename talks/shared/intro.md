@@ -24,13 +24,13 @@
   </div>
 </div>
 
-<div class="footer fragment hidden">
+<div class="footer hidden">
   <div class="footer__site">
     <a href="https://asadullahkhalid.com">🌐 asadullahkhalid.com</a>
   </div>
   <div class="footer__links gap-6">
     <a href="https://linkedin.com/in/asadkhalid305" target="_blank">💼 LinkedIn</a>
-    <a href="https://github.com/asadullah305" target="_blank">💻 GitHub</a>
+    <a href="https://github.com/asadkhalid305" target="_blank">💻 GitHub</a>
     <a href="https://topmate.io/asadullahkhalid" target="_blank">📅 Book a Session</a>
   </div>
 </div>

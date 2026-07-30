@@ -64,6 +64,10 @@ const withOptionalMetadata = (talk, talkDirectory) => {
     talk.date = metadata.date;
   }
 
+  if (metadata.audience) {
+    talk.audience = metadata.audience;
+  }
+
   return talk;
 };
 
@@ -130,4 +134,9 @@ const saveSlideData = () => {
 
 saveSlideData();
 
-module.exports = { extractTitle, extractSlideData, listFilesInDirectory };
+module.exports = {
+  extractTitle,
+  extractSlideData,
+  listFilesInDirectory,
+  extractTalkMetadata,
+};
