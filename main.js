@@ -1,12 +1,14 @@
 const main = async () => {
   const externalTalks = [
     {
+      audience: 'public',
       date: '2024-12',
       link: 'https://canva.link/ske3nmw3dg0a7v4',
       platform: 'Canva',
       title: 'Importance of Soft Skills in the Technical World',
     },
     {
+      audience: 'public',
       date: '2024-06',
       link: 'https://canva.link/4g9pdlw0zvfecay',
       platform: 'Canva',
@@ -16,6 +18,11 @@ const main = async () => {
 
   const response = await fetch('data/slides.json');
   const slides = await response.json();
+  const audienceLabels = {
+    company: 'Company',
+    private: 'Private',
+    public: 'Public',
+  };
 
   // Get the card template
   const template = document.getElementById('cardTemplate').content;
@@ -47,12 +54,13 @@ const main = async () => {
     const grid = document.getElementById(gridId);
 
     sortTalks(talks).forEach((talk) => {
-      const { date, link, platform, title } = talk;
+      const { audience, date, link, platform, title } = talk;
 
       // Clone the template
       const cardClone = document.importNode(template, true);
 
       const dateEl = cardClone.querySelector('.card-date');
+      const audienceEl = cardClone.querySelector('.card-audience');
       const platformEl = cardClone.querySelector('.card-platform');
 
       if (date) {
@@ -65,6 +73,13 @@ const main = async () => {
         platformEl.textContent = platform;
       } else {
         platformEl.remove();
+      }
+
+      if (audience && audienceLabels[audience]) {
+        audienceEl.textContent = audienceLabels[audience];
+        audienceEl.classList.add(`card-audience--${audience}`);
+      } else {
+        audienceEl.remove();
       }
 
       // Update card title

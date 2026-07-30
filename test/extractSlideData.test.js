@@ -3,6 +3,7 @@ const path = require('path');
 const {
   listFilesInDirectory,
   extractTitle,
+  extractTalkMetadata,
   extractSlideData,
 } = require('../scripts/extractSlideData');
 
@@ -58,5 +59,18 @@ describe('extractSlideData', () => {
   it('should get empty JSON if no html in folder', () => {
     const data = extractSlideData(path.join('test', 'no-content'));
     expect(JSON.parse(data)).toStrictEqual([]);
+  });
+});
+
+describe('extractTalkMetadata', () => {
+  it('should read the audience used for the homepage card tag', () => {
+    const metadata = extractTalkMetadata(
+      path.join('test', 'metadata-with-audience')
+    );
+
+    expect(metadata).toStrictEqual({
+      audience: 'company',
+      date: '2026-07-30',
+    });
   });
 });

@@ -1,3 +1,7 @@
+<!--
+audience: company
+-->
+
 <!-- .slide: class="center-slide" data-visibility="hidden" -->
 
 ## <span class="underline-accent">Agenda</span>

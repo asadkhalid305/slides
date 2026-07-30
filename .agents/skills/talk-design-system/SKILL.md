@@ -210,8 +210,17 @@ talks/<kebab-case-name>/
   slides.md         # All content slides
   assets/images/    # Talk-specific images
 talks/shared/
-  intro-mbio.md     # Speaker bio — referenced as ../shared/intro-mbio.md, never edited
+  intro.md          # General speaker intro for public/private talks
+  intro-mbio.md     # Team-specific Mercedes-Benz.io intro for company talks
 ```
+
+## Speaker Introduction and Homepage Audience
+
+Every new talk records `audience: company`, `audience: public`, or `audience: private` in the opening metadata comment of `slides.md`. The homepage renders this as a tag.
+
+- Use `../shared/intro-mbio.md` only for `company` talks.
+- Use `../shared/intro.md` for `public` and `private` talks unless the user explicitly provides another intro.
+- Confirm the audience with the user before scaffolding a new talk, even when the event context seems clear.
 
 ## Slide Separators
 

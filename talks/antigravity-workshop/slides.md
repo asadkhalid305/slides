@@ -2,6 +2,7 @@
 title: A Workshop for Unlocking Developer Productivity with Antigravity CLI
 description: GDG Berlin × WeAreDevelopers World Congress 2026
 date: 2026-07-08
+audience: public
 -->
 
 <!-- .slide: class="center-slide" -->
