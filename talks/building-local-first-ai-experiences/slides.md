@@ -584,10 +584,13 @@ session.destroy(); // Free this session's resources</code></pre>
   toolautosubmit
 &gt;
   &lt;label&gt;Email
-    &lt;input name="email" type="email" required /&gt;
+    &lt;input name="email" type="email" required
+      toolparamdescription="Where support can reply." /&gt;
   &lt;/label&gt;
   &lt;label&gt;Request
-    &lt;textarea name="details" required&gt;&lt;/textarea&gt;
+    &lt;textarea name="details" required
+      toolparamdescription="Describe the support request."&gt;
+    &lt;/textarea&gt;
   &lt;/label&gt;
   &lt;button type="submit"&gt;Submit request&lt;/button&gt;
 &lt;/form&gt;</code></pre>
@@ -611,7 +614,7 @@ form.addEventListener("submit", (event) =&gt; {
   </div>
 </div>
 
-<p class="chrome-subtitle">One form, one submit handler, two callers: a person or an agent.</p>
+<p class="chrome-subtitle"><code>toolparamdescription</code> is optional. Without it, Chrome uses the associated label, then <code>aria-description</code>.</p>
 
 <div class="chrome-boundary chrome-boundary--compact">
   <p><strong><code>toolautosubmit</code> only triggers submission.</strong> The application still owns validation, the operation, and the result returned through <code>respondWith()</code>.</p>
@@ -627,6 +630,45 @@ form.addEventListener("submit", (event) =&gt; {
 - `sendSupportRequest()` represents the application’s existing validation and business operation; it returns a promise.
 - For an agent invocation, `respondWith(result)` sends that promise’s success or failure back to the caller.
 - For a person, the same promise drives the visible confirmation. The application does not need a second implementation.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">WHAT THE BROWSER DERIVES</p>
+
+## The form becomes this agent contract
+
+<pre class="chrome-code chrome-code--narrow chrome-code--compact"><code class="language-json">[
+  {
+    "name": "submitSupportRequest",
+    "description": "Send a support request",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Where support can reply." },
+        "details": { "type": "string", "description": "Describe the support request." }
+      },
+      "required": ["email", "details"]
+    }
+  }
+]</code></pre>
+
+<div class="chrome-boundary chrome-boundary--compact">
+  <p><code>toolname</code> → name · <code>tooldescription</code> → description · named controls → properties · <code>required</code> → required parameters</p>
+</div>
+
+<p class="chrome-source">Adapted from the official Chrome Declarative WebMCP documentation <a href="https://developer.chrome.com/docs/ai/webmcp/declarative-api" target="_blank">[7]</a> · reviewed 30 July 2026</p>
+
+<aside class="notes">
+
+- This is the contract the agent discovers; the browser synthesizes it from the annotated form.
+- Map `toolname` to `name`, `tooldescription` to `description`, each named control to a property, and the HTML `required` attributes to the schema's `required` array.
+- Point out that `toolparamdescription` supplied the two property descriptions, but the attribute is optional.
+- Without it, Chrome uses the associated label and, when there is no label, `aria-description`.
+- The exact synthesis of every HTML constraint is still evolving, so this slide focuses on the stable structure demonstrated in Chrome's documentation.
 
 </aside>
 
