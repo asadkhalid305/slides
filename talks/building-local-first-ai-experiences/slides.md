@@ -10,7 +10,7 @@ audience: public
 ## Live feedback
 
 <div class="chrome-feedback">
-  <img class="chrome-feedback__qr" src="./assets/images/qr-feedback-green.png" alt="QR code for live feedback and talk resources" />
+  <img class="chrome-feedback__qr" src="./assets/images/qr-feedback-green.png" data-chrome-qr="./assets/images/qr-feedback" alt="QR code for live feedback and talk resources" />
   <p class="chrome-feedback__label">ANONYMOUS · OPEN THROUGHOUT THE TALK</p>
 </div>
 
@@ -981,7 +981,7 @@ const unregister = () =&gt; controller.abort();</code></pre>
 
 <div class="chrome-resource-layout">
   <div>
-    <img class="chrome-qr" src="./assets/images/qr-feedback-red.png" alt="QR code for live feedback and talk resources" />
+    <img class="chrome-qr" src="./assets/images/qr-feedback-blue.png" data-chrome-qr="./assets/images/qr-feedback" alt="QR code for live feedback and talk resources" />
   </div>
   <div class="chrome-resource-list">
     <div class="chrome-resource">
