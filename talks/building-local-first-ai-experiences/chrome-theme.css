@@ -220,6 +220,48 @@ html[data-current-chrome-accent='blue'] {
   font-size: 1.05em;
 }
 
+.chrome-speaker {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: center;
+  width: min(840px, 82vw);
+  margin: 1.5rem auto 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--slide-line);
+  border-left: 6px solid var(--slide-accent);
+  border-radius: 22px;
+  background: var(--chrome-card);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  text-align: left;
+}
+
+.chrome-speaker__avatar {
+  width: 128px;
+  height: 128px;
+  margin: 0 !important;
+  border: 3px solid var(--slide-accent);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chrome-speaker h3 {
+  margin: 0 0 0.25rem !important;
+  font-size: 0.88em;
+}
+
+.chrome-speaker p {
+  margin: 0.35rem 0 0 !important;
+  color: var(--chrome-copy);
+  font-size: 0.5em;
+  line-height: 1.45;
+}
+
+.chrome-speaker .chrome-speaker__role {
+  color: var(--slide-accent-text);
+  font-weight: 800;
+}
+
 .chrome-event-line {
   margin-top: 2.2rem !important;
   color: var(--chrome-muted) !important;
