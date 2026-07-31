@@ -5,27 +5,6 @@ audience: public
 
 <!-- .slide: class="center-slide" -->
 
-<p class="chrome-kicker">JOIN THE CONVERSATION</p>
-
-## Live feedback
-
-<div class="chrome-feedback">
-  <img class="chrome-feedback__qr" src="./assets/images/qr-feedback-green.png" data-chrome-qr="./assets/images/qr-feedback" alt="QR code for live feedback and talk resources" />
-  <p class="chrome-feedback__label">ANONYMOUS · OPEN THROUGHOUT THE TALK</p>
-</div>
-
-<aside class="notes">
-
-- Ask people to scan the QR code while they settle in.
-- Mention that feedback is anonymous and stays open throughout the talk.
-- Tell them the QR code and all resources will appear again at the end.
-
-</aside>
-
----
-
-<!-- .slide: class="center-slide" -->
-
 <p class="chrome-kicker">THE POSSIBILITIES</p>
 
 <p class="chrome-question">What are the possible ways of adding AI capabilities to a frontend application?</p>
@@ -163,6 +142,23 @@ audience: public
 
 ---
 
+<!-- .slide: class="center-slide chrome-title-slide" -->
+
+<p class="chrome-kicker">NOW LET’S NAME THE CHANGE</p>
+
+## Building Local-First AI Experiences
+
+## <span class="highlight-accent">Chrome Built-in AI + WebMCP</span>
+
+<aside class="notes">
+
+- Put a name to the mystery the audience has just seen: the talk is about a browser that can run useful AI work locally, and a browser that can expose page capabilities to agents.
+- Keep this concise. The title is now a reveal, not a preamble.
+
+</aside>
+
+---
+
 <!-- .slide: class="center-slide" -->
 
 <p class="chrome-kicker">THE ANSWER</p>
@@ -177,6 +173,31 @@ audience: public
 - Explain “browser-managed”: Chrome exposes the API, handles capability checks, and downloads the required model when the user initiates it.
 - Clarify that this is a new architectural option, not a replacement for every cloud model.
 - Mention that after the model is available, inference can run without sending the user’s content to an AI provider.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">BEFORE WE GET INTO CODE</p>
+
+## A quick hello
+
+<div class="chrome-speaker">
+  <img class="chrome-speaker__avatar" src="https://github.com/asadkhalid305.png?size=420" alt="Asad Ullah Khalid" />
+  <div>
+    <h3>Asad Ullah Khalid</h3>
+    <p class="chrome-speaker__role">Senior Frontend Developer · Mercedes-Benz.io · Berlin</p>
+    <p>I work on frontend architecture, AI experiences, and practical learning in public.</p>
+  </div>
+</div>
+
+<aside class="notes">
+
+- This is the deliberately late, concise introduction. You have earned attention before asking the audience to hear about you.
+- Say your name, role, and that this talk comes from hands-on exploration of browser capabilities and developer education.
+- Do not linger here. It is a human reset before the implementation walkthrough.
 
 </aside>
 
