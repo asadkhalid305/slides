@@ -506,6 +506,89 @@ session.destroy(); // Free this session's resources</code></pre>
 
 </aside>
 
+--
+
+<!-- .slide: class="center-slide" -->
+
+## Local-first is a trade-off
+
+<div class="chrome-card-grid fragment fade-up" data-fragment-index="1">
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">MODEL POWER</p>
+    <h3>Focused work, not every hard problem</h3>
+    <p>Local models suit bounded tasks. Complex reasoning and broad context may still need a stronger model or a different design.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">REACH</p>
+    <h3>Support is not universal</h3>
+    <p>Chrome version is only one gate. OS, hardware, storage, language support, and model state decide whether it can run.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">FIRST USE</p>
+    <h3>Downloads are part of the product</h3>
+    <p>Model preparation can take time, needs storage and an unmetered connection, and may be repeated after storage pressure.</p>
+  </div>
+</div>
+
+<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
+  <p><strong>Privacy and offline use after setup are valuable—not a guarantee of correctness, capability, or universal availability.</strong></p>
+</div>
+
+<p class="chrome-source fragment fade-up" data-fragment-index="1">Source: Chrome built-in AI requirements and model lifecycle <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">[6]</a> · reviewed 31 July 2026</p>
+
+<aside class="notes">
+
+- This is the honest close to the built-in AI section, not an argument against it.
+- Local models are a great fit for constrained product tasks. Do not promise cloud-model breadth, long-context analysis, or perfect outputs.
+- Chrome documents requirements around desktop support, hardware, storage, language, model download, and model eviction under storage pressure.
+- Say clearly: local processing can improve data locality and enable offline use after setup; it does not solve hallucinations or output validation.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## Design for the real world
+
+<div class="chrome-card-grid chrome-card-grid--two fragment fade-up" data-fragment-index="1">
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">DETECT</p>
+    <h3>Check capability at runtime</h3>
+    <p>Use feature detection and <code>availability()</code> with the same options you plan to use—not the browser name alone.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">EXPLAIN</p>
+    <h3>Design the first-use wait</h3>
+    <p>Ask for user activation, show download progress, and make unsupported and failed states understandable.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">FALL BACK</p>
+    <h3>Keep the core journey working</h3>
+    <p>Choose a manual path, deterministic logic, or a cloud service when local AI is unavailable or unsuitable.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">VALIDATE</p>
+    <h3>Treat output as a suggestion</h3>
+    <p>Check structured values before use. Do not make essential workflows depend on an AI response alone.</p>
+  </div>
+</div>
+
+<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
+  <p><strong>The practical architecture is usually local-first with a graceful fallback—not local-only.</strong></p>
+</div>
+
+<p class="chrome-source fragment fade-up" data-fragment-index="1">Sources: Chrome built-in AI lifecycle <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">[6]</a> and Prompt API availability guidance <a href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank">[2]</a> · reviewed 31 July 2026</p>
+
+<aside class="notes">
+
+- The first-use experience is an application-design problem, not an implementation detail.
+- Chrome documents user activation, availability states, and download-progress monitoring. The fallbacks and validation rule are the product architecture that follows from those constraints.
+- The right fallback varies: manual UX, a deterministic capability, or a cloud model. Do not prescribe a cloud fallback where privacy or offline requirements rule it out.
+- This conclusion completes the local-AI story. Pause, then use the next slide to raise the question again: is this even the biggest change?
+
+</aside>
+
 ---
 
 <!-- .slide: class="center-slide" -->
@@ -587,6 +670,7 @@ session.destroy(); // Free this session's resources</code></pre>
 - It is a proposed browser mechanism for a page to expose capabilities as tools.
 - Stress that the human interface remains present and usable.
 - The browser provides discovery and invocation; the page still owns validation, state, effects, and user control.
+- Brief safety signpost: structured tools make agents more reliable, but authenticated sessions make authorization, prompt-injection protection, and confirmation for consequential actions critical. We will return to that after the examples.
 
 </aside>
 
@@ -893,6 +977,51 @@ const unregister = () =&gt; controller.abort();</code></pre>
 
 <!-- .slide: class="center-slide" -->
 
+## WebMCP: clarity increases responsibility
+
+<div class="chrome-card-grid chrome-card-grid--two fragment fade-up" data-fragment-index="1">
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">USER SESSION</p>
+    <h3>Tools can act with real access</h3>
+    <p>Browser agents may operate inside an authenticated user session, so the effect of a mistake can be real user data.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">UNTRUSTED CONTENT</p>
+    <h3>Text can be an attack surface</h3>
+    <p>Tool definitions, page content, and tool output can contain indirect prompt-injection attempts. Treat them as data, not instructions.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">AUTHORIZATION</p>
+    <h3>The server stays in charge</h3>
+    <p>Validate identity, permissions, ownership, input, and state transitions exactly as you would for any other client.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">CONSEQUENCE</p>
+    <h3>Confirm meaningful actions</h3>
+    <p>Split broad operations into narrow tools, keep destructive effects visible, and require human confirmation where the risk deserves it.</p>
+  </div>
+</div>
+
+<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
+  <p><strong>Structured tools reduce ambiguity. They do not remove security boundaries, authorization, or the human in the loop.</strong></p>
+</div>
+
+<p class="chrome-source fragment fade-up" data-fragment-index="1">Sources: Chrome WebMCP overview <a href="https://developer.chrome.com/docs/ai/webmcp" target="_blank">[8]</a>, tool security <a href="https://developer.chrome.com/docs/ai/webmcp/secure-tools" target="_blank">[9]</a>, and best practices <a href="https://developer.chrome.com/docs/ai/webmcp/best-practices" target="_blank">[10]</a> · reviewed 31 July 2026</p>
+
+<aside class="notes">
+
+- Use this as the explicit warning after both demos, while the audience can still picture what a tool call does.
+- Say: “Structured tools make agents more reliable, but because they operate inside an authenticated user session, authorization, prompt-injection protection, and confirmation for consequential actions become critical.”
+- WebMCP's official security guidance calls out malicious instructions in tool definitions and externally sourced tool outputs. LLM safety layers cannot guarantee protection from prompt injection.
+- WebMCP does not change backend authorization. A tool call is still an untrusted client request.
+- Give a concrete distinction: prefer prepareCancellation and confirmCancellation over one vague manageOrder tool.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
 ## New capabilities, familiar responsibilities
 
 <div class="chrome-card-grid chrome-card-grid--two">
@@ -982,13 +1111,25 @@ const unregister = () =&gt; controller.abort();</code></pre>
   <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/get-started" target="_blank">
     <p><strong>[6] Get started with built-in AI</strong><br/><code>developer.chrome.com/docs/ai/get-started</code></p>
   </a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/webmcp/declarative-api" target="_blank">
+    <p><strong>[7] Declarative WebMCP API</strong><br/><code>developer.chrome.com/docs/ai/webmcp/declarative-api</code></p>
+  </a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/webmcp" target="_blank">
+    <p><strong>[8] WebMCP overview</strong><br/><code>developer.chrome.com/docs/ai/webmcp</code></p>
+  </a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/webmcp/secure-tools" target="_blank">
+    <p><strong>[9] WebMCP tool security</strong><br/><code>developer.chrome.com/docs/ai/webmcp/secure-tools</code></p>
+  </a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/webmcp/best-practices" target="_blank">
+    <p><strong>[10] WebMCP best practices</strong><br/><code>developer.chrome.com/docs/ai/webmcp/best-practices</code></p>
+  </a>
 </div>
 
-<p class="chrome-version-note">Reviewed 30 July 2026 · Citation numbers on earlier slides are clickable.</p>
+<p class="chrome-version-note">Reviewed 31 July 2026 · Citation numbers on earlier slides are clickable.</p>
 
 <aside class="notes">
 
-- This is the reference list for citation numbers [1] through [6] used on the API status, availability, and Prompt integration slides.
+- This is the reference list for citation numbers [1] through [10] used throughout the talk.
 - The links point directly to official Chrome documentation rather than search results or secondary summaries.
 - Move through this slide quickly, then leave Questions visible for discussion.
 
