@@ -676,6 +676,54 @@ form.addEventListener("submit", (event) =&gt; {
 
 <!-- .slide: class="center-slide" -->
 
+<p class="chrome-kicker">OPTIONAL DEEP DIVE · DECLARATIVE WEBMCP</p>
+
+## Make agent activity visible
+
+<div class="chrome-code-grid">
+  <div>
+    <p class="chrome-code-label">JAVASCRIPT · EXPLAIN THE AGENT ACTION</p>
+    <pre class="chrome-code chrome-code--split"><code class="language-javascript">window.addEventListener("toolactivated", ({ toolName }) =&gt; {
+  showAgentState(toolName + " is ready for review");
+});
+window.addEventListener("toolcancel", ({ toolName }) =&gt; {
+  clearAgentState(toolName + " was cancelled");
+});</code></pre>
+
+  </div>
+  <div>
+    <p class="chrome-code-label">CSS · KEEP THE HUMAN IN THE LOOP</p>
+    <pre class="chrome-code chrome-code--split"><code class="language-css">form:tool-form-active {
+  outline: 3px dashed var(--chrome-blue);
+  outline-offset: 6px;
+}
+button:tool-submit-active {
+box-shadow: 0 0 0 4px var(--chrome-yellow);
+}</code></pre>
+
+  </div>
+</div>
+
+<div class="chrome-boundary">
+  <p><strong>The agent fills the form; the page makes that state visible.</strong> Both events expose <code>toolName</code>. The CSS states clear after submit, cancel, or reset.</p>
+</div>
+
+<p class="chrome-source">Source: Chrome Declarative WebMCP documentation <a href="https://developer.chrome.com/docs/ai/webmcp/declarative-api#modify_focus_indicator" target="_blank">[7]</a> · reviewed 31 July 2026</p>
+
+<aside class="notes">
+
+- Optional: skip this vertical slide when time is tight; the next down/right step reaches the live declarative demo.
+- Start on the JavaScript panel: when Chrome pre-fills the form for an agent, the page receives the non-cancelable `toolactivated` event. `toolName` identifies the active tool.
+- Then show the CSS panel: `:tool-form-active` applies to the form and `:tool-submit-active` applies to the submit button. These sample styles match the talk's Chrome-color theme, rather than copying the browser defaults.
+- `toolcancel` fires when the user cancels the agentic operation or the form is reset. Both events expose `toolName`.
+- The pseudo-classes clear when the form submits, the operation is cancelled, or the user resets it. This keeps the human review state visible rather than silent.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
 <p class="chrome-kicker">LIVE DEMO · DECLARATIVE WEBMCP</p>
 
 ## A form becomes an agent tool

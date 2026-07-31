@@ -383,6 +383,10 @@ html[data-current-chrome-accent='blue'] {
   color: var(--slide-on-accent);
 }
 
+.reveal .chrome-flow__node--active code:not(.hljs) {
+  color: var(--slide-on-accent) !important;
+}
+
 .chrome-flow__arrow {
   color: var(--slide-accent-text);
   font-size: 0.95em;
@@ -739,11 +743,14 @@ html[data-current-chrome-accent='blue'] {
   gap: 0.6rem;
 }
 
-.chrome-resource {
+.chrome-resource,
+.chrome-reference {
+  display: block;
   padding: 0.52rem 0.8rem;
   border-left: 4px solid var(--slide-accent);
   border-radius: 0 12px 12px 0;
   background: #ffffff;
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .chrome-resource a {
@@ -773,29 +780,41 @@ html[data-current-chrome-accent='blue'] {
   text-align: left;
 }
 
-.chrome-reference {
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--slide-line);
-  border-left: 5px solid var(--slide-accent);
-  border-radius: 0 14px 14px 0;
-  background: #ffffff;
+.reveal .chrome-reference {
+  color: inherit;
   text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease !important;
+}
+
+.reveal .chrome-reference:hover,
+.reveal .chrome-reference:focus-visible,
+.chrome-resource:hover,
+.chrome-resource:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.14);
+  border-left: 4px solid var(--slide-accent);
+}
+
+.reveal .chrome-reference:hover strong,
+.reveal .chrome-reference:focus-visible strong {
+  color: var(--chrome-ink);
 }
 
 .chrome-reference p {
   margin: 0 !important;
   color: var(--chrome-ink);
-  font-size: 0.46em;
+  font-size: 0.5em;
+  font-weight: 700;
   line-height: 1.35;
 }
 
 .chrome-reference strong {
-  color: var(--slide-accent-text);
+  color: var(--chrome-ink);
 }
 
 .chrome-reference code {
   color: var(--chrome-muted) !important;
-  font-size: 0.82em;
+  font-size: 0.84em;
   font-weight: 500;
 }
 
