@@ -7,7 +7,7 @@ audience: public
 
 <p class="chrome-kicker">THE POSSIBILITIES</p>
 
-<p class="chrome-question">What are the possible ways of adding AI capabilities to a frontend application?</p>
+<p class="chrome-question">What are the possible ways of adding AI capabilities to a web application?</p>
 
 <aside class="notes">
 
@@ -62,7 +62,7 @@ audience: public
 
 <p class="chrome-kicker">HOLD THAT THOUGHT</p>
 
-<p class="chrome-question">Let me show you something first.</p>
+<p class="chrome-question">Let’s look at an example first.</p>
 
 <aside class="notes">
 
@@ -126,7 +126,7 @@ audience: public
   <span>network calls</span>
 </div>
 
-<p class="chrome-subtitle fragment fade-up">No provider SDK. No backend API. No local server running.<br/>The user asked. The app answered. So what is actually powering this?</p>
+<p class="chrome-subtitle fragment fade-up">No provider SDK. No backend API. No local server running.<br/>The user asked. The app answered. <span class="highlight highlight-accent">So what is actually powering this?</span></p>
 
 <aside class="notes">
 
@@ -144,7 +144,7 @@ audience: public
 
 <!-- .slide: class="center-slide chrome-title-slide" -->
 
-<p class="chrome-kicker">NOW LET’S NAME THE CHANGE</p>
+<p class="chrome-kicker">THE TOPIC</p>
 
 ## Building Local-First AI Experiences
 
@@ -178,9 +178,9 @@ audience: public
 
 --
 
-<!-- .slide: class="center-slide" -->
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
 
-<p class="chrome-kicker">BEFORE WE GET INTO CODE</p>
+<p class="chrome-kicker">BEFORE WE GET INTO DETAILS</p>
 
 ## A quick hello
 
@@ -189,7 +189,7 @@ audience: public
   <div>
     <h3>Asad Ullah Khalid</h3>
     <p class="chrome-speaker__role">Senior Frontend Developer · Mercedes-Benz.io · Berlin</p>
-    <p>I work on frontend architecture, AI experiences, and practical learning in public.</p>
+    <p>I’m here to share what I learned while building this playground.</p>
   </div>
 </div>
 
@@ -471,38 +471,38 @@ session.destroy(); // Free this session's resources</code></pre>
 
 <!-- .slide: class="center-slide" -->
 
-## Start with the user problem
+## Start with a user moment
 
 <div class="chrome-card-grid chrome-card-grid--two fragment fade-up">
   <div class="chrome-card">
-    <p class="chrome-card__eyebrow">UNDERSTAND</p>
-    <h3>Make content easier to consume</h3>
-    <p>Summaries, language detection, translation, classification, and accessible alternatives.</p>
+    <p class="chrome-card__eyebrow">“THIS IS TOO MUCH”</p>
+    <h3>Make it shorter</h3>
+    <p>Summarize a long page, thread, or set of notes into something the user can scan.</p>
   </div>
   <div class="chrome-card">
-    <p class="chrome-card__eyebrow">CREATE</p>
-    <h3>Help people express intent</h3>
-    <p>Drafting, rewriting, proofreading, and guided form completion.</p>
+    <p class="chrome-card__eyebrow">“I DON’T UNDERSTAND THIS”</p>
+    <h3>Translate or identify it</h3>
+    <p>Detect the language, then translate a selected message or a piece of user-provided text.</p>
   </div>
   <div class="chrome-card">
-    <p class="chrome-card__eyebrow">PERSONALIZE</p>
-    <h3>Adapt an existing interface</h3>
-    <p>Explain, organize, or transform what is already on the page for this user.</p>
+    <p class="chrome-card__eyebrow">“HELP ME SAY THIS”</p>
+    <h3>Improve a draft</h3>
+    <p>Write, rewrite, or proofread while the person remains the author and makes the final call.</p>
   </div>
   <div class="chrome-card">
-    <p class="chrome-card__eyebrow">PROTECT</p>
-    <h3>Keep suitable work local</h3>
-    <p>Avoid sending every draft, note, or interaction to an external model provider.</p>
+    <p class="chrome-card__eyebrow">“WHAT SHOULD HAPPEN NEXT?”</p>
+    <h3>Classify or extract</h3>
+    <p>Use a bounded prompt to route a request, pull out known fields, or suggest the next step.</p>
   </div>
 </div>
 
 <aside class="notes">
 
-- Invite the audience to map these capabilities to their own products.
-- Keep the examples about user outcomes rather than API names.
-- “Suitable work” matters: do not imply that every AI workload fits an on-device model.
+- Read the four user quotes—not the API names. This makes the starting point concrete: a person has text, not a request for “a Summarizer API.”
+- Map them quickly: shorter → Summarizer; understand → Language Detector + Translator; say this → Writer, Rewriter, Proofreader; next step → Prompt.
+- The examples are intentionally bounded. They are useful local tasks, not a promise of deep research, large context, or autonomous product decisions.
 - Time check: reach the end of the Chrome AI section by 25 minutes.
-- If behind, reveal the grid, name only “understand” and “protect,” then move on.
+- If behind, name only the first and third cards, then move on.
 
 </aside>
 
@@ -671,6 +671,40 @@ session.destroy(); // Free this session's resources</code></pre>
 - Stress that the human interface remains present and usable.
 - The browser provides discovery and invocation; the page still owns validation, state, effects, and user control.
 - Brief safety signpost: structured tools make agents more reliable, but authenticated sessions make authorization, prompt-injection protection, and confirmation for consequential actions critical. We will return to that after the examples.
+- Next, show the two ways a page can expose that tool. This is the bridge before code—not a claim that WebMCP has only one implementation style.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## Two ways to expose a tool
+
+<div class="chrome-card-grid chrome-card-grid--two fragment fade-up" data-fragment-index="1">
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">DECLARATIVE</p>
+    <h3>Annotate an existing form</h3>
+    <p>HTML already describes fields, labels, and validation. Add tool metadata and Chrome derives a tool contract.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">IMPERATIVE</p>
+    <h3>Register a JavaScript operation</h3>
+    <p>Define a named capability, its input schema, and the function that validates, performs, and reports the action.</p>
+  </div>
+</div>
+
+<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
+  <p><strong>Use the form route when the human UI already contains the action. Use JavaScript when the capability is not naturally a form.</strong></p>
+</div>
+
+<aside class="notes">
+
+- This is the missing map before the implementation examples.
+- Declarative WebMCP starts with a visible form. Chrome can derive its tool schema from the controls the user already understands.
+- Imperative WebMCP starts with an explicit JavaScript operation. The page registers the public contract and owns what its handler does.
+- Neither route is “more agentic.” Pick the one that represents the page capability honestly.
+- Say: “We will start with the form route, then contrast it with JavaScript.”
 
 </aside>
 
@@ -744,7 +778,7 @@ form.addEventListener("submit", (event) =&gt; {
 
 <p class="chrome-kicker">WHAT THE BROWSER DERIVES</p>
 
-## The form becomes this agent contract
+## From form fields to a tool schema
 
 <pre class="chrome-code chrome-code--narrow chrome-code--compact"><code class="language-json">[
   {
@@ -831,7 +865,7 @@ box-shadow: 0 0 0 4px var(--chrome-yellow);
 
 <p class="chrome-kicker">LIVE DEMO · DECLARATIVE WEBMCP</p>
 
-## A form becomes an agent tool
+## Inspect the form tool
 
 <aside class="notes">
 
@@ -905,6 +939,42 @@ const unregister = () =&gt; controller.abort();</code></pre>
 - The returned confirmation is serialized back to the agent as the tool result.
 - The visible to-do list changes through the same application state the human interface renders.
 - Highlight lifecycle ownership. Aborting the signal unregisters the tool when the component unmounts; the API has no separate `unregisterTool()` call.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">DISCOVERY</p>
+
+## What the agent sees
+
+<pre class="chrome-code chrome-code--narrow chrome-code--discovery"><code class="language-json">{
+  "name": "addTodo",
+  "description": "Add an item to the local to-do list.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "text": { "type": "string" }
+    },
+    "required": ["text"],
+    "additionalProperties": false
+  }
+}</code></pre>
+
+<div class="chrome-boundary chrome-boundary--compact">
+  <p><strong>The agent discovers the public contract—not the <code>execute()</code> function.</strong> DevTools → Application → WebMCP shows the same registered tool.</p>
+</div>
+
+<p class="chrome-source">Source: Chrome WebMCP overview <a href="https://developer.chrome.com/docs/ai/webmcp" target="_blank">[8]</a> · reviewed 1 August 2026</p>
+
+<aside class="notes">
+
+- This answers the practical question: how does an agent know the tool exists? The browser exposes the registration's name, description, and input schema through WebMCP discovery.
+- It does not expose the page's JavaScript handler. `execute()` remains page-owned implementation code.
+- Open DevTools → Application → WebMCP in the live demo: the `addTodo` entry is the same public contract shown here.
+- The agent uses this schema to form a valid call. The page still validates the runtime input before it changes state.
 
 </aside>
 
@@ -1015,44 +1085,6 @@ const unregister = () =&gt; controller.abort();</code></pre>
 - WebMCP's official security guidance calls out malicious instructions in tool definitions and externally sourced tool outputs. LLM safety layers cannot guarantee protection from prompt injection.
 - WebMCP does not change backend authorization. A tool call is still an untrusted client request.
 - Give a concrete distinction: prefer prepareCancellation and confirmCancellation over one vague manageOrder tool.
-
-</aside>
-
---
-
-<!-- .slide: class="center-slide" -->
-
-## New capabilities, familiar responsibilities
-
-<div class="chrome-card-grid chrome-card-grid--two">
-  <div class="chrome-card fragment fade-up" data-fragment-index="1">
-    <p class="chrome-card__eyebrow">CAPABILITY</p>
-    <h3>Detect before use</h3>
-    <p>Browser version, device, operating system, language, and model state all matter.</p>
-  </div>
-  <div class="chrome-card fragment fade-up" data-fragment-index="2">
-    <p class="chrome-card__eyebrow">EXPERIENCE</p>
-    <h3>Make lifecycle visible</h3>
-    <p>Downloads, progress, cancellation, unsupported states, and failures belong in the UI.</p>
-  </div>
-  <div class="chrome-card fragment fade-up" data-fragment-index="3">
-    <p class="chrome-card__eyebrow">TRUST</p>
-    <h3>Treat input and output carefully</h3>
-    <p>Validate tool inputs, render model output safely, and keep meaningful effects inspectable.</p>
-  </div>
-  <div class="chrome-card fragment fade-up" data-fragment-index="4">
-    <p class="chrome-card__eyebrow">CONTROL</p>
-    <h3>Keep people in the system</h3>
-    <p>Local execution and agent tools do not remove consent, confirmation, or recovery needs.</p>
-  </div>
-</div>
-
-<aside class="notes">
-
-- Prevent the talk from ending as pure hype.
-- Local-first does not mean universally available, free of constraints, or automatically safe.
-- WebMCP makes actions easier for agents to call; that increases the importance of schemas, validation, permissions, and visible effects.
-- Time check: reach this slide by 45 minutes.
 
 </aside>
 

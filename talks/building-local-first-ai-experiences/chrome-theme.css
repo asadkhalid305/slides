@@ -634,6 +634,11 @@ html[data-current-chrome-accent='blue'] {
   width: min(720px, 72vw);
 }
 
+.chrome-code--discovery code {
+  font-size: 0.76em !important;
+  line-height: 1.5 !important;
+}
+
 .chrome-code-grid {
   width: min(1120px, 94vw);
   margin: 1.1rem auto 0;
