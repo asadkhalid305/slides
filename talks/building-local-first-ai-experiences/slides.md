@@ -171,6 +171,7 @@ audience: public
 
 - Introduce Chrome built-in AI for the first time.
 - Explain “browser-managed”: Chrome exposes the API, handles capability checks, and downloads the required model when the user initiates it.
+- Call it a Chrome-provided browser API, not a general Web API. It can be used by web pages, but it is not a cross-browser platform capability today.
 - Clarify that this is a new architectural option, not a replacement for every cloud model.
 - Mention that after the model is available, inference can run without sending the user’s content to an AI provider.
 
@@ -228,7 +229,7 @@ audience: public
   </div>
   <div class="chrome-flow__arrow">→</div>
   <div class="chrome-flow__node chrome-flow__node--active" data-id="architecture-middle">
-    <p>Built-in Web API</p>
+    <p>Chrome built-in AI API</p>
   </div>
   <div class="chrome-flow__arrow">→</div>
   <div class="chrome-flow__node">
@@ -240,6 +241,7 @@ audience: public
 
 - Walk through the familiar path first.
 - Reveal the second path and call it an additional architecture available to frontend engineers.
+- Be precise with the name: this is a Chrome-provided built-in AI API, not a general Web API. It is accessed from page JavaScript, but its current support and model lifecycle are Chrome-specific.
 - The browser path removes the application’s inference backend for suitable tasks, but model availability remains capability-dependent.
 
 </aside>
@@ -667,9 +669,9 @@ session.destroy(); // Free this session's resources</code></pre>
 <aside class="notes">
 
 - Define WebMCP carefully: it is not an AI model and not another built-in inference API.
-- It is a proposed browser mechanism for a page to expose capabilities as tools.
+- It is a Chrome-provided, experimental browser API for a page to expose capabilities as tools—not a general Web API standard today.
 - Stress that the human interface remains present and usable.
-- The browser provides discovery and invocation; the page still owns validation, state, effects, and user control.
+- The browser provides discovery and invocation; the page still owns validation, state, effects, and user control. The imperative entry points happen to live on <code>document.modelContext</code>; their location does not make them generic DOM APIs.
 - Brief safety signpost: structured tools make agents more reliable, but authenticated sessions make authorization, prompt-injection protection, and confirmation for consequential actions critical. We will return to that after the examples.
 - Next, show the two ways a page can expose that tool. This is the bridge before code—not a claim that WebMCP has only one implementation style.
 
@@ -702,7 +704,7 @@ session.destroy(); // Free this session's resources</code></pre>
 
 - This is the missing map before the implementation examples.
 - Declarative WebMCP starts with a visible form. Chrome can derive its tool schema from the controls the user already understands.
-- Imperative WebMCP starts with an explicit JavaScript operation. The page registers the public contract and owns what its handler does.
+- Imperative WebMCP starts with an explicit JavaScript operation through Chrome's <code>document.modelContext</code> API. The page registers the public contract and owns what its handler does.
 - Neither route is “more agentic.” Pick the one that represents the page capability honestly.
 - Say: “We will start with the form route, then contrast it with JavaScript.”
 
@@ -968,7 +970,7 @@ document.modelContext.addEventListener("toolchange", () =&gt; {
 });</code></pre>
 
 <div class="chrome-boundary chrome-boundary--compact">
-  <p><strong><code>getTools()</code> is a document API.</strong> Listen for <code>toolchange</code> to refresh a page-owned tool picker when the available list changes.</p>
+  <p><strong>Chrome provides <code>getTools()</code> through <code>document.modelContext</code>.</strong> Listen for <code>toolchange</code> to refresh a page-owned tool picker when the available list changes.</p>
 </div>
 
 <p class="chrome-source">Source: Chrome WebMCP Imperative API <a href="https://developer.chrome.com/docs/ai/webmcp/imperative-api" target="_blank">[11]</a> · reviewed 1 August 2026</p>
@@ -977,6 +979,7 @@ document.modelContext.addEventListener("toolchange", () =&gt; {
 
 - This is the function you were looking for: `document.modelContext.getTools()`.
 - It lets a page enumerate the tools that this document is authorized to access. By default, that means same-origin tools, returned alphabetically.
+- It is a Chrome WebMCP method attached to <code>document</code>, not a general Web API. Browser objects are namespaces: a browser can add an experimental method there without making it a cross-browser standard.
 - It is not a custom window function that an external agent must call. Browser-integrated agents and DevTools use WebMCP's browser-level discovery; this API is for page code that wants to compose or display available tools.
 - `getTools()` returns the public contract, never the page's private `execute()` handler.
 - If a page can register or remove tools dynamically, listen for `toolchange` and run this function again. Cross-origin discovery requires an explicit `fromOrigins` request and permission from the tool's origin; skip that detail in the talk unless asked.
