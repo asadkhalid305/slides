@@ -645,7 +645,40 @@ session.destroy(); // Free this session's resources</code></pre>
 
 <!-- .slide: class="center-slide" -->
 
-## WebMCP declares tools into the frontend code
+## Meet <span class="highlight highlight-accent">WebMCP</span>
+
+<div class="chrome-card-grid chrome-card-grid--two fragment fade-up" data-fragment-index="1">
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">WHAT IT IS</p>
+    <h3>Tools from the website itself</h3>
+    <p>A Chrome-provided browser API that lets a page expose named, structured actions to compatible browser agents.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">WHAT IT IS NOT</p>
+    <h3>Not another model or backend</h3>
+    <p>WebMCP is not an AI model, not an MCP server, and not a replacement for server-side authorization.</p>
+  </div>
+</div>
+
+<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
+  <p><strong>The page keeps its human interface and owns every effect. WebMCP gives compatible agents a clearer way to ask for an action.</strong></p>
+</div>
+
+<aside class="notes">
+
+- This is the definition slide. Let the audience read it before showing another architecture diagram.
+- Say: “MCP servers commonly expose backend capabilities. WebMCP is the browser-side complement: it lets a website describe actions from its own page.”
+- Be precise: it is a Chrome-provided experimental browser API, not a general Web API standard today.
+- It does not run a model, replace a backend, or grant permission to act. The page and server still own validation, authorization, and the visible user experience.
+- The next slide makes the architectural difference concrete.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## The tool contract moves into the page
 
 <div class="chrome-flow">
   <div class="chrome-flow__node">
@@ -668,10 +701,10 @@ session.destroy(); // Free this session's resources</code></pre>
 
 <aside class="notes">
 
-- Define WebMCP carefully: it is not an AI model and not another built-in inference API.
-- It is a Chrome-provided, experimental browser API for a page to expose capabilities as tools—not a general Web API standard today.
+- Contrast this with the previous MCP-server diagram: the tool is now declared from the webpage rather than only living behind a separate MCP server.
+- Read the flow left to right. The browser is the intermediary: it discovers the page tool and routes a structured call; the page owns validation, state, effects, and user control.
 - Stress that the human interface remains present and usable.
-- The browser provides discovery and invocation; the page still owns validation, state, effects, and user control. The imperative entry points happen to live on <code>document.modelContext</code>; their location does not make them generic DOM APIs.
+- For the imperative route, Chrome exposes the entry points on <code>document.modelContext</code>; their location does not make them generic DOM APIs.
 - Brief safety signpost: structured tools make agents more reliable, but authenticated sessions make authorization, prompt-injection protection, and confirmation for consequential actions critical. We will return to that after the examples.
 - Next, show the two ways a page can expose that tool. This is the bridge before code—not a claim that WebMCP has only one implementation style.
 
