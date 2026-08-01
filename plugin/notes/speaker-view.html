@@ -980,7 +980,9 @@
 
           var timerState = 'not-started'; // 'not-started', 'running', 'stopped'
           var elapsedTime = 0; // milliseconds elapsed when stopped
-          var timerInterval = null;
+          // The clock is independent of the presentation timer, so keep this
+          // refresh interval running even while the timer is stopped.
+          setInterval(_updateTimer, 1000);
 
           var timings = null;
           getTimings(function (_timings) {
@@ -1007,9 +1009,6 @@
             startStopButton.textContent = 'Stop';
             startStopButton.className = 'start-stop-button running';
 
-            if (!timerInterval) {
-              timerInterval = setInterval(_updateTimer, 1000);
-            }
             _updateTimer();
           }
 
@@ -1022,19 +1021,10 @@
             var now = new Date();
             elapsedTime = now.getTime() - start.getTime();
 
-            if (timerInterval) {
-              clearInterval(timerInterval);
-              timerInterval = null;
-            }
+            _updateTimer();
           }
 
           function _resetTimer() {
-            // Stop the timer
-            if (timerInterval) {
-              clearInterval(timerInterval);
-              timerInterval = null;
-            }
-
             timerState = 'not-started';
             elapsedTime = 0;
             start = new Date();
