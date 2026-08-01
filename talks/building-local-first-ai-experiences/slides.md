@@ -747,6 +747,29 @@ session.destroy(); // Free this session's resources</code></pre>
 
 <!-- .slide: class="center-slide" -->
 
+<p class="chrome-kicker">LIVE DEMO · DECLARATIVE WEBMCP</p>
+
+## Inspect the form tool
+
+<aside class="notes">
+
+- Switch to `https://chromeai.asadullahkhalid.com/#playground/webmcp-declarative` without opening DevTools yet. Point to the ordinary support form: this is a human-first UI, not a special agent screen.
+- Say: “Let me do a little magic. I will ask Chrome to fill this form without touching the fields.”
+- Open DevTools → Application → WebMCP. Under Available Tools, select `submitSupportRequest`; do not teach the schema yet—just show that Chrome recognizes the form as a tool.
+- Leave **Enable toolautosubmit** off and run a valid support request. DevTools fills and activates the visible form, but the call waits for human review.
+- Show the populated fields, then click **Submit request**. Return to DevTools and show the Completed output.
+- Enable **toolautosubmit**, reset the form, and run the same tool again. This time the page completes through its normal submission logic without the page click.
+- Ask: “How did Chrome know the name, the fields, and when it was allowed to submit?” Then return to the next slide.
+- If time permits, run one invalid email to show that validation is returned to the caller.
+- Reset with the exact UI control: **Clear form**.
+- If the tool is missing, confirm the active route and flags once. After the second failure, return to the code slide and state that the current browser did not expose the trial API.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
 ## Declarative: annotate the form
 
 <div class="chrome-code-grid">
@@ -886,7 +909,7 @@ box-shadow: 0 0 0 4px var(--chrome-yellow);
 
 <aside class="notes">
 
-- Optional: skip this vertical slide when time is tight; the next down/right step reaches the live declarative demo.
+- Optional: skip this vertical slide when time is tight; the next down/right step moves to the imperative demo.
 - Start on the JavaScript panel: when Chrome pre-fills the form for an agent, the page receives the non-cancelable `toolactivated` event. `toolName` identifies the active tool.
 - Then show the CSS panel: `:tool-form-active` applies to the form and `:tool-submit-active` applies to the submit button. These sample styles match the talk's Chrome-color theme, rather than copying the browser defaults.
 - `toolcancel` fires when the user cancels the agentic operation or the form is reset. Both events expose `toolName`.
@@ -898,21 +921,21 @@ box-shadow: 0 0 0 4px var(--chrome-yellow);
 
 <!-- .slide: class="center-slide" -->
 
-<p class="chrome-kicker">LIVE DEMO · DECLARATIVE WEBMCP</p>
+<p class="chrome-kicker">LIVE DEMO · IMPERATIVE WEBMCP</p>
 
-## Inspect the form tool
+## Call a function. Change the interface.
 
 <aside class="notes">
 
-- Switch to `https://chromeai.asadullahkhalid.com/#playground/webmcp-declarative`.
-- Open DevTools → Application → WebMCP.
-- Under Available Tools, select `submitSupportRequest` and show its schema.
-- Leave **Enable toolautosubmit** off and run a valid support request. DevTools fills and activates the visible form, but the call waits for human review.
-- Show the page’s populated fields, then click **Submit request**. Return to DevTools and show the Completed output.
-- If time permits, enable **toolautosubmit** and run the tool again. This invocation completes without the page click.
-- If time permits, run one invalid email to show that validation is returned to the caller.
-- Reset with the exact UI control: **Clear form**.
-- If the tool is missing, confirm the active route and flags once. After the second failure, return to the code slide and state that the current browser did not expose the trial API.
+- Switch to `https://chromeai.asadullahkhalid.com/#playground/webmcp-imperative`. Point to the ordinary to-do list and add one item by hand if useful.
+- Say: “This time there is no annotated form. I will ask for one explicit page operation instead.”
+- In DevTools → Application → WebMCP, select `addTodo` and execute with: `{ "text": "Explore WebMCP after the talk" }`.
+- Show the returned confirmation and the visible list item marked as agent-created.
+- Emphasize that the agent did not search for a button, move a pointer, or infer the DOM interaction.
+- Ask: “If there was no annotated form, where did this tool come from?” Then return to the next slide.
+- Reset using the exact UI controls: **Clear list**, then **Reset**.
+- Time check: finish both WebMCP demos by 40 minutes.
+- If behind, skip the invalid-input case and show only one successful tool invocation.
 
 </aside>
 
@@ -1019,28 +1042,7 @@ document.modelContext.addEventListener("toolchange", () =&gt; {
 
 </aside>
 
---
-
-<!-- .slide: class="center-slide" -->
-
-<p class="chrome-kicker">LIVE DEMO · IMPERATIVE WEBMCP</p>
-
-## Call a function. Change the interface.
-
-<aside class="notes">
-
-- Switch to `https://chromeai.asadullahkhalid.com/#playground/webmcp-imperative`.
-- In DevTools → Application → WebMCP, inspect `addTodo`.
-- Execute with: `{ "text": "Explore WebMCP after the talk" }`.
-- Show the returned confirmation and the visible list item marked as agent-created.
-- Emphasize that the agent did not search for a button, move a pointer, or infer the DOM interaction.
-- Reset using the exact UI controls: **Clear list**, then **Reset**.
-- Time check: finish both WebMCP demos by 40 minutes.
-- If behind, skip the invalid-input case and show only one successful tool invocation.
-
-</aside>
-
---
+---
 
 <!-- .slide: class="center-slide" -->
 
