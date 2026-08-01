@@ -948,33 +948,38 @@ const unregister = () =&gt; controller.abort();</code></pre>
 
 <p class="chrome-kicker">DISCOVERY</p>
 
-## What the agent sees
+## Let a page inspect its tools
 
-<pre class="chrome-code chrome-code--narrow chrome-code--discovery"><code class="language-json">{
-  "name": "addTodo",
-  "description": "Add an item to the local to-do list.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "text": { "type": "string" }
-    },
-    "required": ["text"],
-    "additionalProperties": false
-  }
-}</code></pre>
+<pre class="chrome-code chrome-code--narrow chrome-code--discovery"><code class="language-javascript">async function getAvailableTools() {
+  const tools = await document.modelContext.getTools();
+  // Authorized same-origin tools, ordered alphabetically.
+  return tools.map(({ name, description, inputSchema }) => ({
+    name,
+    description,
+    inputSchema,
+  }));
+}
+
+const availableTools = await getAvailableTools();
+console.table(availableTools);
+
+document.modelContext.addEventListener("toolchange", () =&gt; {
+  void getAvailableTools().then(console.table);
+});</code></pre>
 
 <div class="chrome-boundary chrome-boundary--compact">
-  <p><strong>The agent discovers the public contract—not the <code>execute()</code> function.</strong> DevTools → Application → WebMCP shows the same registered tool.</p>
+  <p><strong><code>getTools()</code> is a document API.</strong> Listen for <code>toolchange</code> to refresh a page-owned tool picker when the available list changes.</p>
 </div>
 
-<p class="chrome-source">Source: Chrome WebMCP overview <a href="https://developer.chrome.com/docs/ai/webmcp" target="_blank">[8]</a> · reviewed 1 August 2026</p>
+<p class="chrome-source">Source: Chrome WebMCP Imperative API <a href="https://developer.chrome.com/docs/ai/webmcp/imperative-api" target="_blank">[11]</a> · reviewed 1 August 2026</p>
 
 <aside class="notes">
 
-- This answers the practical question: how does an agent know the tool exists? The browser exposes the registration's name, description, and input schema through WebMCP discovery.
-- It does not expose the page's JavaScript handler. `execute()` remains page-owned implementation code.
-- Open DevTools → Application → WebMCP in the live demo: the `addTodo` entry is the same public contract shown here.
-- The agent uses this schema to form a valid call. The page still validates the runtime input before it changes state.
+- This is the function you were looking for: `document.modelContext.getTools()`.
+- It lets a page enumerate the tools that this document is authorized to access. By default, that means same-origin tools, returned alphabetically.
+- It is not a custom window function that an external agent must call. Browser-integrated agents and DevTools use WebMCP's browser-level discovery; this API is for page code that wants to compose or display available tools.
+- `getTools()` returns the public contract, never the page's private `execute()` handler.
+- If a page can register or remove tools dynamically, listen for `toolchange` and run this function again. Cross-origin discovery requires an explicit `fromOrigins` request and permission from the tool's origin; skip that detail in the talk unless asked.
 
 </aside>
 
@@ -1155,13 +1160,16 @@ const unregister = () =&gt; controller.abort();</code></pre>
   <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/webmcp/best-practices" target="_blank">
     <p><strong>[10] WebMCP best practices</strong><br/><code>developer.chrome.com/docs/ai/webmcp/best-practices</code></p>
   </a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/webmcp/imperative-api" target="_blank">
+    <p><strong>[11] Imperative WebMCP API</strong><br/><code>developer.chrome.com/docs/ai/webmcp/imperative-api</code></p>
+  </a>
 </div>
 
 <p class="chrome-version-note">Reviewed 31 July 2026 · Citation numbers on earlier slides are clickable.</p>
 
 <aside class="notes">
 
-- This is the reference list for citation numbers [1] through [10] used throughout the talk.
+- This is the reference list for citation numbers [1] through [11] used throughout the talk.
 - The links point directly to official Chrome documentation rather than search results or secondary summaries.
 - Move through this slide quickly, then leave Questions visible for discussion.
 
