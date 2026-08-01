@@ -1042,50 +1042,6 @@ document.modelContext.addEventListener("toolchange", () =&gt; {
 
 </aside>
 
----
-
-<!-- .slide: class="center-slide" -->
-
-## Put both changes together
-
-<div class="chrome-flow">
-  <div class="chrome-flow__node">
-    <p>User intent</p>
-  </div>
-  <div class="chrome-flow__arrow">→</div>
-  <div class="chrome-flow__node chrome-flow__node--active">
-    <p>Built-in AI</p>
-    <small>understand · transform · generate</small>
-  </div>
-  <div class="chrome-flow__arrow">→</div>
-  <div class="chrome-flow__node chrome-flow__node--active">
-    <p>WebMCP tool</p>
-    <small>perform a visible app action</small>
-  </div>
-</div>
-
-<div class="chrome-card-grid chrome-card-grid--two">
-  <div class="chrome-card fragment fade-up">
-    <p class="chrome-card__eyebrow">SUPPORT</p>
-    <h3>Understand locally, act explicitly</h3>
-    <p>Summarize a request, then expose a validated support action to the agent.</p>
-  </div>
-  <div class="chrome-card fragment fade-up">
-    <p class="chrome-card__eyebrow">PRODUCTIVITY</p>
-    <h3>Transform content, update the interface</h3>
-    <p>Rewrite or classify content, then call a page-owned tool that keeps state visible.</p>
-  </div>
-</div>
-
-<aside class="notes">
-
-- Present this as an opportunity, not a required coupling.
-- Built-in AI can understand or transform content locally.
-- WebMCP can expose a deliberate app action to an agent.
-- Either can be useful alone; together they suggest browser-native workflows with less infrastructure and less UI guessing.
-
-</aside>
-
 --
 
 <!-- .slide: class="center-slide" -->
@@ -1135,6 +1091,50 @@ document.modelContext.addEventListener("toolchange", () =&gt; {
 
 <!-- .slide: class="center-slide" -->
 
+## Put both changes together
+
+<div class="chrome-flow">
+  <div class="chrome-flow__node">
+    <p>User intent</p>
+  </div>
+  <div class="chrome-flow__arrow">→</div>
+  <div class="chrome-flow__node chrome-flow__node--active">
+    <p>Built-in AI</p>
+    <small>understand · transform · generate</small>
+  </div>
+  <div class="chrome-flow__arrow">→</div>
+  <div class="chrome-flow__node chrome-flow__node--active">
+    <p>WebMCP tool</p>
+    <small>perform a visible app action</small>
+  </div>
+</div>
+
+<div class="chrome-card-grid chrome-card-grid--two">
+  <div class="chrome-card fragment fade-up">
+    <p class="chrome-card__eyebrow">SUPPORT</p>
+    <h3>Understand locally, act explicitly</h3>
+    <p>Summarize a request, then expose a validated support action to the agent.</p>
+  </div>
+  <div class="chrome-card fragment fade-up">
+    <p class="chrome-card__eyebrow">PRODUCTIVITY</p>
+    <h3>Transform content, update the interface</h3>
+    <p>Rewrite or classify content, then call a page-owned tool that keeps state visible.</p>
+  </div>
+</div>
+
+<aside class="notes">
+
+- Present this as an opportunity, not a required coupling.
+- Built-in AI can understand or transform content locally.
+- WebMCP can expose a deliberate app action to an agent.
+- Either can be useful alone; together they suggest browser-native workflows with less infrastructure and less UI guessing.
+
+</aside>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
 ## Two ideas to leave with
 
 <div class="chrome-takeaways">
@@ -1159,7 +1159,7 @@ document.modelContext.addEventListener("toolchange", () =&gt; {
 
 </aside>
 
---
+---
 
 <!-- .slide: class="center-slide" -->
 
