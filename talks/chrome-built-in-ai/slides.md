@@ -156,96 +156,239 @@ audience: company
 
 </aside>
 
---
+---
 
 <!-- .slide: class="center-slide" -->
 
-## Chrome version is only the first check
+## What we will explore
 
-<div class="chrome-requirements-grid fragment fade-up" data-fragment-index="1">
-  <div class="chrome-requirement">
-    <p class="chrome-card__eyebrow">EXPERT MODELS</p>
-    <h3>Translator + Language Detector</h3>
-    <p>Desktop only. Availability also depends on the requested language or language pair and whether its model is ready.</p>
-  </div>
-  <div class="chrome-requirement">
-    <p class="chrome-card__eyebrow">FOUNDATION MODEL</p>
-    <h3>The other five APIs</h3>
-    <p>Supported desktop OS and hardware, at least 22 GB free on the Chrome profile volume, an unmetered first download, and a prepared local model.</p>
-  </div>
-</div>
-
-<div class="chrome-availability fragment fade-up" data-fragment-index="2">
-  <code>unavailable</code>
-  <span>→</span>
-  <code>downloadable</code>
-  <span>→</span>
-  <code>downloading</code>
-  <span>→</span>
-  <code>available</code>
-</div>
-
-<div class="chrome-boundary chrome-boundary--compact fragment fade-up" data-fragment-index="2">
-  <p>Always call <code>availability()</code>. Version, OS, hardware, storage, language support, and model state can all change the answer.</p>
-</div>
-
-<p class="chrome-version-note fragment fade-up" data-fragment-index="1">From Chrome 149, the foundation model supports English, Spanish, Japanese, German, and French input and output.</p>
-
-<p class="chrome-source fragment fade-up" data-fragment-index="1">Source: Chrome built-in AI get-started documentation <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">[6]</a> · reviewed 10 November 2026</p>
-
-<aside class="notes">
-
-- "First gate" means the Chrome version tells us the API may exist; availability() tells us whether it can run on this device now.
-- Correct the shortcut people often take: checking the Chrome version is necessary, but not sufficient.
-- Translator and Language Detector use task-specific expert models.
-- Summarizer, Prompt, Writer, Rewriter, and Proofreader use Chrome's foundation model.
-- The 22 GB is a free-space requirement, not the download size. Audio input also requires a GPU.
-- The documented foundation-model device requirements exclude mobile and non-Chromebook-Plus ChromeOS devices.
-- Do not read every requirement aloud. Point to availability() as the production rule.
-
-</aside>
+<div class="chrome-card-grid chrome-card-grid--two"><div class="chrome-card"><p class="chrome-card__eyebrow">01 · TRANSLATOR API</p><h3>Translate a message</h3><p>Go from a language pair to an on-device result.</p></div><div class="chrome-card"><p class="chrome-card__eyebrow">02 · PROMPT API</p><h3>Stream an answer</h3><p>Prepare a local session, show output, and cancel it.</p></div></div><p class="chrome-subtitle">The same integration journey, with API-specific options.</p>
 
 --
 
 <!-- .slide: class="center-slide" -->
 
-## The core integration is simple
+## Before writing code
 
-<pre class="chrome-code chrome-code--narrow chrome-code--compact"><code class="language-javascript">if (!('LanguageModel' in self)) return;
+<div class="chrome-card-grid"><div class="chrome-card"><h3>1 · Check status</h3><p>Open the <a href="https://developer.chrome.com/docs/ai/built-in-apis">API catalog</a> and the API guide. Stable, origin trial, or developer trial?</p></div><div class="chrome-card"><h3>2 · Prepare Chrome</h3><p>Check version, supported device and language. Follow API-specific trial or flag instructions only when needed.</p></div><div class="chrome-card"><h3>3 · Plan the experience</h3><p>Expect an unavailable device, a first download, and errors. Decide on a fallback.</p></div></div><p class="chrome-source">Stable APIs do not require Early Preview Program enrollment · <a href="https://developer.chrome.com/docs/ai/get-started">Chrome setup guide</a></p>
 
-const options = {
+--
+
+<!-- .slide: class="center-slide" -->
+
+## The integration journey
+
+<div class="chrome-availability"><code>detect</code><span>→</span><code>availability</code><span>→</span><code>create</code><span>→</span><code>run</code><span>→</span><code>cleanup</code></div><div class="chrome-boundary"><p>Browser version is a setup check. Runtime feature detection and availability determine what this user can do.</p></div>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## A shared starting pattern
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">// Translator illustrates the common pattern.
+if (!('Translator' in self)) { showFallback(); return; }
+
+const status = await Translator.availability(options);
+if (status === 'unavailable') { showFallback(); return; }
+
+// From a user action when preparation is needed:
+const translator = await Translator.create(options);</code></pre>
+<p class="chrome-subtitle">Then call the API's operation and release its instance when finished.</p>
+<p class="chrome-source">For Prompt, use LanguageModel. Options, operations, and lifecycle vary by API.</p>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## What does availability mean?
+
+<div class="chrome-card-grid chrome-card-grid--two"><div class="chrome-card"><h3>unavailable</h3><p>Cannot run with these options. Explain and offer a fallback.</p></div><div class="chrome-card"><h3>downloadable</h3><p>Preparation is needed. Start from a user action and show progress.</p></div><div class="chrome-card"><h3>downloading</h3><p>Preparation is in progress. Keep the user informed.</p></div><div class="chrome-card"><h3>available</h3><p>Create an instance and run the task.</p></div></div><p class="chrome-source">Translator reports language-pair download states with a privacy safeguard · <a href="https://developer.chrome.com/docs/ai/translator-api">Translator guide</a></p>
+
+---
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">TRANSLATOR API</p>
+
+## Detect and check
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">const options = {
+  sourceLanguage: 'de',
+  targetLanguage: 'en',
+};
+
+if (!('Translator' in self)) {
+  showFallback();
+  return;
+}
+
+const status = await Translator.availability(options);
+if (status === 'unavailable') {
+  showFallback();
+  return;
+}</code></pre><p class="chrome-subtitle">Check this language pair, not just the browser.</p><p class="chrome-source"><a href="https://developer.chrome.com/docs/ai/translator-api">Chrome Translator API</a></p>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">TRANSLATOR API</p>
+
+## Prepare the model
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">// Run from a user action, after the availability check.
+const translator = await Translator.create({
+  ...options,
+  monitor(m) {
+    m.addEventListener('downloadprogress', ({ loaded }) =&gt; {
+      showProgress(Math.round(loaded * 100));
+    });
+  },
+});</code></pre><p class="chrome-subtitle">Use the same language pair. Show preparation progress.</p><p class="chrome-source">A download may require user activation · <a href="https://developer.chrome.com/docs/ai/get-started">Chrome setup guide</a></p>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">TRANSLATOR API</p>
+
+## Translate and clean up
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">try {
+  const result = await translator.translate(
+    'Dieses Beispiel läuft direkt im Browser.'
+  );
+  showTranslation(result);
+} catch (error) {
+  showError(error);
+} finally {
+  translator.destroy();
+}</code></pre><p class="chrome-subtitle">Reuse the instance when appropriate; destroy it when finished.</p><div class="chrome-boundary"><p>Try it: open the Translator lesson in the playground.</p></div>
+
+---
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">PROMPT API</p>
+
+## Declare and check
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">const options = {
   expectedInputs: [{ type: 'text', languages: ['en'] }],
   expectedOutputs: [{ type: 'text', languages: ['en'] }],
 };
-const status = await LanguageModel.availability(options);
-if (status === 'unavailable') return;
 
+if (!('LanguageModel' in self)) {
+  showFallback();
+  return;
+}
+const status = await LanguageModel.availability(options);
+if (status === 'unavailable') {
+  showFallback();
+  return;
+}</code></pre><p class="chrome-subtitle">Declare the inputs and outputs you actually need.</p><p class="chrome-source"><a href="https://developer.chrome.com/docs/ai/prompt-api">Chrome Prompt API</a></p>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">PROMPT API</p>
+
+## Create and ask
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">// From a user action, after checking availability:
 const session = await LanguageModel.create({
   ...options,
-  monitor(monitor) {
-    monitor.addEventListener('downloadprogress', ({ loaded }) =&gt; {
-      updateProgress(Math.round(loaded * 100));
+  monitor(m) {
+    m.addEventListener('downloadprogress', ({ loaded }) =&gt; {
+      showProgress(Math.round(loaded * 100));
     });
   },
 });
 try {
-  const result = await session.prompt(userPrompt);
+  const result = await session.prompt('Explain capability detection.');
   showResult(result);
 } finally {
   session.destroy();
-}</code></pre>
+}</code></pre><p class="chrome-subtitle">Same journey. Different options and operation.</p>
 
-<p class="chrome-subtitle">Check capability. Prepare a session. Prompt it. Clean up.</p>
+--
 
-<p class="chrome-source">Adapted from the official Chrome Prompt API documentation <a href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank">[2]</a> · reviewed 10 November 2026</p>
+<!-- .slide: class="center-slide" -->
+
+<p class="chrome-kicker">PROMPT API</p>
+
+## Stream and cancel
+
+<pre class="chrome-code chrome-code--narrow"><code class="language-javascript">const controller = new AbortController();
+cancelButton.onclick = () =&gt; controller.abort();
+
+try {
+  const stream = session.promptStreaming(userPrompt, {
+    signal: controller.signal,
+  });
+  for await (const chunk of stream) {
+    appendPartialText(chunk);
+  }
+} catch (error) {
+  if (error.name === 'AbortError') showCanceled();
+  else showError(error);
+} finally {
+  session.destroy();
+}</code></pre><p class="chrome-subtitle">This replaces the prompt operation and cleanup in the previous example.</p>
+
+---
+
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
+
+## See it in the playground
+
+---
+
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
+
+## Make the feature reliable
+
+<div class="chrome-card-grid chrome-card-grid--two"><div class="chrome-card"><h3>Explain the wait</h3><p>Show download progress, running, cancellation, and errors.</p></div><div class="chrome-card"><h3>Keep a fallback</h3><p>Offer manual or deterministic alternatives where local AI is unavailable.</p></div><div class="chrome-card"><h3>Validate the output</h3><p>Schema-shaped JSON can still be incorrect. Keep the user in control.</p></div><div class="chrome-card"><h3>Manage sessions</h3><p>Reuse when useful; destroy on replacement or when no longer needed.</p></div></div>
+
+--
+
+<!-- .slide: class="center-slide" -->
+
+## Local-first is a trade-off
+
+<div class="chrome-card-grid">
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">MODEL POWER</p>
+    <h3>Focused work, not every hard problem</h3>
+    <p>Local models suit bounded tasks. Complex reasoning and broad context may still need a stronger model or a different design.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">REACH</p>
+    <h3>Support is not universal</h3>
+    <p>Chrome version is only one gate. OS, hardware, storage, language support, and model state decide whether it can run.</p>
+  </div>
+  <div class="chrome-card">
+    <p class="chrome-card__eyebrow">FIRST USE</p>
+    <h3>Downloads are part of the product</h3>
+    <p>Model preparation can take time, needs storage and an unmetered connection, and may be repeated after storage pressure.</p>
+  </div>
+</div>
+
+<div class="chrome-boundary">
+  <p><strong>Privacy and offline use after setup are valuable—not a guarantee of correctness, capability, or universal availability.</strong></p>
+</div>
+
+<p class="chrome-source">Source: Chrome built-in AI requirements and model lifecycle <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">Chrome documentation</a> · reviewed 10 November 2026</p>
 
 <aside class="notes">
 
-- LanguageModel is Chrome's Prompt API surface. Feature detection alone does not guarantee that the model can run.
-- Pass matching language and modality declarations to availability() and create().
-- A user action may be needed to start model preparation. Show progress, errors, cancellation, and an appropriate fallback in a real interface.
-- The simple example omits experimental sampling controls. The playground adds session reuse and cancellation around these native calls.
-- Destroy a session when the application no longer needs it; try/finally demonstrates cleanup even when prompting fails.
+- This is the honest close to the built-in AI section, not an argument against it.
+- Local models are a great fit for constrained product tasks. Do not promise cloud-model breadth, long-context analysis, or perfect outputs.
+- Chrome documents requirements around desktop support, hardware, storage, language, model download, and model eviction under storage pressure.
+- Inference can work offline after preparation; loading the page and downloading or updating models may still use the network.
+- Say clearly: local processing can improve data locality and enable offline use after setup; it does not solve hallucinations or output validation.
 
 </aside>
 
@@ -255,7 +398,7 @@ try {
 
 ## Start with a user moment
 
-<div class="chrome-card-grid chrome-card-grid--two fragment fade-up">
+<div class="chrome-card-grid chrome-card-grid--two">
   <div class="chrome-card">
     <p class="chrome-card__eyebrow">“THIS IS TOO MUCH”</p>
     <h3>Make it shorter</h3>
@@ -291,186 +434,42 @@ try {
 
 <!-- .slide: class="center-slide" -->
 
-## Local-first is a trade-off
-
-<div class="chrome-card-grid fragment fade-up" data-fragment-index="1">
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">MODEL POWER</p>
-    <h3>Focused work, not every hard problem</h3>
-    <p>Local models suit bounded tasks. Complex reasoning and broad context may still need a stronger model or a different design.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">REACH</p>
-    <h3>Support is not universal</h3>
-    <p>Chrome version is only one gate. OS, hardware, storage, language support, and model state decide whether it can run.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">FIRST USE</p>
-    <h3>Downloads are part of the product</h3>
-    <p>Model preparation can take time, needs storage and an unmetered connection, and may be repeated after storage pressure.</p>
-  </div>
-</div>
-
-<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
-  <p><strong>Privacy and offline use after setup are valuable—not a guarantee of correctness, capability, or universal availability.</strong></p>
-</div>
-
-<p class="chrome-source fragment fade-up" data-fragment-index="1">Source: Chrome built-in AI requirements and model lifecycle <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">[6]</a> · reviewed 10 November 2026</p>
-
-<aside class="notes">
-
-- This is the honest close to the built-in AI section, not an argument against it.
-- Local models are a great fit for constrained product tasks. Do not promise cloud-model breadth, long-context analysis, or perfect outputs.
-- Chrome documents requirements around desktop support, hardware, storage, language, model download, and model eviction under storage pressure.
-- Inference can work offline after preparation; loading the page and downloading or updating models may still use the network.
-- Say clearly: local processing can improve data locality and enable offline use after setup; it does not solve hallucinations or output validation.
-
-</aside>
-
---
-
-<!-- .slide: class="center-slide" -->
-
-## Design for the real world
-
-<div class="chrome-card-grid chrome-card-grid--two fragment fade-up" data-fragment-index="1">
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">DETECT</p>
-    <h3>Check capability at runtime</h3>
-    <p>Use feature detection and <code>availability()</code> with the same options you plan to use—not the browser name alone.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">EXPLAIN</p>
-    <h3>Design the first-use wait</h3>
-    <p>Ask for user activation, show download progress, and make unsupported and failed states understandable.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">FALL BACK</p>
-    <h3>Keep the core journey working</h3>
-    <p>Choose a manual path, deterministic logic, or a cloud service when local AI is unavailable or unsuitable.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">VALIDATE</p>
-    <h3>Treat output as a suggestion</h3>
-    <p>Check structured values before use. Do not make essential workflows depend on an AI response alone.</p>
-  </div>
-</div>
-
-<div class="chrome-boundary fragment fade-up" data-fragment-index="2">
-  <p><strong>The practical architecture is usually local-first with a graceful fallback—not local-only.</strong></p>
-</div>
-
-<p class="chrome-source fragment fade-up" data-fragment-index="1">Sources: Chrome built-in AI lifecycle <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">[6]</a> and Prompt API availability guidance <a href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank">[2]</a> · reviewed 10 November 2026</p>
-
-<aside class="notes">
-
-- The first-use experience is an application-design problem, not an implementation detail.
-- Chrome documents user activation, availability states, and download-progress monitoring. The fallbacks and validation rule are the product architecture that follows from those constraints.
-- The right fallback varies: manual UX, a deterministic capability, or a cloud model. Do not prescribe a cloud fallback where privacy or offline requirements rule it out. The playground does not silently send content to a cloud fallback.
-- This concludes the local-AI story. Pause before the recap.
-
-</aside>
-
----
-
-<!-- .slide: class="center-slide" -->
-
-## Prompt can do more than text
-
-<div class="chrome-card-grid fragment fade-up">
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">STRUCTURED OUTPUT</p>
-    <h3>Ask for a shape</h3>
-    <p>Request JSON with a schema, then validate both its shape and usefulness.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">MULTIMODAL INPUT</p>
-    <h3>Describe an image</h3>
-    <p>Declare image and text inputs; check the same options before creating the session.</p>
-  </div>
-  <div class="chrome-card">
-    <p class="chrome-card__eyebrow">STREAMING</p>
-    <h3>Show progress and cancel</h3>
-    <p>Display partial output as it arrives and make cancellation visible.</p>
-  </div>
-</div>
-
-<div class="chrome-boundary fragment fade-up">
-  <p>Audio input is also documented. The playground's new follow-ups cover JSON, images, and streaming.</p>
-</div>
-
-<p class="chrome-source">Source: Chrome Prompt API <a href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank">[2]</a> · reviewed 10 November 2026</p>
-
----
-
-<!-- .slide: class="center-slide" -->
-
-<p class="chrome-kicker">LIVE DEMO · PROMPT FOLLOW-UPS</p>
-
-## From a prompt to a product experience
-
-<div class="chrome-card-grid fragment fade-up">
-  <div class="chrome-card"><h3>1 · Structured feedback</h3><p>Run the sample and inspect the validated sentiment and summary.</p></div>
-  <div class="chrome-card"><h3>2 · Local image</h3><p>Select an image and ask for a short description.</p></div>
-  <div class="chrome-card"><h3>3 · Streaming</h3><p>Watch partial text arrive, then cancel a request.</p></div>
-</div>
-
-<p class="chrome-subtitle">Open the updated local app → Prompt → Production extensions.</p>
-<p class="chrome-version-note">Live results depend on Chrome, device capability, model preparation, and the local app version.</p>
-
----
-
-<!-- .slide: class="center-slide" -->
-
 ## Can we use it in a real product?
 
-<div class="chrome-card-grid fragment fade-up">
+<div class="chrome-card-grid">
   <div class="chrome-card"><h3>Drupal</h3><p>Summarizer helps generate SEO tags in CKEditor.</p></div>
   <div class="chrome-card"><h3>Yahoo! Japan</h3><p>Prompt helps moderate community comments.</p></div>
   <div class="chrome-card"><h3>Trip.com</h3><p>AI overviews help people navigate flight options.</p></div>
 </div>
 
-<div class="chrome-boundary fragment fade-up"><p>Google-published product examples—not a measure of adoption or a guarantee of device support.</p></div>
-<p class="chrome-source">Source: Chrome for Developers <a href="https://developer.chrome.com/blog/build-new-features-using-built-in-ai-in-chrome-io2026" target="_blank">[7]</a> · reviewed 10 November 2026</p>
+<div class="chrome-boundary"><p>Google-published product examples—not a measure of adoption or a guarantee of device support.</p></div>
+<p class="chrome-source">Source: Chrome for Developers <a href="https://developer.chrome.com/blog/build-new-features-using-built-in-ai-in-chrome-io2026" target="_blank">Google I/O 2026</a> · reviewed 10 November 2026</p>
+
+---
+
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
+
+## Choose the right API
+
+<div class="chrome-card-grid chrome-card-grid--two"><div class="chrome-card"><h3>Stable in Chrome</h3><p>Translator, Language Detector, Summarizer, Prompt.</p><p>Stable status still depends on device and model availability.</p></div><div class="chrome-card"><h3>Developer trial</h3><p>Writer, Rewriter, Proofreader.</p><p>Follow each API's current experimental setup instructions.</p></div></div><p class="chrome-source">Snapshot: 10 November 2026 · <a href="https://developer.chrome.com/docs/ai/built-in-apis">Check the current API catalog</a> · Stable APIs do not require EPP.</p>
 
 ---
 
 <!-- .slide: class="center-slide" -->
 
-## Which access path do we need?
+## Take this journey with you
 
-<div class="chrome-card-grid fragment fade-up">
-  <div class="chrome-card"><h3>Stable APIs</h3><p>No Early Preview Program enrollment or trial token required. Check device support and provide a fallback.</p></div>
-  <div class="chrome-card"><h3>Origin trials</h3><p>Time-limited experiments use their own registration and token. Local testing may use a flag.</p></div>
-  <div class="chrome-card"><h3>Developer trials</h3><p>Experimental APIs have API-specific testing instructions and no general availability promise.</p></div>
-</div>
-
-<p class="chrome-subtitle fragment fade-up">The Early Preview Program gives access to earlier ideas; it is not a blanket requirement for stable APIs.</p>
-<p class="chrome-source">Sources: Chrome API catalog <a href="https://developer.chrome.com/docs/ai/built-in-apis" target="_blank">[1]</a> and get started <a href="https://developer.chrome.com/docs/ai/get-started" target="_blank">[6]</a> · reviewed 10 November 2026</p>
+<div class="chrome-availability"><code>detect</code><span>→</span><code>availability</code><span>→</span><code>create</code><span>→</span><code>run</code><span>→</span><code>cleanup</code></div><div class="chrome-boundary"><p>Start with a user task. Check its exact requirements. Design the unavailable and download states.</p></div>
 
 ---
 
 <!-- .slide: class="center-slide" -->
 
-## What to take away
+<p class="chrome-kicker">HANDS-ON WORKSHOP</p>
 
-<div class="chrome-takeaways">
-  <div class="chrome-takeaway fragment fade-up" data-fragment-index="1">
-    <p class="chrome-takeaway__number">01 · A NEW OPTION</p>
-    <p>Chrome built-in AI offers browser-managed, local-first capabilities for suitable frontend experiences.</p>
-  </div>
-  <div class="chrome-takeaway fragment fade-up" data-fragment-index="2">
-    <p class="chrome-takeaway__number">02 · DESIGN FOR REAL DEVICES</p>
-    <p>Check availability, explain model downloads, validate outputs, and provide a useful fallback.</p>
-  </div>
-</div>
+## Your turn to build
 
-<aside class="notes">
-
-- Start with a focused user need and choose an API that fits it.
-- Availability and user experience matter as much as the integration code.
-
-</aside>
+<p class="chrome-subtitle">Choose an exercise and put Chrome’s built-in AI into practice.</p>
 
 ---
 
@@ -481,38 +480,13 @@ try {
 ## References
 
 <div class="chrome-references">
-  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/built-in-apis" target="_blank">
-    <p><strong>[1] Built-in AI APIs</strong><br/><code>developer.chrome.com/docs/ai/built-in-apis</code></p>
-  </a>
-  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank">
-    <p><strong>[2] Prompt API</strong><br/><code>developer.chrome.com/docs/ai/prompt-api</code></p>
-  </a>
-  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/writer-api" target="_blank">
-    <p><strong>[3] Writer API</strong><br/><code>developer.chrome.com/docs/ai/writer-api</code></p>
-  </a>
-  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/rewriter-api" target="_blank">
-    <p><strong>[4] Rewriter API</strong><br/><code>developer.chrome.com/docs/ai/rewriter-api</code></p>
-  </a>
-  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/proofreader-api" target="_blank">
-    <p><strong>[5] Proofreader API</strong><br/><code>developer.chrome.com/docs/ai/proofreader-api</code></p>
-  </a>
-  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/get-started" target="_blank">
-    <p><strong>[6] Get started with built-in AI</strong><br/><code>developer.chrome.com/docs/ai/get-started</code></p>
-  </a>
-  <a class="chrome-reference" href="https://developer.chrome.com/blog/build-new-features-using-built-in-ai-in-chrome-io2026" target="_blank">
-    <p><strong>[7] Product examples</strong><br/><code>Chrome for Developers · Google I/O 2026</code></p>
-  </a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/built-in-apis"><p><strong>API catalog</strong><br/><code>developer.chrome.com/docs/ai/built-in-apis</code></p></a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/get-started"><p><strong>Setup and requirements</strong><br/><code>developer.chrome.com/docs/ai/get-started</code></p></a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/translator-api"><p><strong>Translator API</strong><br/><code>developer.chrome.com/docs/ai/translator-api</code></p></a>
+  <a class="chrome-reference" href="https://developer.chrome.com/docs/ai/prompt-api"><p><strong>Prompt API</strong><br/><code>developer.chrome.com/docs/ai/prompt-api</code></p></a>
 </div>
 
-<p class="chrome-version-note">Reviewed 10 November 2026 · Citation numbers on earlier slides are clickable.</p>
-
-<aside class="notes">
-
-- This is the reference list for citation numbers [1] through [7] used throughout the talk.
-- The links point directly to official Chrome documentation rather than search results or secondary summaries.
-- Move through this slide quickly, then leave Questions visible for discussion.
-
-</aside>
+<p class="chrome-version-note">Reviewed 10 November 2026 · Check current documentation before presenting.</p>
 
 --
 
@@ -522,7 +496,8 @@ try {
 
 <div class="chrome-resource-layout">
   <div>
-    <img class="chrome-qr" src="./assets/images/qr-feedback-blue.png" data-chrome-qr="./assets/images/qr-feedback" alt="QR code for live feedback and talk resources" />
+    <img class="chrome-qr" src="./assets/images/qr-linkedin-blue.svg" data-chrome-qr="./assets/images/qr-linkedin" alt="QR code linking to Asad Ullah Khalid’s LinkedIn profile" />
+    <p class="chrome-qr-label">CONNECT ON LINKEDIN</p>
   </div>
   <div class="chrome-resource-list">
     <div class="chrome-resource">
@@ -560,7 +535,7 @@ try {
 
 <aside class="notes">
 
-- Invite people to scan the QR code and try the examples later.
+- Invite people to scan the LinkedIn QR code and try the examples later.
 - Point out that the project is a teaching surface: each demo shows capability state, output, code path, and lifecycle.
 - Mention the official documentation and Early Preview Program for people who want to track experimental APIs.
 - Leave this slide visible for roughly one minute.

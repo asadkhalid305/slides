@@ -208,6 +208,10 @@ html[data-current-chrome-accent='blue'] {
   text-transform: uppercase;
 }
 
+.reveal .chrome-kicker + * {
+  margin-top: 1rem !important;
+}
+
 .chrome-title-slide h2:first-of-type {
   max-width: 1040px;
   font-size: 2.05em;
@@ -622,8 +626,8 @@ html[data-current-chrome-accent='blue'] {
   max-height: none !important;
   padding: 0 !important;
   background: transparent !important;
-  font-size: 0.58em !important;
-  line-height: 1.45 !important;
+  font-size: 0.9em !important;
+  line-height: 1.4 !important;
 }
 
 .chrome-code--compact code {
@@ -773,9 +777,10 @@ html[data-current-chrome-accent='blue'] {
   text-align: left;
 }
 
-.chrome-qr {
+.reveal .chrome-qr {
   width: 250px;
   height: 250px;
+  max-height: none;
   margin: 0 auto !important;
   padding: 0;
   border: 1px solid var(--slide-line);
@@ -892,4 +897,21 @@ html[data-current-chrome-accent='blue'] {
   .reveal .fragment {
     transition: none;
   }
+}
+
+.chrome-qr-label {
+  margin: 0.75rem 0 0 !important;
+  color: var(--slide-accent-text) !important;
+  font-size: 0.4em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.chrome-title-subtitle {
+  margin: 1.2rem auto 0 !important;
+  color: var(--slide-accent-text) !important;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }

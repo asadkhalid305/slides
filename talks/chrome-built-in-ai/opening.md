@@ -46,14 +46,14 @@
 - Validate the audience’s answers and group them into these three paths.
 - The common assumption is the important part: intelligence lives somewhere else.
 - Do not frame these approaches as wrong. They remain useful and often necessary.
-- Time check: reach this slide by 5 minutes.
+- Keep the guesses brief and move quickly to the demo.
 - If behind, reveal all cards together and state only the common assumption.
 
 </aside>
 
 --
 
-<!-- .slide: class="center-slide" -->
+<!-- .slide: class="center-slide" data-visibility="hidden"  -->
 
 <p class="chrome-kicker">HOLD THAT THOUGHT</p>
 
@@ -75,42 +75,40 @@
 
 --
 
-<!-- .slide: class="center-slide" -->
+<!-- .slide: class="center-slide"  -->
 
 <p class="chrome-kicker">THE TEST</p>
 
-<p class="chrome-question">How is this page running AI?</p>
-
 <div class="chrome-card-grid">
-  <div class="chrome-card fragment fade-up" data-fragment-index="1">
+  <div class="chrome-card">
     <p class="chrome-card__eyebrow">PROVIDER</p>
     <h3>AI provider SDK</h3>
     <p>The frontend calls a managed AI provider directly through its SDK or API.</p>
   </div>
-  <div class="chrome-card fragment fade-up" data-fragment-index="2">
+  <div class="chrome-card">
     <p class="chrome-card__eyebrow">BACKEND</p>
-    <h3>Backend API or MCP</h3>
+    <h3>Backend API</h3>
     <p>The frontend calls an application backend or MCP server, which orchestrates the AI request.</p>
   </div>
-  <div class="chrome-card fragment fade-up" data-fragment-index="3">
+  <div class="chrome-card">
     <p class="chrome-card__eyebrow">LOCAL</p>
     <h3>Self-hosted model</h3>
     <p>A local runtime such as Ollama or an on-premise service runs the model.</p>
   </div>
 </div>
 
+<p class="chrome-question fragment fade-up">Is there anything else?</p>
+
 <aside class="notes">
 
-- Return to the deck and ask the question before revealing any options.
-- Reveal one card per keypress and briefly invite a reaction to each possibility.
-- Collect a few guesses after all three cards are visible. Do not confirm or reject them yet.
-- If someone guesses browser AI, acknowledge it without explaining and continue to the evidence.
+- Show the three familiar approaches, then ask: “Is there anything else?”
+- Invite a few guesses, then introduce the talk as the way to find out.
 
 </aside>
 
 --
 
-<!-- .slide: class="center-slide" -->
+<!-- .slide: class="center-slide" data-visibility="hidden" -->
 
 <p class="chrome-kicker">LOOKING AT THE EVIDENCE</p>
 
@@ -130,7 +128,7 @@
 - Say “no inference request” rather than “no network request.” The page may still load assets, and the model required an earlier download.
 - Let the empty request list sit on screen for a moment.
 - Ask: “If there is no backend call, where did the result come from?”
-- Time check: reach this reveal by 14 minutes.
+- Keep the reveal brief; the implementation walkthrough is the main part of the talk.
 - Fallback: if the Network panel is noisy, show the filtered Fetch/XHR list and explain the distinction. Do not debug the page on stage.
 
 </aside>
@@ -141,9 +139,9 @@
 
 <p class="chrome-kicker">THE TOPIC</p>
 
-## Building Local-First AI Experiences
+## Building AI-Native Web Experiences
 
-## <span class="highlight-accent">Chrome Built-in AI</span>
+<p class="chrome-title-subtitle">A practical guide to Chrome’s built-in AI</p>
 
 <aside class="notes">
 
@@ -158,9 +156,9 @@
 
 <p class="chrome-kicker">THE ANSWER</p>
 
-## Chrome is becoming an <span class="highlight-accent">AI runtime</span>
+## AI, built into Chrome
 
-<p class="chrome-subtitle fragment fade-up">For suitable tasks, Chrome runs inference locally without an application inference backend.</p>
+<p class="chrome-subtitle fragment fade-up">Chrome runs inference locally.</p>
 
 <aside class="notes">
 

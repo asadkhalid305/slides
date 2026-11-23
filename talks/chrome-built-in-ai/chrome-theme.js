@@ -10,7 +10,7 @@
     reveal.getSlides().forEach(function (slide) {
       const accent = slide.dataset.chromeAccent || 'blue';
       slide.querySelectorAll('[data-chrome-qr]').forEach(function (image) {
-        image.src = image.dataset.chromeQr + '-' + accent + '.png';
+        image.src = image.dataset.chromeQr + '-' + accent + '.svg';
       });
     });
   }
