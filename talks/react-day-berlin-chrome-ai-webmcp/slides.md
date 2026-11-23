@@ -1,4 +1,5 @@
 <!--
+date: 2026-12-07
 audience: public
 -->
 
@@ -518,7 +519,7 @@ finally { summarizer.destroy(); }</code></pre>
 
 <p class="chrome-kicker">BROWSER DEMO · WEBMCP</p>
 
-## Two ways to expose a tool
+## WebMCP tools in action
 
 <aside class="notes">
 
