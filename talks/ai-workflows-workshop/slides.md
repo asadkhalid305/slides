@@ -1,7 +1,7 @@
 <!--
 title: Teach Your Agent How You Work
 description: Building reusable team workflows
-date: 2026-11-27
+date: 2026-11-26
 audience: company
 -->
 <!-- .slide: id="session" -->
