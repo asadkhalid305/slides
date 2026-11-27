@@ -1,0 +1,59 @@
+// Opt-in workshop layouts. See talks/shared/workshop-components.md.
+.reveal {
+  .lab-eyebrow { font-size: .4em; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 1.8em; color: var(--color-accent); font-weight: 700; }
+  .lab-subtitle { font-size: 1.05em; line-height: 1.35; margin: 1em 0; }
+  .lab-caption { font-size: .46em; line-height: 1.55; opacity: .8; margin-top: 1.6em; }
+  .lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1em; text-align: left; }
+  .lab-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lab-panel { border-top: 1px solid rgba(255,255,255,.25); padding: .7em 0; min-width: 0; }
+  .lab-panel h3 { font-size: .7em; margin: .3em 0 .7em; }
+  .lab-panel p { font-size: .7em; line-height: 1.5; margin: .4em 0; }
+  .lab-number { font-size: .42em; font-family: monospace; color: var(--color-accent); }
+  .lab-map a { display: block; border: 1px solid rgba(255,255,255,.22); padding: .6em .8em; text-decoration: none; border-radius: .15em; }
+  .lab-map a:hover, .lab-map a:focus-visible { border-color: var(--color-accent); background: var(--bg-accent); }
+  .lab-map strong { display: block; color: #f2f0eb; font-size: .66em; }
+  .lab-map span { display: block; font-size: .45em; color: #c9c6d0; margin-top: .4em; }
+  .lab-return { display: inline-block; font-size: .36em; margin-top: 1.8em; }
+  .lab-observation { border-left: 3px solid var(--color-accent); background: var(--bg-accent); padding: .45em .8em; margin-top: 1em; text-align: left; }
+  .lab-observation p { font-size: .62em; line-height: 1.5; margin: .3em 0; }
+  .lab-annotation { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1em; text-align: left; align-items: start; }
+  .lab-annotation pre { width: 100%; margin: 0; font-size: .54em; box-shadow: none; }
+  .lab-annotation pre code { max-height: none; padding: .8em; line-height: 1.5; }
+  .lab-legend { list-style: none; margin: 0; padding: 0; }
+  .lab-legend li { font-size: .63em; line-height: 1.45; margin: 0 0 .9em; padding-left: .7em; border-left: 3px solid currentColor; }
+  .lab-legend li p { color: #eeeae3; margin: .2em 0; }
+  .lab-flow { display: flex; align-items: center; justify-content: space-between; gap: .5em; margin: 1.4em 0; }
+  .lab-flow p { font-size: .63em; padding: .7em; border: 1px solid rgba(255,255,255,.25); flex: 1; }
+  .lab-flow span { font-size: .65em; }
+  .lab-table { font-size: .62em; width: 100%; line-height: 1.5; }
+  .lab-table th, .lab-table td { padding: .65em .5em; }
+  .lab-prompt { font-size: .85em; line-height: 1.5; text-align: left; padding: 1em; border: 1px solid var(--color-accent); }
+  .lab-steps { list-style: decimal-leading-zero; font-size: .65em; line-height: 1.6; }
+  .lab-steps li { padding: .25em 0 .25em .4em; }
+}
+// Theme is explicitly enabled by the deck body. Existing talks are unaffected.
+body.field-notebook {
+  background: #17191e;
+  .reveal { color: #f2f0eb; font-family: Arial, Helvetica, sans-serif; font-size: 40px; }
+  .reveal h1, .reveal h2, .reveal h3 { color: #f2f0eb; font-family: Arial, Helvetica, sans-serif; text-transform: none; letter-spacing: -.035em; }
+  .reveal h1 { font-size: 2.15em; line-height: 1.06; }
+  .reveal h2 { font-size: 1.36em; margin-bottom: .8em; }
+  .reveal .slides section { text-align: left; }
+  .reveal .slides::before, .reveal .slides::after { content: none; }
+  .reveal a { color: #bca3ff; }
+  .reveal a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 5px; }
+  .reveal .progress { color: var(--color-accent); }
+  .reveal .controls { color: #bca3ff; }
+  .reveal .slide-number { font-size: 15px; background: transparent; color: #c9c6d0; }
+  .watermark { opacity: .6; }
+  .reveal pre code { background: #20232b; }
+  .reveal .text-info { color: #78b7ff; }
+  .reveal .text-success { color: #36d8a1; }
+  .reveal .text-warning { color: #ffc262; }
+}
+.reveal {
+  .lab-code-group { border-left: 3px solid currentColor; padding-left: .45em; margin-bottom: .5em; }
+  .lab-code-group > p { font-size: .34em; margin: 0 0 .3em; }
+  .lab-code-group pre { font-size: .5em; }
+  .lab-code-group pre code { white-space: pre-wrap; overflow-wrap: anywhere; padding: .35em; }
+}
